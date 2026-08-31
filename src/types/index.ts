@@ -11,6 +11,7 @@ export type NavModule =
   | 'inventory'
   | 'attendance'
   | 'payroll'
+  | 'commissions'
   | 'expenses'
   | 'marketing'
   | 'reports'
