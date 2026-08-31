@@ -49,9 +49,6 @@ export const Reports: React.FC = () => {
         </div>
       </div>
 
-      {/* DYNAMIC SERVICE REVENUE TABLE WITH DAY-WISE, WEEKLY, 15D, 30D, 3M & CUSTOM DATE RANGE FILTERS */}
-      <ServiceRevenueTable />
-
       {/* Two Column Grid: Staff Leaderboard & Top Services */}
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
         {/* Staff Revenue Leaderboard */}
@@ -132,6 +129,9 @@ export const Reports: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* DYNAMIC SERVICE REVENUE TABLE PLACED ON DOWNSIDE OF LEADERBOARD & TOP SERVICES */}
+      <ServiceRevenueTable />
     </div>
   );
 };
