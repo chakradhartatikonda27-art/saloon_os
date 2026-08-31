@@ -19,6 +19,7 @@ import { BillingPOS } from './components/modules/BillingPOS';
 import { Inventory } from './components/modules/Inventory';
 import { Invoices } from './components/modules/Invoices';
 import { Attendance } from './components/modules/Attendance';
+import { Payroll } from './components/modules/Payroll';
 import { Expenses } from './components/modules/Expenses';
 import { Marketing } from './components/modules/Marketing';
 import { Reports } from './components/modules/Reports';
@@ -45,6 +46,7 @@ const AdminLayout: React.FC = () => {
       case 'billing': return <BillingPOS />;
       case 'inventory': return <Invoices />;
       case 'attendance': return <Attendance />;
+      case 'payroll': return <Payroll />;
       case 'expenses': return <Expenses />;
       case 'marketing': return <Marketing />;
       case 'reports': return <Reports />;
