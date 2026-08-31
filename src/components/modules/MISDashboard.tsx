@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSalon } from '../../context/SalonContext';
+import { ServiceRevenueTable } from './ServiceRevenueTable';
 import { 
   Scissors, 
   Plus
@@ -216,36 +217,9 @@ export const MISDashboard: React.FC = () => {
         </div>
       </div>
 
-      {/* SERVICE REVENUE · 30D TABLE */}
-      <div style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8E3DE', borderRadius: '16px', padding: '1.5rem', marginBottom: '1.5rem' }}>
-        <div style={{ fontSize: '0.75rem', fontWeight: 800, color: '#75707E', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '1rem' }}>
-          SERVICE REVENUE • 30D
-        </div>
-
-        <div className="table-container" style={{ border: '1px solid #E8E3DE', borderRadius: '12px', overflow: 'hidden' }}>
-          <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-            <thead>
-              <tr style={{ backgroundColor: '#FAF8F5', borderBottom: '1px solid #E8E3DE' }}>
-                <th style={{ padding: '0.75rem 1rem', fontSize: '0.725rem', fontWeight: 800, color: '#75707E', textTransform: 'uppercase' }}>SERVICE</th>
-                <th style={{ padding: '0.75rem 1rem', fontSize: '0.725rem', fontWeight: 800, color: '#75707E', textTransform: 'uppercase' }}>CATEGORY</th>
-                <th style={{ padding: '0.75rem 1rem', fontSize: '0.725rem', fontWeight: 800, color: '#75707E', textTransform: 'uppercase', textAlign: 'right' }}>REVENUE</th>
-                <th style={{ padding: '0.75rem 1rem', fontSize: '0.725rem', fontWeight: 800, color: '#75707E', textTransform: 'uppercase', textAlign: 'center' }}>BOOKINGS</th>
-                <th style={{ padding: '0.75rem 1rem', fontSize: '0.725rem', fontWeight: 800, color: '#75707E', textTransform: 'uppercase', textAlign: 'right' }}>AVG TICKET</th>
-              </tr>
-            </thead>
-            <tbody>
-              {serviceRevenue30D.map(row => (
-                <tr key={row.service} style={{ borderBottom: '1px solid #E8E3DE' }}>
-                  <td style={{ padding: '0.85rem 1rem', fontWeight: 800, color: '#1E1A25', fontSize: '0.875rem' }}>{row.service}</td>
-                  <td style={{ padding: '0.85rem 1rem', color: '#75707E', fontSize: '0.85rem' }}>{row.category}</td>
-                  <td style={{ padding: '0.85rem 1rem', fontWeight: 800, color: '#1E1A25', fontSize: '0.875rem', textAlign: 'right' }}>{row.revenue}</td>
-                  <td style={{ padding: '0.85rem 1rem', color: '#75707E', fontSize: '0.85rem', textAlign: 'center' }}>{row.bookings}</td>
-                  <td style={{ padding: '0.85rem 1rem', fontWeight: 700, color: '#1E1A25', fontSize: '0.875rem', textAlign: 'right' }}>{row.avgTicket}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+      {/* SERVICE REVENUE TABLE WITH TIME RANGE FILTERS */}
+      <div style={{ marginBottom: '1.5rem' }}>
+        <ServiceRevenueTable />
       </div>
 
       {/* Bottom Row: Staff MTD, Live Floor, Needs Attention */}

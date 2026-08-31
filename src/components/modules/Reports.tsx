@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSalon } from '../../context/SalonContext';
-import { Award, Scissors, TrendingUp, BarChart3 } from 'lucide-react';
+import { Award, Scissors } from 'lucide-react';
+import { ServiceRevenueTable } from './ServiceRevenueTable';
 
 export const Reports: React.FC = () => {
   const { staff, services, invoices, expenses } = useSalon();
@@ -9,27 +10,13 @@ export const Reports: React.FC = () => {
   const totalExp = expenses.reduce((s, e) => s + e.amount, 0);
   const netProfit = totalRev - totalExp;
 
-  const serviceRevenue30D = [
-    { service: 'Global Hair Color', category: 'Color', revenue: '₹67,500', bookings: 29, avgTicket: '₹2,328' },
-    { service: 'Hair Spa', category: 'Hair', revenue: '₹67,200', bookings: 57, avgTicket: '₹1,179' },
-    { service: 'Signature Glow Facial', category: 'Facial', revenue: '₹57,000', bookings: 39, avgTicket: '₹1,462' },
-    { service: 'De-Tan Treatment', category: 'Skin', revenue: '₹38,700', bookings: 45, avgTicket: '₹860' },
-    { service: 'Premium Haircut & Style', category: 'Hair', revenue: '₹38,350', bookings: 62, avgTicket: '₹619' },
-    { service: 'Manicure', category: 'Other', revenue: '₹37,200', bookings: 64, avgTicket: '₹581' },
-    { service: 'Head & Shoulder Massage', category: 'Spa', revenue: '₹33,600', bookings: 50, avgTicket: '₹672' },
-    { service: 'Root Touch-up', category: 'Color', revenue: '₹31,900', bookings: 33, avgTicket: '₹967' },
-    { service: 'Classic Haircut', category: 'Hair', revenue: '₹24,850', bookings: 73, avgTicket: '₹340' },
-    { service: 'Hot Towel Shave', category: 'Beard', revenue: '₹19,200', bookings: 50, avgTicket: '₹384' },
-    { service: 'Beard Trim & Shape', category: 'Beard', revenue: '₹12,000', bookings: 49, avgTicket: '₹245' },
-  ];
-
   return (
     <div className="workspace-padding" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
       {/* Header */}
       <div>
         <h2 style={{ fontSize: '1.35rem', fontWeight: 800, color: '#1E1A25' }}>Business Reports & Analytics OS</h2>
         <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>
-          Revenue trends, staff productivity leaderboards, 30-day service breakdown, and net profit margins.
+          Revenue trends, staff productivity leaderboards, custom date service breakdown, and net profit margins.
         </p>
       </div>
 
@@ -62,37 +49,8 @@ export const Reports: React.FC = () => {
         </div>
       </div>
 
-      {/* SERVICE REVENUE · 30D TABLE */}
-      <div className="glass-panel" style={{ padding: '1.5rem' }}>
-        <div style={{ fontSize: '0.75rem', fontWeight: 800, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '1rem' }}>
-          SERVICE REVENUE • 30D
-        </div>
-
-        <div className="table-container" style={{ border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-md)', overflow: 'hidden' }}>
-          <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-            <thead>
-              <tr style={{ backgroundColor: '#FAF8F5', borderBottom: '1px solid var(--border-subtle)' }}>
-                <th style={{ padding: '0.75rem 1rem', fontSize: '0.725rem', fontWeight: 800, color: 'var(--text-muted)', textTransform: 'uppercase' }}>SERVICE</th>
-                <th style={{ padding: '0.75rem 1rem', fontSize: '0.725rem', fontWeight: 800, color: 'var(--text-muted)', textTransform: 'uppercase' }}>CATEGORY</th>
-                <th style={{ padding: '0.75rem 1rem', fontSize: '0.725rem', fontWeight: 800, color: 'var(--text-muted)', textTransform: 'uppercase', textAlign: 'right' }}>REVENUE</th>
-                <th style={{ padding: '0.75rem 1rem', fontSize: '0.725rem', fontWeight: 800, color: 'var(--text-muted)', textTransform: 'uppercase', textAlign: 'center' }}>BOOKINGS</th>
-                <th style={{ padding: '0.75rem 1rem', fontSize: '0.725rem', fontWeight: 800, color: 'var(--text-muted)', textTransform: 'uppercase', textAlign: 'right' }}>AVG TICKET</th>
-              </tr>
-            </thead>
-            <tbody>
-              {serviceRevenue30D.map(row => (
-                <tr key={row.service} style={{ borderBottom: '1px solid var(--border-subtle)' }}>
-                  <td style={{ padding: '0.85rem 1rem', fontWeight: 800, color: '#1E1A25', fontSize: '0.875rem' }}>{row.service}</td>
-                  <td style={{ padding: '0.85rem 1rem', color: 'var(--text-muted)', fontSize: '0.85rem' }}>{row.category}</td>
-                  <td style={{ padding: '0.85rem 1rem', fontWeight: 800, color: '#1E1A25', fontSize: '0.875rem', textAlign: 'right' }}>{row.revenue}</td>
-                  <td style={{ padding: '0.85rem 1rem', color: 'var(--text-muted)', fontSize: '0.85rem', textAlign: 'center' }}>{row.bookings}</td>
-                  <td style={{ padding: '0.85rem 1rem', fontWeight: 700, color: '#1E1A25', fontSize: '0.875rem', textAlign: 'right' }}>{row.avgTicket}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
+      {/* DYNAMIC SERVICE REVENUE TABLE WITH DAY-WISE, WEEKLY, 15D, 30D, 3M & CUSTOM DATE RANGE FILTERS */}
+      <ServiceRevenueTable />
 
       {/* Two Column Grid: Staff Leaderboard & Top Services */}
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
