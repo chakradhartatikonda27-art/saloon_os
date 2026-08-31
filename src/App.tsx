@@ -8,6 +8,7 @@ import { QuickActionModal } from './components/layout/QuickActionModal';
 import { StylistRequestAlert } from './components/common/StylistRequestAlert';
 
 import { Dashboard } from './components/modules/Dashboard';
+import { MISDashboard } from './components/modules/MISDashboard';
 import { Appointments } from './components/modules/Appointments';
 import { LiveQueue } from './components/modules/LiveQueue';
 import { Customers } from './components/modules/Customers';
@@ -31,6 +32,7 @@ const AdminLayout: React.FC = () => {
   const renderModule = () => {
     switch (activeModule) {
       case 'dashboard': return <Dashboard />;
+      case 'mis_dashboard': return <MISDashboard />;
       case 'appointments': return <Appointments />;
       case 'queue': return <LiveQueue />;
       case 'customers': return <Customers />;

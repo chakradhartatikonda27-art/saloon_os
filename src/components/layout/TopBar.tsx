@@ -22,6 +22,7 @@ export const TopBar: React.FC = () => {
   const getModuleTitle = () => {
     switch (activeModule) {
       case 'dashboard': return "Salon Overview";
+      case 'mis_dashboard': return "MIS Executive Dashboard";
       case 'appointments': return "Appointments Management";
       case 'queue': return "Live Queue Control";
       case 'customers': return "Customer CRM";

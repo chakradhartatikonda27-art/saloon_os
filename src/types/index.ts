@@ -1,5 +1,6 @@
 export type NavModule = 
   | 'dashboard'
+  | 'mis_dashboard'
   | 'appointments'
   | 'queue'
   | 'customers'
