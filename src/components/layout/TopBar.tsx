@@ -30,7 +30,8 @@ export const TopBar: React.FC = () => {
       case 'services': return "Services & Pricing";
       case 'staff': return "Staff Roster & Commission";
       case 'billing': return "Billing & POS Cashier";
-      case 'inventory': return "Digital Invoices Terminal";
+      case 'attendance': return "Attendance Management";
+      case 'payroll': return "Payroll Management";
       case 'expenses': return "Expenses & Outflows";
       case 'marketing': return "Marketing & Campaigns";
       case 'reports': return "Analytics & Reports";

@@ -9,6 +9,8 @@ export type NavModule =
   | 'staff'
   | 'billing'
   | 'inventory'
+  | 'attendance'
+  | 'payroll'
   | 'expenses'
   | 'marketing'
   | 'reports'

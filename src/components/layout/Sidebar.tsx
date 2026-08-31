@@ -14,7 +14,9 @@ import {
   Package,
   Megaphone,
   Settings,
-  PieChart
+  PieChart,
+  CheckSquare,
+  Percent
 } from 'lucide-react';
 
 interface SidebarSection {
@@ -58,7 +60,9 @@ export const Sidebar: React.FC = () => {
       items: [
         { id: 'customers', label: 'Customers', icon: Users },
         { id: 'staff', label: 'Staff', icon: UserCheck },
-        { id: 'expenses', label: 'Attendance & Payroll', icon: Wallet, badge: 2 },
+        { id: 'attendance', label: 'Attendance', icon: CheckSquare, badge: 2 },
+        { id: 'payroll', label: 'Payroll', icon: Wallet },
+        { id: 'expenses', label: 'Commissions', icon: Percent },
         { id: 'marketing', label: 'Marketing', icon: Megaphone },
         { id: 'settings', label: 'Settings', icon: Settings }
       ]
