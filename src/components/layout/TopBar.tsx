@@ -52,7 +52,7 @@ export const TopBar: React.FC = () => {
     }}>
       {/* Left Title & Branch Selector */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
-        <h1 style={{ fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-main)' }}>
+        <h1 style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--text-main)', letterSpacing: '-0.02em' }}>
           {getModuleTitle()}
         </h1>
 
@@ -62,12 +62,12 @@ export const TopBar: React.FC = () => {
             value={settings.currentBranchId}
             onChange={(e) => updateSettings({ currentBranchId: e.target.value })}
             style={{
-              backgroundColor: 'rgba(255, 255, 255, 0.05)',
-              border: '1px solid var(--border-strong)',
+              backgroundColor: '#FAF8F5',
+              border: '1px solid var(--border-subtle)',
               borderRadius: 'var(--radius-md)',
               color: 'var(--text-main)',
               fontSize: '0.8rem',
-              fontWeight: 600,
+              fontWeight: 700,
               padding: '0.35rem 0.75rem',
               paddingRight: '1.75rem',
               outline: 'none',
@@ -75,7 +75,7 @@ export const TopBar: React.FC = () => {
             }}
           >
             {settings.branches.map(branch => (
-              <option key={branch.id} value={branch.id} style={{ background: '#1e293b' }}>
+              <option key={branch.id} value={branch.id} style={{ background: '#FFFFFF', color: '#1E1A25' }}>
                 📍 {branch.name}
               </option>
             ))}
@@ -88,15 +88,15 @@ export const TopBar: React.FC = () => {
         {/* Switch to Public Customer Web App */}
         <button
           onClick={() => setViewPerspective('customer')}
-          className="btn btn-secondary btn-sm"
+          className="btn btn-sm"
           style={{
-            backgroundColor: 'rgba(99, 102, 241, 0.15)',
-            borderColor: 'var(--primary-500)',
-            color: '#a5b4fc',
-            fontWeight: 700
+            backgroundColor: '#2A2237',
+            borderColor: '#C9A24E',
+            color: '#EBD28F',
+            fontWeight: 800
           }}
         >
-          <Globe size={15} />
+          <Globe size={15} color="#C9A24E" />
           <span>Public Customer Website</span>
         </button>
 
@@ -107,8 +107,8 @@ export const TopBar: React.FC = () => {
             display: 'flex',
             alignItems: 'center',
             gap: '0.5rem',
-            backgroundColor: 'var(--bg-input)',
-            border: '1px solid var(--border-strong)',
+            backgroundColor: '#FAF8F5',
+            border: '1px solid var(--border-subtle)',
             borderRadius: 'var(--radius-md)',
             padding: '0.45rem 0.85rem',
             color: 'var(--text-muted)',
@@ -117,14 +117,15 @@ export const TopBar: React.FC = () => {
             minWidth: '220px'
           }}
         >
-          <Search size={15} color="var(--text-dim)" />
+          <Search size={15} color="var(--text-muted)" />
           <span style={{ flex: 1, textAlign: 'left' }}>Search customer, appointment...</span>
           <kbd style={{
-            backgroundColor: 'rgba(255, 255, 255, 0.1)',
+            backgroundColor: '#E8E3DE',
             padding: '0.15rem 0.4rem',
             borderRadius: '4px',
             fontSize: '0.7rem',
-            color: 'var(--text-dim)'
+            color: '#75707E',
+            fontWeight: 700
           }}>
             ⌘K
           </kbd>
@@ -135,14 +136,15 @@ export const TopBar: React.FC = () => {
           display: 'flex',
           alignItems: 'center',
           gap: '0.4rem',
-          backgroundColor: 'rgba(255, 255, 255, 0.04)',
+          backgroundColor: '#FAF8F5',
           border: '1px solid var(--border-subtle)',
           borderRadius: 'var(--radius-md)',
           padding: '0.45rem 0.75rem',
           fontSize: '0.8rem',
+          fontWeight: 700,
           color: 'var(--text-muted)'
         }}>
-          <CalendarIcon size={14} color="var(--primary-500)" />
+          <CalendarIcon size={14} color="var(--gold)" />
           <span>Today: 31 Aug 2026</span>
         </div>
 
@@ -151,9 +153,10 @@ export const TopBar: React.FC = () => {
           onClick={() => setIsWalkInOpen(true)}
           className="btn btn-secondary btn-sm"
           style={{
-            borderColor: 'var(--accent-emerald)',
-            color: '#34d399',
-            backgroundColor: 'rgba(16, 185, 129, 0.1)'
+            borderColor: 'var(--teal)',
+            color: 'var(--teal)',
+            backgroundColor: 'var(--teal-tint)',
+            fontWeight: 700
           }}
         >
           <Scissors size={15} />

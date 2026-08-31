@@ -2,23 +2,23 @@
 
 :root {
   /* Role & Hex Color Definitions */
-  --ink: #14121A;             /* Near-black plum: Sidebar, hero, dark buttons, ticket header base */
-  --plum-dark: #241E2E;        /* Staff console header, toasts, summary bars, gradients */
-  --plum-mid: #2A2237;         /* Cards, panels, section containers */
-  --plum-light: #3A2E4A;       /* Hover states, borders, secondary accents */
+  --ink: #14121A;             /* Near-black plum: Sidebar background, hero, dark badges */
+  --plum-dark: #241E2E;        /* Dark plum active nav tile & dark highlights */
+  --plum-mid: #2A2237;         /* Plum accents */
+  --plum-light: #3A2E4A;       /* Secondary dark elements */
   
-  --gold: #C9A24E;             /* Gold (primary accent): Active nav, primary CTAs, selected slots/dates, chart bars */
-  --gold-light: #EBD28F;       /* Gold light: Token numbers on dark, active icons, highlights */
+  --gold: #C9A24E;             /* Gold (primary accent): Active borders, primary CTAs, selected slots/dates, chart bars */
+  --gold-light: #EBD28F;       /* Gold light: Active icons, highlights */
   --gold-hover: #B8913D;
   --gold-glow: rgba(201, 162, 78, 0.25);
   
-  --ivory: #FAF8F5;            /* Customer screen background */
-  --paper: #FFFFFF;            /* Cards, panels, tables */
-  --outer-bg: #EDE9E4;         /* Behind the panes */
+  --ivory: #FAF8F5;            /* Warm creamy off-white canvas background */
+  --paper: #FFFFFF;            /* Pure white cards, panels, tables */
+  --outer-bg: #EDE9E4;         /* Outer frame background */
 
   /* Status Colors & Tints */
   --teal: #0E9C86;             /* Live / success: Queue status, "in service", paid, live dot */
-  --teal-tint: #DDF4EF;
+  --teal-tint: #E6F7F4;
   --coral: #D9584A;            /* Danger: Cancel, no-show, delayed, badges */
   --coral-tint: #FBE5E1;
   --amber: #C57A0F;            /* Warning: Running behind, partial payment, break */
@@ -29,30 +29,30 @@
   --text-muted: #75707E;
   --line: #E8E3DE;
 
-  /* Theme System Variable Mapping */
-  --bg-app: #14121A;
-  --bg-sidebar: #14121A;
-  --bg-topbar: #241E2E;
-  --bg-card: #2A2237;
-  --bg-card-hover: #3A2E4A;
-  --bg-input: #241E2E;
+  /* Hybrid Theme System Variable Mapping (Dark Sidebar + Creamy Off-White Canvas + White Cards) */
+  --bg-app: #FAF8F5;          /* Warm Creamy Off-White main workspace canvas */
+  --bg-sidebar: #14121A;      /* Dark Plum Sidebar */
+  --bg-topbar: #FFFFFF;       /* Pure White Topbar */
+  --bg-card: #FFFFFF;         /* Pure White Cards & Panels */
+  --bg-card-hover: #FAF8F5;   /* Creamy Card Hover */
+  --bg-input: #FFFFFF;        /* Pure White Form Inputs */
   
-  --border-subtle: rgba(232, 227, 222, 0.12);
-  --border-strong: rgba(201, 162, 78, 0.35);
-  --border-accent: #C9A24E;
+  --border-subtle: #E8E3DE;   /* Light Grey Border Divider */
+  --border-strong: #D8D2C9;   /* Stronger Light Border */
+  --border-accent: #C9A24E;   /* Gold Accent Border */
   
   --primary-500: #C9A24E;
   --primary-600: #B8913D;
   --primary-700: #9E7B2F;
-  --primary-glow: rgba(201, 162, 78, 0.3);
+  --primary-glow: rgba(201, 162, 78, 0.25);
 
   --accent-gold: #C9A24E;
   --accent-emerald: #0E9C86;
   --accent-rose: #D9584A;
   --accent-sky: #EBD28F;
 
-  --text-main: #FFFFFF;
-  --text-dim: #9E99A8;
+  --text-main: #1E1A25;       /* Dark Plum Text on White/Ivory Canvas */
+  --text-dim: #75707E;        /* Muted Label Text */
 
   /* Semantic Status Tokens */
   --status-pending: #C57A0F;
@@ -69,8 +69,8 @@
   --radius-xl: 22px;
   --radius-full: 9999px;
 
-  --shadow-card: 0 10px 30px rgba(20, 18, 26, 0.10);
-  --shadow-drawer: -10px 0 30px rgba(20, 18, 26, 0.45);
+  --shadow-card: 0 4px 20px rgba(20, 18, 26, 0.05);
+  --shadow-drawer: -10px 0 30px rgba(20, 18, 26, 0.25);
   --shadow-glow: 0 0 25px rgba(201, 162, 78, 0.3);
 
   --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
@@ -114,10 +114,10 @@ h1, h2, h3, h4, h5, h6 {
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--ink);
+  background: var(--ivory);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--plum-light);
+  background: #D8D2C9;
   border-radius: 99px;
 }
 ::-webkit-scrollbar-thumb:hover {
@@ -130,19 +130,19 @@ h1, h2, h3, h4, h5, h6 {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
+  background-color: var(--bg-app);
 }
 
 .workspace-padding {
   padding: 1.5rem;
 }
 
-/* Modern Glass Panels & Cards */
+/* Modern White Cards & Panels on Warm Cream Canvas */
 .glass-panel {
   background-color: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-card);
-  backdrop-filter: blur(12px);
   transition: border-color var(--transition-fast), transform var(--transition-fast);
 }
 
@@ -169,7 +169,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .btn-primary {
   background-color: var(--gold);
-  color: var(--ink);
+  color: #14121A;
   border-color: var(--gold-hover);
   box-shadow: 0 4px 14px var(--gold-glow);
 }
@@ -180,13 +180,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-secondary {
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: #FFFFFF;
   color: var(--text-main);
   border-color: var(--border-subtle);
 }
 
 .btn-secondary:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: var(--bg-card-hover);
   border-color: var(--border-strong);
 }
 
@@ -201,23 +201,41 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-sm {
-  padding: 0.4rem 0.8rem;
-  font-size: 0.775rem;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.8rem;
   border-radius: var(--radius-sm);
 }
 
 .btn-lg {
-  padding: 0.8rem 1.75rem;
+  padding: 0.85rem 1.75rem;
   font-size: 1rem;
   border-radius: var(--radius-lg);
 }
 
-/* Badge Chips System */
+/* Form Inputs */
+input, select, textarea {
+  background-color: var(--bg-input);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-main);
+  border-radius: var(--radius-md);
+  padding: 0.6rem 0.85rem;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  outline: none;
+  transition: border-color var(--transition-fast);
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 2px var(--gold-glow);
+}
+
+/* Badges & Status Indicators */
 .badge {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  padding: 0.2rem 0.65rem;
+  padding: 0.25rem 0.65rem;
   border-radius: var(--radius-full);
   font-size: 0.75rem;
   font-weight: 700;
@@ -231,19 +249,17 @@ h1, h2, h3, h4, h5, h6 {
 
 .badge-confirmed {
   background-color: rgba(201, 162, 78, 0.15);
-  color: var(--gold-light);
-  border: 1px solid rgba(201, 162, 78, 0.3);
+  color: var(--gold);
 }
 
 .badge-arrived {
-  background-color: rgba(235, 210, 143, 0.2);
-  color: var(--gold-light);
+  background-color: var(--teal-tint);
+  color: var(--teal);
 }
 
 .badge-in-service {
   background-color: var(--teal-tint);
   color: var(--teal);
-  border: 1px solid rgba(14, 156, 134, 0.3);
 }
 
 .badge-completed {
@@ -266,118 +282,84 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--coral);
 }
 
-.badge-gold {
-  background: linear-gradient(135deg, var(--gold), var(--gold-hover));
-  color: var(--ink);
-  font-weight: 800;
-}
-
-/* Modals & Overlay Drawers */
-.modal-overlay {
-  position: fixed;
-  inset: 0;
-  background-color: rgba(20, 18, 26, 0.75);
-  backdrop-filter: blur(8px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 100;
-  padding: 1rem;
-  animation: fadeIn 0.2s ease-out;
-}
-
-.modal-card {
-  background-color: var(--plum-dark);
-  border: 1px solid var(--border-strong);
-  border-radius: var(--radius-xl);
-  box-shadow: var(--shadow-drawer);
+/* Tables System */
+.table-container {
   width: 100%;
-  max-width: 580px;
-  overflow: hidden;
-  animation: scaleUp 0.2s ease-out;
+  overflow-x: auto;
 }
 
-.modal-header {
-  padding: 1.25rem 1.5rem;
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+th {
+  background-color: #FAF8F5;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.85rem 1rem;
   border-bottom: 1px solid var(--border-subtle);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 }
 
-.modal-body {
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
+td {
+  padding: 1rem;
+  border-bottom: 1px solid var(--border-subtle);
+  color: var(--text-main);
+  font-size: 0.875rem;
 }
 
-.modal-footer {
-  padding: 1rem 1.5rem;
-  border-top: 1px solid var(--border-subtle);
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 0.75rem;
-  background-color: rgba(0, 0, 0, 0.2);
+tr:last-child td {
+  border-bottom: none;
 }
 
-/* 5-Second Situation Metrics Grid */
+tr:hover td {
+  background-color: rgba(250, 248, 245, 0.6);
+}
+
+/* Animations & Effects */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.fade-in {
+  animation: fadeIn var(--transition-smooth) forwards;
+}
+
+.pulse-active {
+  animation: pulseGlow 2s infinite ease-in-out;
+}
+
+/* Responsive Helper Grids */
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 1.25rem;
 }
 
-.stat-card {
-  background-color: var(--bg-card);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-lg);
-  padding: 1.25rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  box-shadow: var(--shadow-card);
+.module-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1.5rem;
 }
 
-/* Keyframes */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes scaleUp {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
-}
-
-.pulse-active {
-  animation: pulse 2s infinite ease-in-out;
-}
-
-/* Responsive Media Queries */
 @media (max-width: 1024px) {
-  .workspace-padding {
-    padding: 1rem;
+  .module-grid {
+    grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 768px) {
-  .hide-mobile {
-    display: none !important;
-  }
-  .stats-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 480px) {
-  .stats-grid {
-    grid-template-columns: 1fr;
+  .workspace-padding {
+    padding: 1rem;
   }
 }
