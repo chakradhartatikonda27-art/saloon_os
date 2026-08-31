@@ -50,7 +50,7 @@ export const Appointments: React.FC = () => {
         <div>
           <h2 style={{ fontSize: '1.35rem', fontWeight: 800 }}>Appointments Operating System</h2>
           <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>
-            Manage daily schedule, online booking requests, staff slots, and service lifecycle.
+            Every booking from the customer web, reception and walk-ins — one table
           </p>
         </div>
 
@@ -81,6 +81,45 @@ export const Appointments: React.FC = () => {
             <Plus size={18} />
             <span>New Appointment</span>
           </button>
+        </div>
+      </div>
+
+      {/* 4 Summary Stat Cards Row */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1.25rem' }}>
+        <div style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8E3DE', borderRadius: '16px', padding: '1.25rem' }}>
+          <div style={{ fontSize: '0.725rem', fontWeight: 800, color: '#75707E', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+            COMPLETED TODAY
+          </div>
+          <div style={{ fontSize: '2rem', fontWeight: 900, color: '#0E9C86', marginTop: '0.25rem' }}>
+            {7 + appointments.filter(a => a.status === 'Completed').length}
+          </div>
+        </div>
+
+        <div style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8E3DE', borderRadius: '16px', padding: '1.25rem' }}>
+          <div style={{ fontSize: '0.725rem', fontWeight: 800, color: '#75707E', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+            PENDING / IN PROGRESS
+          </div>
+          <div style={{ fontSize: '2rem', fontWeight: 900, color: '#14121A', marginTop: '0.25rem' }}>
+            {11 + appointments.filter(a => a.status === 'Pending' || a.status === 'Confirmed' || a.status === 'In Service').length}
+          </div>
+        </div>
+
+        <div style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8E3DE', borderRadius: '16px', padding: '1.25rem' }}>
+          <div style={{ fontSize: '0.725rem', fontWeight: 800, color: '#75707E', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+            CANCELLED
+          </div>
+          <div style={{ fontSize: '2rem', fontWeight: 900, color: '#D9584A', marginTop: '0.25rem' }}>
+            {appointments.filter(a => a.status === 'Cancelled').length}
+          </div>
+        </div>
+
+        <div style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8E3DE', borderRadius: '16px', padding: '1.25rem' }}>
+          <div style={{ fontSize: '0.725rem', fontWeight: 800, color: '#75707E', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+            NO-SHOW
+          </div>
+          <div style={{ fontSize: '2rem', fontWeight: 900, color: '#D9584A', marginTop: '0.25rem' }}>
+            0
+          </div>
         </div>
       </div>
 
