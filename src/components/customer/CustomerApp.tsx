@@ -8,13 +8,13 @@ import { CustomerBookingFlow } from './CustomerBookingFlow';
 import { CustomerTokenTracker } from './CustomerTokenTracker';
 import { CustomerPortal } from './CustomerPortal';
 import { CustomerMobileNav } from './CustomerMobileNav';
-import { Scissors, UserCheck, Calendar, ArrowRight, Sparkles, Clock, CheckCircle } from 'lucide-react';
+import { Scissors, ArrowRight, Sparkles, Clock } from 'lucide-react';
 
 export const CustomerApp: React.FC = () => {
   const { activeCustomerTab, setActiveCustomerTab, settings } = useSalon();
 
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: '#090d16', color: '#f8fafc', paddingBottom: '80px', fontFamily: 'var(--font-body)' }}>
+    <div style={{ minHeight: '100vh', backgroundColor: 'var(--ink)', color: '#f8fafc', paddingBottom: '80px', fontFamily: 'var(--font-body)' }}>
       {/* Brand Header */}
       <CustomerHeader />
 
@@ -29,8 +29,8 @@ export const CustomerApp: React.FC = () => {
               style={{
                 padding: '2.5rem 2rem',
                 borderRadius: 'var(--radius-xl)',
-                background: 'linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(236, 72, 153, 0.15))',
-                border: '1px solid rgba(255, 255, 255, 0.15)',
+                background: 'linear-gradient(135deg, var(--plum-dark), var(--plum-mid))',
+                border: '1px solid var(--border-strong)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
@@ -43,19 +43,20 @@ export const CustomerApp: React.FC = () => {
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '0.4rem',
-                  backgroundColor: 'rgba(236, 72, 153, 0.2)',
-                  color: '#f472b6',
+                  backgroundColor: 'rgba(201, 162, 78, 0.15)',
+                  color: 'var(--gold-light)',
+                  border: '1px solid rgba(201, 162, 78, 0.3)',
                   padding: '0.35rem 0.85rem',
                   borderRadius: 'var(--radius-full)',
                   fontSize: '0.8rem',
                   fontWeight: 800,
                   width: 'fit-content'
                 }}>
-                  <Sparkles size={14} /> Luxury Salon Experience • No Physical Waiting
+                  <Sparkles size={14} color="var(--gold)" /> Luxury Salon Experience • Minimum Waiting Time
                 </span>
 
-                <h2 style={{ fontSize: '2.2rem', fontWeight: 900, lineHeight: 1.15, letterSpacing: '-0.03em' }}>
-                  Book. Track. Arrive. <span style={{ color: 'var(--primary-500)' }}>Get Served.</span>
+                <h2 style={{ fontSize: '2.2rem', fontWeight: 800, lineHeight: 1.15, letterSpacing: '-0.02em' }}>
+                  Book. Track. Arrive. <span style={{ color: 'var(--gold)' }}>Get Served.</span>
                 </h2>
 
                 <p style={{ fontSize: '0.95rem', color: 'var(--text-muted)', lineHeight: 1.5 }}>
@@ -66,7 +67,7 @@ export const CustomerApp: React.FC = () => {
                   <button
                     onClick={() => setActiveCustomerTab('book')}
                     className="btn btn-primary"
-                    style={{ padding: '0.75rem 1.75rem', background: 'linear-gradient(135deg, #6366f1, #ec4899)', border: 'none', fontSize: '0.95rem' }}
+                    style={{ padding: '0.75rem 1.75rem', fontSize: '0.95rem' }}
                   >
                     <Scissors size={18} />
                     <span>Book Your Visit Now</span>
@@ -85,8 +86,7 @@ export const CustomerApp: React.FC = () => {
 
               {/* Quick Queue Status Badge Card */}
               <div style={{
-                backgroundColor: 'rgba(15, 23, 42, 0.8)',
-                backdropFilter: 'blur(12px)',
+                backgroundColor: 'var(--ink)',
                 border: '1px solid var(--border-strong)',
                 borderRadius: 'var(--radius-lg)',
                 padding: '1.5rem',
@@ -99,12 +99,12 @@ export const CustomerApp: React.FC = () => {
                   LIVE SALON QUEUE STATUS
                 </div>
 
-                <div style={{ fontSize: '1.6rem', fontWeight: 800, color: '#34d399' }}>
+                <div style={{ fontSize: '1.6rem', fontWeight: 800, color: 'var(--teal)' }}>
                   🟢 Open & Operational
                 </div>
 
                 <div style={{ fontSize: '0.825rem', color: 'var(--text-muted)' }}>
-                  Current Avg Wait: <strong style={{ color: '#fbbf24' }}>14 mins</strong>
+                  Current Avg Wait: <strong style={{ color: 'var(--gold)' }}>14 mins</strong>
                 </div>
 
                 <div style={{ fontSize: '0.75rem', color: 'var(--text-dim)', borderTop: '1px solid var(--border-subtle)', paddingTop: '0.5rem' }}>
@@ -129,7 +129,7 @@ export const CustomerApp: React.FC = () => {
                 <div 
                   onClick={() => setActiveCustomerTab('book')}
                   style={{
-                    backgroundColor: 'rgba(255,255,255,0.03)',
+                    backgroundColor: 'var(--plum-dark)',
                     border: '1px solid var(--border-subtle)',
                     borderRadius: 'var(--radius-lg)',
                     padding: '1.25rem',
@@ -141,7 +141,7 @@ export const CustomerApp: React.FC = () => {
                     gap: '0.65rem'
                   }}
                 >
-                  <div style={{ width: '44px', height: '44px', borderRadius: '50%', backgroundColor: 'rgba(99,102,241,0.2)', color: 'var(--primary-500)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800 }}>
+                  <div style={{ width: '44px', height: '44px', borderRadius: '50%', backgroundColor: 'rgba(201, 162, 78, 0.2)', color: 'var(--gold)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800 }}>
                     1
                   </div>
                   <h4 style={{ fontSize: '1rem', fontWeight: 800 }}>Choose Service</h4>
@@ -151,7 +151,7 @@ export const CustomerApp: React.FC = () => {
                 <div 
                   onClick={() => setActiveCustomerTab('book')}
                   style={{
-                    backgroundColor: 'rgba(255,255,255,0.03)',
+                    backgroundColor: 'var(--plum-dark)',
                     border: '1px solid var(--border-subtle)',
                     borderRadius: 'var(--radius-lg)',
                     padding: '1.25rem',
@@ -163,7 +163,7 @@ export const CustomerApp: React.FC = () => {
                     gap: '0.65rem'
                   }}
                 >
-                  <div style={{ width: '44px', height: '44px', borderRadius: '50%', backgroundColor: 'rgba(236,72,153,0.2)', color: '#ec4899', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800 }}>
+                  <div style={{ width: '44px', height: '44px', borderRadius: '50%', backgroundColor: 'rgba(235, 210, 143, 0.2)', color: 'var(--gold-light)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800 }}>
                     2
                   </div>
                   <h4 style={{ fontSize: '1rem', fontWeight: 800 }}>Select Stylist</h4>
@@ -173,7 +173,7 @@ export const CustomerApp: React.FC = () => {
                 <div 
                   onClick={() => setActiveCustomerTab('book')}
                   style={{
-                    backgroundColor: 'rgba(255,255,255,0.03)',
+                    backgroundColor: 'var(--plum-dark)',
                     border: '1px solid var(--border-subtle)',
                     borderRadius: 'var(--radius-lg)',
                     padding: '1.25rem',
@@ -185,7 +185,7 @@ export const CustomerApp: React.FC = () => {
                     gap: '0.65rem'
                   }}
                 >
-                  <div style={{ width: '44px', height: '44px', borderRadius: '50%', backgroundColor: 'rgba(16,185,129,0.2)', color: '#34d399', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800 }}>
+                  <div style={{ width: '44px', height: '44px', borderRadius: '50%', backgroundColor: 'var(--teal-tint)', color: 'var(--teal)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800 }}>
                     3
                   </div>
                   <h4 style={{ fontSize: '1rem', fontWeight: 800 }}>Get Smart Token</h4>

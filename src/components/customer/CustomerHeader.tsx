@@ -12,17 +12,18 @@ export const CustomerHeader: React.FC = () => {
 
   return (
     <header style={{
-      backgroundColor: '#0f172a',
-      borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+      backgroundColor: 'var(--ink)',
+      borderBottom: '1px solid var(--border-subtle)',
       position: 'sticky',
       top: 0,
       zIndex: 50
     }}>
       {/* Top Banner perspective switcher */}
       <div style={{
-        backgroundColor: 'var(--primary-600)',
-        color: '#ffffff',
-        padding: '0.4rem 1rem',
+        backgroundColor: 'var(--plum-dark)',
+        borderBottom: '1px solid var(--border-subtle)',
+        color: 'var(--gold-light)',
+        padding: '0.45rem 1rem',
         fontSize: '0.75rem',
         display: 'flex',
         alignItems: 'center',
@@ -30,20 +31,20 @@ export const CustomerHeader: React.FC = () => {
         fontWeight: 600
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-          <Sparkles size={14} />
+          <Sparkles size={14} color="var(--gold)" />
           <span>Public Customer Web View — {settings.slug}.yourplatform.com</span>
         </div>
 
         <button
           onClick={() => setViewPerspective('admin')}
           style={{
-            background: 'rgba(255, 255, 255, 0.2)',
+            backgroundColor: 'var(--gold)',
             border: 'none',
-            color: '#ffffff',
+            color: 'var(--ink)',
             borderRadius: 'var(--radius-sm)',
-            padding: '0.2rem 0.6rem',
+            padding: '0.2rem 0.65rem',
             fontSize: '0.725rem',
-            fontWeight: 700,
+            fontWeight: 800,
             cursor: 'pointer',
             display: 'flex',
             alignItems: 'center',
@@ -63,13 +64,13 @@ export const CustomerHeader: React.FC = () => {
               width: '48px',
               height: '48px',
               borderRadius: 'var(--radius-md)',
-              background: 'linear-gradient(135deg, #6366f1, #ec4899)',
+              background: 'linear-gradient(135deg, var(--plum-light), var(--gold))',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               fontSize: '1.5rem',
               color: '#ffffff',
-              boxShadow: '0 4px 14px rgba(99, 102, 241, 0.3)'
+              boxShadow: 'var(--shadow-gold)'
             }}>
               {settings.logo}
             </div>
@@ -80,10 +81,10 @@ export const CustomerHeader: React.FC = () => {
               </h1>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontSize: '0.775rem', color: 'var(--text-muted)', marginTop: '0.15rem' }}>
                 <span style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
-                  <MapPin size={13} color="#ec4899" /> {settings.address.split(',')[0]}
+                  <MapPin size={13} color="var(--gold)" /> {settings.address.split(',')[0]}
                 </span>
                 <span>•</span>
-                <span style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', color: '#34d399', fontWeight: 600 }}>
+                <span style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', color: 'var(--teal)', fontWeight: 600 }}>
                   <Clock size={13} /> Open Today ({settings.businessHours.split('(')[0]})
                 </span>
               </div>
@@ -95,7 +96,6 @@ export const CustomerHeader: React.FC = () => {
             <a
               href={`tel:${settings.phone}`}
               className="btn btn-secondary btn-sm"
-              style={{ color: 'var(--text-main)', borderColor: 'var(--border-strong)' }}
             >
               <Phone size={14} /> <span className="hide-mobile">Call</span>
             </a>
@@ -105,7 +105,7 @@ export const CustomerHeader: React.FC = () => {
               target="_blank"
               rel="noreferrer"
               className="btn btn-secondary btn-sm"
-              style={{ color: '#34d399', borderColor: '#059669', backgroundColor: 'rgba(16, 185, 129, 0.1)' }}
+              style={{ color: 'var(--teal)', borderColor: 'var(--teal)', backgroundColor: 'var(--teal-tint)' }}
             >
               <MessageSquare size={14} /> <span className="hide-mobile">WhatsApp</span>
             </a>
@@ -114,7 +114,7 @@ export const CustomerHeader: React.FC = () => {
               <button
                 onClick={() => setActiveCustomerTab('token')}
                 className="btn btn-secondary btn-sm pulse-active"
-                style={{ backgroundColor: 'rgba(236, 72, 153, 0.15)', borderColor: '#ec4899', color: '#f472b6', fontWeight: 700 }}
+                style={{ backgroundColor: 'rgba(201, 162, 78, 0.15)', borderColor: 'var(--gold)', color: 'var(--gold-light)', fontWeight: 700 }}
               >
                 <span>Live Token {tokenBadgeLabel}</span>
               </button>
@@ -123,7 +123,7 @@ export const CustomerHeader: React.FC = () => {
             <button
               onClick={() => setActiveCustomerTab('book')}
               className="btn btn-primary"
-              style={{ background: 'linear-gradient(135deg, #6366f1, #ec4899)', border: 'none', padding: '0.55rem 1.25rem' }}
+              style={{ padding: '0.55rem 1.25rem' }}
             >
               Book Visit
             </button>

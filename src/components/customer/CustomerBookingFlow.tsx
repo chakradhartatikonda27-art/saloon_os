@@ -4,12 +4,10 @@ import {
   Scissors, 
   UserCheck, 
   Calendar, 
-  Clock, 
   Check, 
   ArrowRight, 
   CheckCircle2, 
-  Sparkles, 
-  AlertCircle 
+  Sparkles 
 } from 'lucide-react';
 import { SmartToken } from '../../types';
 
@@ -68,9 +66,9 @@ export const CustomerBookingFlow: React.FC = () => {
       {currentStep <= 3 && (
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
           <div style={{ display: 'flex', gap: '0.5rem', flex: 1 }}>
-            <div style={{ flex: 1, height: '4px', borderRadius: '99px', backgroundColor: currentStep >= 1 ? 'var(--primary-500)' : 'var(--border-subtle)' }} />
-            <div style={{ flex: 1, height: '4px', borderRadius: '99px', backgroundColor: currentStep >= 2 ? 'var(--primary-500)' : 'var(--border-subtle)' }} />
-            <div style={{ flex: 1, height: '4px', borderRadius: '99px', backgroundColor: currentStep >= 3 ? 'var(--primary-500)' : 'var(--border-subtle)' }} />
+            <div style={{ flex: 1, height: '4px', borderRadius: '99px', backgroundColor: currentStep >= 1 ? 'var(--gold)' : 'var(--border-subtle)' }} />
+            <div style={{ flex: 1, height: '4px', borderRadius: '99px', backgroundColor: currentStep >= 2 ? 'var(--gold)' : 'var(--border-subtle)' }} />
+            <div style={{ flex: 1, height: '4px', borderRadius: '99px', backgroundColor: currentStep >= 3 ? 'var(--gold)' : 'var(--border-subtle)' }} />
           </div>
           <span style={{ fontSize: '0.775rem', color: 'var(--text-muted)', marginLeft: '1rem', fontWeight: 700 }}>
             Step {currentStep} of 3
@@ -83,7 +81,7 @@ export const CustomerBookingFlow: React.FC = () => {
         <div className="glass-panel" style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
           <div>
             <h3 style={{ fontSize: '1.25rem', fontWeight: 800, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <Scissors size={20} color="var(--primary-500)" />
+              <Scissors size={20} color="var(--gold)" />
               <span>Step 1: Choose Your Desired Service</span>
             </h3>
             <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', marginTop: '0.25rem' }}>
@@ -94,8 +92,8 @@ export const CustomerBookingFlow: React.FC = () => {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
             {services.map(srv => {
               const isSelected = selectedServiceId === srv.id;
-              const cardBorder = isSelected ? '1px solid var(--primary-500)' : '1px solid var(--border-subtle)';
-              const cardBg = isSelected ? 'rgba(99, 102, 241, 0.1)' : 'rgba(255, 255, 255, 0.02)';
+              const cardBorder = isSelected ? '2px solid var(--gold)' : '1px solid var(--border-subtle)';
+              const cardBg = isSelected ? 'rgba(201, 162, 78, 0.12)' : 'var(--plum-dark)';
 
               return (
                 <div
@@ -117,8 +115,8 @@ export const CustomerBookingFlow: React.FC = () => {
                     {srv.imageUrl ? (
                       <img src={srv.imageUrl} alt={srv.name} style={{ width: '48px', height: '48px', borderRadius: 'var(--radius-md)', objectFit: 'cover' }} />
                     ) : (
-                      <div style={{ width: '48px', height: '48px', borderRadius: 'var(--radius-md)', backgroundColor: 'var(--primary-600)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <Scissors size={20} color="#ffffff" />
+                      <div style={{ width: '48px', height: '48px', borderRadius: 'var(--radius-md)', backgroundColor: 'var(--plum-light)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <Scissors size={20} color="var(--gold)" />
                       </div>
                     )}
 
@@ -133,7 +131,7 @@ export const CustomerBookingFlow: React.FC = () => {
                   </div>
 
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
-                    <div style={{ fontWeight: 800, fontSize: '1.1rem', color: '#34d399' }}>
+                    <div style={{ fontWeight: 800, fontSize: '1.1rem', color: 'var(--gold-light)' }}>
                       ₹{srv.price}
                     </div>
 
@@ -141,13 +139,13 @@ export const CustomerBookingFlow: React.FC = () => {
                       width: '24px',
                       height: '24px',
                       borderRadius: '50%',
-                      backgroundColor: isSelected ? 'var(--primary-500)' : 'transparent',
+                      backgroundColor: isSelected ? 'var(--gold)' : 'transparent',
                       border: isSelected ? 'none' : '2px solid var(--border-strong)',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center'
                     }}>
-                      {isSelected && <Check size={14} color="#ffffff" />}
+                      {isSelected && <Check size={14} color="var(--ink)" />}
                     </div>
                   </div>
                 </div>
@@ -173,7 +171,7 @@ export const CustomerBookingFlow: React.FC = () => {
         <div className="glass-panel" style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
           <div>
             <h3 style={{ fontSize: '1.25rem', fontWeight: 800, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <UserCheck size={20} color="#ec4899" />
+              <UserCheck size={20} color="var(--gold-light)" />
               <span>Step 2: Choose Your Preferred Stylist</span>
             </h3>
             <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', marginTop: '0.25rem' }}>
@@ -184,8 +182,8 @@ export const CustomerBookingFlow: React.FC = () => {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '1rem' }}>
             {staff.map(st => {
               const isSelected = selectedStaffId === st.id;
-              const cardBorder = isSelected ? '2px solid #ec4899' : '1px solid var(--border-subtle)';
-              const cardBg = isSelected ? 'rgba(236, 72, 153, 0.1)' : 'rgba(255, 255, 255, 0.02)';
+              const cardBorder = isSelected ? '2px solid var(--gold)' : '1px solid var(--border-subtle)';
+              const cardBg = isSelected ? 'rgba(201, 162, 78, 0.12)' : 'var(--plum-dark)';
               const isAvailable = st.status === 'Available';
 
               return (
@@ -209,7 +207,7 @@ export const CustomerBookingFlow: React.FC = () => {
                     <div>
                       <div style={{ fontWeight: 800, fontSize: '0.95rem' }}>{st.name}</div>
                       <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>{st.role} • {st.experienceYears || 8} yrs exp</div>
-                      <div style={{ fontSize: '0.75rem', color: '#fbbf24', fontWeight: 700, marginTop: '0.1rem' }}>
+                      <div style={{ fontSize: '0.75rem', color: 'var(--gold-light)', fontWeight: 700, marginTop: '0.1rem' }}>
                         ⭐ {st.rating} Rating
                       </div>
                     </div>
@@ -220,7 +218,7 @@ export const CustomerBookingFlow: React.FC = () => {
                       {isAvailable ? 'Available Today' : 'Available at 5:30 PM'}
                     </span>
 
-                    <span style={{ fontSize: '0.8rem', fontWeight: 700, color: isSelected ? '#ec4899' : 'var(--text-muted)' }}>
+                    <span style={{ fontSize: '0.8rem', fontWeight: 700, color: isSelected ? 'var(--gold)' : 'var(--text-muted)' }}>
                       {isSelected ? 'Selected' : 'Select'}
                     </span>
                   </div>
@@ -253,7 +251,7 @@ export const CustomerBookingFlow: React.FC = () => {
         <div className="glass-panel" style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
           <div>
             <h3 style={{ fontSize: '1.25rem', fontWeight: 800, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <Calendar size={20} color="#34d399" />
+              <Calendar size={20} color="var(--gold)" />
               <span>Step 3: Select Date & Available Time Slot</span>
             </h3>
             <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', marginTop: '0.25rem' }}>
@@ -281,9 +279,9 @@ export const CustomerBookingFlow: React.FC = () => {
                     display: 'flex',
                     flexDirection: 'column',
                     padding: '0.65rem',
-                    backgroundColor: isSelected ? 'var(--primary-600)' : 'rgba(255,255,255,0.03)',
-                    borderColor: isSelected ? 'var(--primary-500)' : 'var(--border-subtle)',
-                    color: isSelected ? '#ffffff' : 'var(--text-main)'
+                    backgroundColor: isSelected ? 'var(--gold)' : 'var(--plum-dark)',
+                    borderColor: isSelected ? 'var(--gold-hover)' : 'var(--border-subtle)',
+                    color: isSelected ? 'var(--ink)' : 'var(--text-main)'
                   }}
                 >
                   <span style={{ fontSize: '0.75rem', opacity: 0.8 }}>{d.label}</span>
@@ -302,7 +300,7 @@ export const CustomerBookingFlow: React.FC = () => {
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '0.65rem' }}>
               {availableTimeSlots.map((slot, idx) => {
                 const isSelected = selectedTimeSlot === slot;
-                const isBusy = idx === 1 || idx === 6; // simulate a busy slot
+                const isBusy = idx === 1 || idx === 6;
                 return (
                   <button
                     key={slot}
@@ -311,9 +309,9 @@ export const CustomerBookingFlow: React.FC = () => {
                     style={{
                       padding: '0.55rem',
                       borderRadius: 'var(--radius-md)',
-                      backgroundColor: isSelected ? '#ec4899' : isBusy ? 'rgba(255,255,255,0.02)' : 'rgba(255,255,255,0.05)',
+                      backgroundColor: isSelected ? 'var(--gold)' : isBusy ? 'rgba(255,255,255,0.02)' : 'var(--plum-dark)',
                       border: isSelected ? 'none' : '1px solid var(--border-subtle)',
-                      color: isSelected ? '#ffffff' : isBusy ? 'var(--text-dim)' : 'var(--text-main)',
+                      color: isSelected ? 'var(--ink)' : isBusy ? 'var(--text-dim)' : 'var(--text-main)',
                       fontWeight: isSelected ? 800 : 600,
                       fontSize: '0.8rem',
                       cursor: isBusy ? 'not-allowed' : 'pointer',
@@ -328,7 +326,7 @@ export const CustomerBookingFlow: React.FC = () => {
           </div>
 
           {/* Customer Input Details */}
-          <div style={{ backgroundColor: 'rgba(15,23,42,0.6)', padding: '1rem', borderRadius: 'var(--radius-md)', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+          <div style={{ backgroundColor: 'var(--ink)', padding: '1rem', borderRadius: 'var(--radius-md)', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
             <div style={{ fontSize: '0.85rem', fontWeight: 700 }}>Your Contact Details:</div>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
               <div>
@@ -363,7 +361,7 @@ export const CustomerBookingFlow: React.FC = () => {
             <button
               onClick={handleBookingSubmit}
               className="btn btn-primary"
-              style={{ padding: '0.65rem 1.5rem', background: 'linear-gradient(135deg, #10b981, #059669)', border: 'none' }}
+              style={{ padding: '0.65rem 1.5rem' }}
             >
               <Sparkles size={16} />
               <span>Send Booking Request</span>
@@ -379,8 +377,8 @@ export const CustomerBookingFlow: React.FC = () => {
             width: '64px',
             height: '64px',
             borderRadius: '50%',
-            backgroundColor: 'rgba(16, 185, 129, 0.2)',
-            color: '#34d399',
+            backgroundColor: 'var(--teal-tint)',
+            color: 'var(--teal)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center'
@@ -397,8 +395,8 @@ export const CustomerBookingFlow: React.FC = () => {
 
           {/* Token Card */}
           <div style={{
-            backgroundColor: 'rgba(99, 102, 241, 0.12)',
-            border: '2px dashed var(--primary-500)',
+            backgroundColor: 'var(--ink)',
+            border: '2px dashed var(--gold)',
             borderRadius: 'var(--radius-xl)',
             padding: '1.5rem 2rem',
             width: '100%',
@@ -411,7 +409,7 @@ export const CustomerBookingFlow: React.FC = () => {
               YOUR SALON SMART TOKEN
             </span>
 
-            <div style={{ fontSize: '3rem', fontWeight: 900, color: 'var(--primary-500)', letterSpacing: '0.05em' }}>
+            <div style={{ fontSize: '3rem', fontWeight: 900, color: 'var(--gold-light)', letterSpacing: '0.05em' }}>
               {tokenNumLabel}
             </div>
 
@@ -419,11 +417,11 @@ export const CustomerBookingFlow: React.FC = () => {
               <strong>{generatedToken.serviceName}</strong> with <strong>{generatedToken.staffName}</strong>
             </div>
 
-            <div style={{ fontSize: '0.8rem', color: '#fbbf24', fontWeight: 700 }}>
+            <div style={{ fontSize: '0.8rem', color: 'var(--gold)', fontWeight: 700 }}>
               ⏰ Scheduled Slot: {generatedToken.time} ({generatedToken.date})
             </div>
 
-            <div style={{ fontSize: '0.775rem', color: '#34d399', backgroundColor: 'rgba(16, 185, 129, 0.15)', padding: '0.35rem', borderRadius: 'var(--radius-md)' }}>
+            <div style={{ fontSize: '0.775rem', color: 'var(--teal)', backgroundColor: 'var(--teal-tint)', padding: '0.35rem', borderRadius: 'var(--radius-md)' }}>
               📌 Recommended Arrival: Around {generatedToken.suggestedArrivalTime}
             </div>
           </div>
@@ -433,9 +431,8 @@ export const CustomerBookingFlow: React.FC = () => {
             <button
               onClick={() => setActiveCustomerTab('token')}
               className="btn btn-primary"
-              style={{ background: 'linear-gradient(135deg, #ec4899, #8b5cf6)' }}
             >
-              <Clock size={16} />
+              <Calendar size={16} />
               <span>Track Live Queue Progress</span>
             </button>
 

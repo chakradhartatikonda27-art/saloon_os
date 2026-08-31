@@ -49,7 +49,7 @@ export const initialOffers: OfferItem[] = [
     discountText: 'FLAT 20% OFF',
     validUntil: 'Valid till 05 Sep 2026',
     code: 'GLOW20',
-    bgGradient: 'linear-gradient(135deg, #4f46e5, #9333ea)'
+    bgGradient: 'linear-gradient(135deg, #241E2E, #C9A24E)'
   },
   {
     id: 'off-2',
@@ -58,7 +58,7 @@ export const initialOffers: OfferItem[] = [
     discountText: 'ONLY ₹699 (Save ₹250)',
     validUntil: 'Weekend Special',
     code: 'GROOM699',
-    bgGradient: 'linear-gradient(135deg, #059669, #0d9488)'
+    bgGradient: 'linear-gradient(135deg, #14121A, #3A2E4A)'
   },
   {
     id: 'off-3',
@@ -67,7 +67,7 @@ export const initialOffers: OfferItem[] = [
     discountText: 'GET ₹500 BONUS',
     validUntil: 'Limited Edition',
     code: 'GOLDVIP',
-    bgGradient: 'linear-gradient(135deg, #d97706, #b45309)'
+    bgGradient: 'linear-gradient(135deg, #2A2237, #C9A24E)'
   }
 ];
 
