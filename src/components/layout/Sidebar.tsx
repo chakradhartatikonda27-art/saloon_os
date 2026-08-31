@@ -46,6 +46,7 @@ export const Sidebar: React.FC = () => {
       title: 'OPERATIONS',
       items: [
         { id: 'queue', label: 'Live operations', icon: Clock, badge: waitingQueueCount > 0 ? waitingQueueCount : undefined },
+        { id: 'queue_control', label: 'Queue control', icon: Clock },
         { id: 'appointments', label: 'Appointments', icon: Calendar, badge: pendingAptsCount > 0 ? pendingAptsCount : undefined },
         { id: 'billing', label: 'Billing / POS', icon: Receipt },
         { id: 'inventory', label: 'Invoices', icon: Package, badge: 40 },

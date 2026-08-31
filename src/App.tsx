@@ -11,6 +11,7 @@ import { Dashboard } from './components/modules/Dashboard';
 import { MISDashboard } from './components/modules/MISDashboard';
 import { Appointments } from './components/modules/Appointments';
 import { LiveQueue } from './components/modules/LiveQueue';
+import { QueueControl } from './components/modules/QueueControl';
 import { Customers } from './components/modules/Customers';
 import { Services } from './components/modules/Services';
 import { Staff } from './components/modules/Staff';
@@ -35,6 +36,7 @@ const AdminLayout: React.FC = () => {
       case 'mis_dashboard': return <MISDashboard />;
       case 'appointments': return <Appointments />;
       case 'queue': return <LiveQueue />;
+      case 'queue_control': return <QueueControl />;
       case 'customers': return <Customers />;
       case 'services': return <Services />;
       case 'staff': return <Staff />;

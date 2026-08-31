@@ -3,6 +3,7 @@ export type NavModule =
   | 'mis_dashboard'
   | 'appointments'
   | 'queue'
+  | 'queue_control'
   | 'customers'
   | 'services'
   | 'staff'

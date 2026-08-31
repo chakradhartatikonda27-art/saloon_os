@@ -25,6 +25,7 @@ export const TopBar: React.FC = () => {
       case 'mis_dashboard': return "MIS Executive Dashboard";
       case 'appointments': return "Appointments Management";
       case 'queue': return "Live Queue Control";
+      case 'queue_control': return "Queue Control Matrix";
       case 'customers': return "Customer CRM";
       case 'services': return "Services & Pricing";
       case 'staff': return "Staff Roster & Commission";
