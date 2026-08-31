@@ -2,14 +2,7 @@ import React from 'react';
 import { useSalon } from '../../context/SalonContext';
 import { 
   Scissors, 
-  Plus, 
-  TrendingUp, 
-  Calendar, 
-  Clock, 
-  Users, 
-  Package, 
-  ArrowUpRight,
-  AlertTriangle
+  Plus
 } from 'lucide-react';
 
 export const MISDashboard: React.FC = () => {
@@ -43,6 +36,20 @@ export const MISDashboard: React.FC = () => {
     { cat: 'Other', amount: '₹37,200', color: '#9B8B38' },
     { cat: 'Color', amount: '₹99,400', color: '#6B4C9A' },
     { cat: 'Skin', amount: '₹38,700', color: '#4C9A9B' }
+  ];
+
+  const serviceRevenue30D = [
+    { service: 'Global Hair Color', category: 'Color', revenue: '₹67,500', bookings: 29, avgTicket: '₹2,328' },
+    { service: 'Hair Spa', category: 'Hair', revenue: '₹67,200', bookings: 57, avgTicket: '₹1,179' },
+    { service: 'Signature Glow Facial', category: 'Facial', revenue: '₹57,000', bookings: 39, avgTicket: '₹1,462' },
+    { service: 'De-Tan Treatment', category: 'Skin', revenue: '₹38,700', bookings: 45, avgTicket: '₹860' },
+    { service: 'Premium Haircut & Style', category: 'Hair', revenue: '₹38,350', bookings: 62, avgTicket: '₹619' },
+    { service: 'Manicure', category: 'Other', revenue: '₹37,200', bookings: 64, avgTicket: '₹581' },
+    { service: 'Head & Shoulder Massage', category: 'Spa', revenue: '₹33,600', bookings: 50, avgTicket: '₹672' },
+    { service: 'Root Touch-up', category: 'Color', revenue: '₹31,900', bookings: 33, avgTicket: '₹967' },
+    { service: 'Classic Haircut', category: 'Hair', revenue: '₹24,850', bookings: 73, avgTicket: '₹340' },
+    { service: 'Hot Towel Shave', category: 'Beard', revenue: '₹19,200', bookings: 50, avgTicket: '₹384' },
+    { service: 'Beard Trim & Shape', category: 'Beard', revenue: '₹12,000', bookings: 49, avgTicket: '₹245' },
   ];
 
   return (
@@ -206,6 +213,38 @@ export const MISDashboard: React.FC = () => {
               ))}
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* SERVICE REVENUE · 30D TABLE */}
+      <div style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8E3DE', borderRadius: '16px', padding: '1.5rem', marginBottom: '1.5rem' }}>
+        <div style={{ fontSize: '0.75rem', fontWeight: 800, color: '#75707E', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '1rem' }}>
+          SERVICE REVENUE • 30D
+        </div>
+
+        <div className="table-container" style={{ border: '1px solid #E8E3DE', borderRadius: '12px', overflow: 'hidden' }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+            <thead>
+              <tr style={{ backgroundColor: '#FAF8F5', borderBottom: '1px solid #E8E3DE' }}>
+                <th style={{ padding: '0.75rem 1rem', fontSize: '0.725rem', fontWeight: 800, color: '#75707E', textTransform: 'uppercase' }}>SERVICE</th>
+                <th style={{ padding: '0.75rem 1rem', fontSize: '0.725rem', fontWeight: 800, color: '#75707E', textTransform: 'uppercase' }}>CATEGORY</th>
+                <th style={{ padding: '0.75rem 1rem', fontSize: '0.725rem', fontWeight: 800, color: '#75707E', textTransform: 'uppercase', textAlign: 'right' }}>REVENUE</th>
+                <th style={{ padding: '0.75rem 1rem', fontSize: '0.725rem', fontWeight: 800, color: '#75707E', textTransform: 'uppercase', textAlign: 'center' }}>BOOKINGS</th>
+                <th style={{ padding: '0.75rem 1rem', fontSize: '0.725rem', fontWeight: 800, color: '#75707E', textTransform: 'uppercase', textAlign: 'right' }}>AVG TICKET</th>
+              </tr>
+            </thead>
+            <tbody>
+              {serviceRevenue30D.map(row => (
+                <tr key={row.service} style={{ borderBottom: '1px solid #E8E3DE' }}>
+                  <td style={{ padding: '0.85rem 1rem', fontWeight: 800, color: '#1E1A25', fontSize: '0.875rem' }}>{row.service}</td>
+                  <td style={{ padding: '0.85rem 1rem', color: '#75707E', fontSize: '0.85rem' }}>{row.category}</td>
+                  <td style={{ padding: '0.85rem 1rem', fontWeight: 800, color: '#1E1A25', fontSize: '0.875rem', textAlign: 'right' }}>{row.revenue}</td>
+                  <td style={{ padding: '0.85rem 1rem', color: '#75707E', fontSize: '0.85rem', textAlign: 'center' }}>{row.bookings}</td>
+                  <td style={{ padding: '0.85rem 1rem', fontWeight: 700, color: '#1E1A25', fontSize: '0.875rem', textAlign: 'right' }}>{row.avgTicket}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
 
