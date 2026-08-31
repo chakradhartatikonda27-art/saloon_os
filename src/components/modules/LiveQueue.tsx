@@ -6,8 +6,8 @@ import {
   Play, 
   CheckCircle, 
   AlertCircle,
-  UserCheck,
-  Sparkles
+  Bell,
+  Activity
 } from 'lucide-react';
 
 export const LiveQueue: React.FC = () => {
@@ -39,6 +39,21 @@ export const LiveQueue: React.FC = () => {
     { text: '#C41 · Imran . · starting ~25 min late · customer notified' },
   ];
 
+  const customerAlertsLast5 = [
+    { time: '4:50 PM', text: '🎁 Your birthday offer is waiting' },
+    { time: '4:50 PM', text: '⭐ Loyalty updated' },
+    { time: '4:42 PM', text: '📱 WhatsApp appointment reminder sent to Rahul S.' },
+    { time: '4:30 PM', text: '🎉 Gold VIP Membership unlocked for Anjali P.' },
+    { time: '4:15 PM', text: '💬 Feedback request sent for Token #A20' },
+  ];
+
+  const realtimeEventStream = [
+    { time: '4:50 PM', text: 'Salon opened · live queue engine started' },
+    { time: '4:45 PM', text: 'Auto-sync: 4 master stylists online' },
+    { time: '4:35 PM', text: 'Smart Token #A25 dispatched to Arun' },
+    { time: '4:10 PM', text: 'POS Cashier shift started by Ananya S.' },
+  ];
+
   return (
     <div className="workspace-padding" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', backgroundColor: '#FAF8F5', minHeight: '100vh', color: '#1E1A25', fontFamily: 'var(--font-body)' }}>
       {/* Header */}
@@ -51,7 +66,7 @@ export const LiveQueue: React.FC = () => {
             </h2>
           </div>
           <p style={{ color: '#75707E', fontSize: '0.85rem', marginTop: '0.15rem' }}>
-            Real-time floor monitor, stylist dispatches, interactive customer queue dispatches & delay notifications.
+            Real-time floor monitor, customer alerts stream, realtime event logs, and station dispatches.
           </p>
         </div>
 
@@ -101,7 +116,7 @@ export const LiveQueue: React.FC = () => {
           {/* LIVE NOW STYLIST STATIONS */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             <div style={{ fontSize: '0.75rem', fontWeight: 800, color: '#75707E', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-              LIVE NOW (STATION DISPATCHES)
+              LIVE NOW
             </div>
 
             {/* Station 1: Arun */}
@@ -289,7 +304,7 @@ export const LiveQueue: React.FC = () => {
           </div>
         </div>
 
-        {/* RIGHT COLUMN: UPCOMING APPOINTMENTS & DELAYED SERVICES */}
+        {/* RIGHT COLUMN: UPCOMING APPOINTMENTS, DELAYED SERVICES, CUSTOMER ALERTS & REALTIME EVENT STREAM */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
           {/* UPCOMING APPOINTMENTS TABLE */}
           <div style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8E3DE', borderRadius: '16px', padding: '1.25rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
@@ -354,6 +369,64 @@ export const LiveQueue: React.FC = () => {
                   }}
                 >
                   {alert.text}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* CUSTOMER ALERTS (LAST 5) */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
+            <div style={{ fontSize: '0.75rem', fontWeight: 800, color: '#75707E', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+              CUSTOMER ALERTS (LAST 5)
+            </div>
+
+            <div style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8E3DE', borderRadius: '16px', overflow: 'hidden' }}>
+              {customerAlertsLast5.map((item, idx) => (
+                <div 
+                  key={idx} 
+                  style={{ 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    gap: '1.25rem', 
+                    padding: '0.85rem 1.1rem',
+                    borderBottom: idx === customerAlertsLast5.length - 1 ? 'none' : '1px dashed #E8E3DE' 
+                  }}
+                >
+                  <span style={{ fontSize: '0.825rem', fontWeight: 800, color: '#75707E', minWidth: '60px' }}>
+                    {item.time}
+                  </span>
+                  <span style={{ fontSize: '0.85rem', fontWeight: 600, color: '#1E1A25' }}>
+                    {item.text}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* REALTIME EVENT STREAM */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
+            <div style={{ fontSize: '0.75rem', fontWeight: 800, color: '#75707E', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+              REALTIME EVENT STREAM
+            </div>
+
+            <div style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8E3DE', borderRadius: '16px', overflow: 'hidden' }}>
+              {realtimeEventStream.map((item, idx) => (
+                <div 
+                  key={idx} 
+                  style={{ 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    gap: '1.25rem', 
+                    padding: '0.85rem 1.1rem',
+                    borderBottom: idx === realtimeEventStream.length - 1 ? 'none' : '1px dashed #E8E3DE' 
+                  }}
+                >
+                  <span style={{ fontSize: '0.825rem', fontWeight: 800, color: '#75707E', minWidth: '60px' }}>
+                    {item.time}
+                  </span>
+                  <span style={{ fontSize: '0.85rem', fontWeight: 600, color: '#1E1A25' }}>
+                    {item.text}
+                  </span>
                 </div>
               ))}
             </div>
