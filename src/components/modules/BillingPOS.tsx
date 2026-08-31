@@ -421,10 +421,15 @@ export const BillingPOS: React.FC = () => {
                 fontWeight: 900,
                 cursor: 'pointer',
                 textAlign: 'center',
-                boxShadow: '0 2px 8px rgba(201, 162, 78, 0.3)'
+                boxShadow: '0 2px 8px rgba(201, 162, 78, 0.3)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '0.5rem'
               }}
             >
-              Collect ₹{grandTotal.toLocaleString()} · {paymentMethod}
+              <span style={{ fontSize: '1.1rem' }}>✨</span>
+              <span>Complete Payment & Print Receipt</span>
             </button>
 
             <button
