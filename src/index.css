@@ -286,10 +286,18 @@ input:focus, select:focus, textarea:focus {
 .table-container {
   width: 100%;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.table-container::-webkit-scrollbar {
+  display: none !important;
 }
 
 table {
   width: 100%;
+  min-width: 680px;
   border-collapse: collapse;
   text-align: left;
 }

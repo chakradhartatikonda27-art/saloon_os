@@ -95,7 +95,7 @@ export const LiveQueue: React.FC = () => {
       </div>
 
       {/* Top 5 Metrics Row */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '1rem' }}>
+      <div className="stats-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '1rem' }}>
         <div style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8E3DE', borderRadius: '14px', padding: '1.1rem' }}>
           <div style={{ fontSize: '0.675rem', fontWeight: 800, color: '#75707E', textTransform: 'uppercase', letterSpacing: '0.05em' }}>WAITING</div>
           <div style={{ fontSize: '1.8rem', fontWeight: 800, color: '#14121A', marginTop: '0.2rem' }}>8</div>
@@ -125,7 +125,7 @@ export const LiveQueue: React.FC = () => {
       </div>
 
       {/* SECTION 1: INTERACTIVE WAITING QUEUE & ACTIVE CHAIRS */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+      <div className="module-grid" style={{ display: 'grid', gap: '1.5rem' }}>
         {/* LEFT: Waiting Line Queue */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
           <div style={{ fontSize: '0.95rem', fontWeight: 800, color: '#14121A', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
