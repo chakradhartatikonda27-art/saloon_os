@@ -494,4 +494,63 @@ tr:hover td {
   box-shadow: 0 8px 25px rgba(201, 162, 78, 0.5);
 }
 
+/* Comprehensive Mobile (Android/iOS) and Tablet Responsive Optimizations */
+html, body {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  touch-action: manipulation;
+}
+
+.horizontal-scroll-touch {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+.horizontal-scroll-touch::-webkit-scrollbar {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .workspace-padding {
+    padding: 0.85rem !important;
+  }
+  
+  .champagne-canvas {
+    padding-bottom: calc(90px + env(safe-area-inset-bottom)) !important;
+  }
+
+  .hide-mobile {
+    display: none !important;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .luxury-card {
+    border-radius: 16px !important;
+    padding: 1.25rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  h1, h2 {
+    font-size: 1.5rem !important;
+  }
+
+  .btn, .champagne-btn-primary, .champagne-btn-gold {
+    width: 100%;
+    justify-content: center;
+    min-height: 44px;
+  }
+}
+
+
 
