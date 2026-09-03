@@ -11,8 +11,8 @@ export const CustomerHeader: React.FC = () => {
 
   return (
     <header className="luxury-header-glass" style={{ position: 'sticky', top: 0, zIndex: 50 }}>
-      {/* Top Banner perspective switcher */}
-      <div style={{
+      {/* Top Banner perspective switcher (Hidden on Mobile) */}
+      <div className="hide-mobile" style={{
         backgroundColor: '#121118',
         color: '#EBD28F',
         padding: '0.45rem 1.25rem',
@@ -48,61 +48,58 @@ export const CustomerHeader: React.FC = () => {
       </div>
 
       {/* Main Header Container */}
-      <div className="workspace-padding" style={{ padding: '0.95rem 1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem', maxWidth: '1280px', margin: '0 auto' }}>
+      <div style={{ padding: '0.75rem 1rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '0.75rem', maxWidth: '1280px', margin: '0 auto' }}>
         {/* Logo & Salon Info */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.95rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', minWidth: 0 }}>
           <div style={{
-            width: '46px',
-            height: '46px',
-            borderRadius: '14px',
+            width: '40px',
+            height: '40px',
+            borderRadius: '12px',
             background: 'linear-gradient(135deg, #121118 0%, #2A2436 100%)',
             border: '1.5px solid #C9A24E',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            fontSize: '1.4rem',
+            fontSize: '1.2rem',
             fontWeight: 900,
             color: '#C9A24E',
-            boxShadow: '0 4px 15px rgba(201, 162, 78, 0.25)'
+            flexShrink: 0,
+            boxShadow: '0 4px 12px rgba(201, 162, 78, 0.2)'
           }}>
             {settings.logo}
           </div>
 
-          <div>
-            <h1 style={{ fontSize: '1.3rem', fontWeight: 900, color: '#121118', letterSpacing: '-0.02em', margin: 0 }}>
+          <div style={{ minWidth: 0 }}>
+            <h1 style={{ fontSize: '1.05rem', fontWeight: 900, color: '#121118', letterSpacing: '-0.02em', margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
               {settings.salonName}
             </h1>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontSize: '0.775rem', color: '#5A5463', marginTop: '0.15rem' }}>
-              <span style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', fontWeight: 600 }}>
-                <MapPin size={13} color="#C9A24E" /> {settings.address.split(',')[0]}
-              </span>
-              <span>•</span>
-              <span style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', color: '#0E9C86', fontWeight: 700 }}>
-                <Clock size={13} /> Open Today ({settings.businessHours.split('(')[0]})
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.725rem', color: '#5A5463', marginTop: '0.1rem' }}>
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.2rem', color: '#0E9C86', fontWeight: 700 }}>
+                <Clock size={12} /> Open Today
               </span>
             </div>
           </div>
         </div>
 
         {/* Quick Contact & Action Buttons */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', flexShrink: 0 }}>
           <a
             href={`tel:${settings.phone}`}
             style={{
               backgroundColor: '#FFFFFF',
               border: '1px solid #E8E3DE',
               borderRadius: '10px',
-              padding: '0.55rem 0.95rem',
-              fontSize: '0.8rem',
-              fontWeight: 800,
-              color: '#121118',
-              textDecoration: 'none',
-              display: 'inline-flex',
+              width: '38px',
+              height: '38px',
+              display: 'flex',
               alignItems: 'center',
-              gap: '0.35rem'
+              justifyContent: 'center',
+              color: '#121118',
+              textDecoration: 'none'
             }}
+            title="Call Salon"
           >
-            <Phone size={14} color="#C9A24E" /> <span className="hide-mobile">Call</span>
+            <Phone size={16} color="#C9A24E" />
           </a>
 
           <a
@@ -113,17 +110,17 @@ export const CustomerHeader: React.FC = () => {
               backgroundColor: '#E6F7F4',
               border: '1px solid #0E9C86',
               borderRadius: '10px',
-              padding: '0.55rem 0.95rem',
-              fontSize: '0.8rem',
-              fontWeight: 800,
-              color: '#0E9C86',
-              textDecoration: 'none',
-              display: 'inline-flex',
+              width: '38px',
+              height: '38px',
+              display: 'flex',
               alignItems: 'center',
-              gap: '0.35rem'
+              justifyContent: 'center',
+              color: '#0E9C86',
+              textDecoration: 'none'
             }}
+            title="WhatsApp Salon"
           >
-            <MessageSquare size={14} /> <span className="hide-mobile">WhatsApp</span>
+            <MessageSquare size={16} />
           </a>
 
           {hasActiveToken && (
@@ -134,23 +131,23 @@ export const CustomerHeader: React.FC = () => {
                 border: '1px solid #C9A24E',
                 color: '#121118',
                 borderRadius: '10px',
-                padding: '0.55rem 0.95rem',
-                fontSize: '0.8rem',
-                fontWeight: 800,
+                padding: '0.45rem 0.75rem',
+                fontSize: '0.75rem',
+                fontWeight: 900,
                 cursor: 'pointer'
               }}
             >
-              Live Token <strong style={{ color: '#C9A24E' }}>{tokenBadgeLabel}</strong>
+              Token <strong style={{ color: '#C9A24E' }}>{tokenBadgeLabel}</strong>
             </button>
           )}
 
           <button
             onClick={() => setActiveCustomerTab('book')}
             className="champagne-btn-primary"
-            style={{ padding: '0.6rem 1.35rem', fontSize: '0.85rem', display: 'inline-flex', alignItems: 'center', gap: '0.45rem', cursor: 'pointer' }}
+            style={{ padding: '0.5rem 0.95rem', fontSize: '0.8rem', display: 'inline-flex', alignItems: 'center', gap: '0.35rem', cursor: 'pointer', borderRadius: '10px' }}
           >
-            <Scissors size={15} color="#C9A24E" />
-            <span>Book Visit</span>
+            <Scissors size={14} color="#C9A24E" />
+            <span>Book</span>
           </button>
         </div>
       </div>

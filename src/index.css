@@ -505,10 +505,11 @@ html, body {
   -webkit-overflow-scrolling: touch;
   scroll-behavior: smooth;
   scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 .horizontal-scroll-touch::-webkit-scrollbar {
-  display: none;
+  display: none !important;
 }
 
 @media (max-width: 1024px) {
@@ -518,6 +519,10 @@ html, body {
 }
 
 @media (max-width: 768px) {
+  .admin-sidebar-desktop {
+    display: none !important;
+  }
+
   .workspace-padding {
     padding: 0.85rem !important;
   }
@@ -536,13 +541,13 @@ html, body {
 
   .luxury-card {
     border-radius: 16px !important;
-    padding: 1.25rem !important;
+    padding: 1.15rem !important;
   }
 }
 
 @media (max-width: 480px) {
   h1, h2 {
-    font-size: 1.5rem !important;
+    font-size: 1.35rem !important;
   }
 
   .btn, .champagne-btn-primary, .champagne-btn-gold {
@@ -551,6 +556,7 @@ html, body {
     min-height: 44px;
   }
 }
+
 
 
 

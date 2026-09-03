@@ -88,7 +88,7 @@ export const Sidebar: React.FC = () => {
   ];
 
   return (
-    <aside style={{
+    <aside className="admin-sidebar-desktop" style={{
       width: '240px',
       height: '100vh',
       backgroundColor: '#14121A',
