@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useSalon } from '../../context/SalonContext';
-import { Scissors, Clock, Sparkles } from 'lucide-react';
+import { ChevronLeft, Scissors, Clock, Sparkles } from 'lucide-react';
 
 export const CustomerServicesPage: React.FC = () => {
   const { services, setActiveCustomerTab } = useSalon();
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
 
-  const categories = ['All', 'Hair', 'Beard', 'Facial', 'Spa', 'Color', 'Packages'];
+  const categories = ['All', 'Hair', 'Beard', 'Facial', 'Spa', 'Skin', 'Color', 'Other', 'Packages'];
 
   const filteredServices = selectedCategory === 'All' 
     ? services 
@@ -14,8 +14,33 @@ export const CustomerServicesPage: React.FC = () => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+      {/* Header with Back Arrow */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
+        <button
+          onClick={() => setActiveCustomerTab('home')}
+          style={{
+            backgroundColor: '#FFFFFF',
+            border: '1px solid #E8E3DE',
+            borderRadius: '50%',
+            width: '38px',
+            height: '38px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            cursor: 'pointer',
+            boxShadow: '0 2px 6px rgba(0,0,0,0.05)'
+          }}
+        >
+          <ChevronLeft size={20} color="#121118" />
+        </button>
+
+        <h2 style={{ fontSize: '1.65rem', fontWeight: 900, color: '#121118', letterSpacing: '-0.02em', margin: 0 }}>
+          Services & pricing
+        </h2>
+      </div>
+
       {/* Category Filter Pills Bar */}
-      <div style={{ display: 'flex', gap: '0.65rem', overflowX: 'auto', paddingBottom: '0.5rem' }}>
+      <div style={{ display: 'flex', gap: '0.65rem', overflowX: 'auto', paddingBottom: '0.35rem' }}>
         {categories.map(cat => {
           const isActive = selectedCategory === cat;
           return (
@@ -31,7 +56,7 @@ export const CustomerServicesPage: React.FC = () => {
                 fontWeight: 800,
                 fontSize: '0.85rem',
                 cursor: 'pointer',
-                boxShadow: isActive ? '0 4px 14px rgba(18, 17, 24, 0.2)' : 'none',
+                boxShadow: isActive ? '0 4px 14px rgba(18, 17, 24, 0.15)' : 'none',
                 transition: 'all 0.2s ease'
               }}
             >
@@ -41,72 +66,74 @@ export const CustomerServicesPage: React.FC = () => {
         })}
       </div>
 
-      {/* Services Grid */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '1.5rem' }}>
+      {/* 3-Column Services & Pricing Grid matching user screenshot */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '1.35rem' }}>
         {filteredServices.map(srv => (
           <div
             key={srv.id}
             className="luxury-card"
             style={{
-              overflow: 'hidden',
+              padding: '1.35rem',
               display: 'flex',
               flexDirection: 'column',
-              justifyContent: 'space-between'
+              justifyContent: 'space-between',
+              gap: '1.15rem'
             }}
           >
-            {srv.imageUrl && (
-              <div style={{ width: '100%', height: '160px', overflow: 'hidden', position: 'relative' }}>
-                <img 
-                  src={srv.imageUrl} 
-                  alt={srv.name} 
-                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                />
-                <span style={{
-                  position: 'absolute',
-                  top: '0.75rem',
-                  right: '0.75rem',
-                  backgroundColor: '#121118',
-                  color: '#EBD28F',
-                  border: '1px solid #C9A24E',
-                  fontSize: '0.7rem',
-                  fontWeight: 900,
-                  padding: '0.25rem 0.65rem',
-                  borderRadius: '99px',
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.05em'
+            {/* Top Row: Service Image/Icon + Name + Price & GST */}
+            <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '0.85rem' }}>
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.95rem' }}>
+                <div style={{
+                  width: '58px',
+                  height: '58px',
+                  borderRadius: '16px',
+                  overflow: 'hidden',
+                  flexShrink: 0,
+                  border: '1.5px solid #E8E3DE',
+                  boxShadow: '0 4px 12px rgba(0,0,0,0.06)'
                 }}>
-                  {srv.category}
-                </span>
-              </div>
-            )}
+                  <img src={srv.imageUrl} alt={srv.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                </div>
 
-            <div style={{ padding: '1.35rem', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                <h4 style={{ fontSize: '1.15rem', fontWeight: 900, color: '#121118', margin: 0 }}>
-                  {srv.name}
-                </h4>
-                <div style={{ fontSize: '1.25rem', fontWeight: 900, color: '#121118' }}>
+                <div>
+                  <h4 style={{ fontSize: '1.1rem', fontWeight: 900, color: '#121118', margin: 0, lineHeight: 1.25 }}>
+                    {srv.name}
+                  </h4>
+                  <p style={{ fontSize: '0.825rem', color: '#5A5463', marginTop: '0.35rem', lineHeight: 1.4, margin: 0 }}>
+                    {srv.description}
+                  </p>
+                  <div style={{ fontSize: '0.775rem', color: '#75707E', marginTop: '0.35rem', fontWeight: 600 }}>
+                    {srv.duration} min • {srv.category}
+                  </div>
+                </div>
+              </div>
+
+              {/* Price Tag with +18% GST */}
+              <div style={{ textAlign: 'right', flexShrink: 0 }}>
+                <div style={{ fontSize: '1.35rem', fontWeight: 900, color: '#121118', lineHeight: 1 }}>
                   ₹{srv.price}
                 </div>
-              </div>
-
-              <p style={{ fontSize: '0.85rem', color: '#5A5463', lineHeight: 1.5, margin: 0 }}>
-                {srv.description}
-              </p>
-
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '0.5rem', borderTop: '1px solid #E8E3DE', paddingTop: '0.85rem' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', fontSize: '0.8rem', color: '#5A5463', fontWeight: 700 }}>
-                  <Clock size={14} color="#C9A24E" /> {srv.duration} mins
+                <div style={{ fontSize: '0.725rem', color: '#75707E', fontWeight: 700, marginTop: '0.2rem' }}>
+                  +{srv.tax}% GST
                 </div>
-
-                <button
-                  onClick={() => setActiveCustomerTab('book')}
-                  className="champagne-btn-primary"
-                  style={{ padding: '0.5rem 1.15rem', fontSize: '0.8rem', cursor: 'pointer' }}
-                >
-                  Book Service
-                </button>
               </div>
+            </div>
+
+            {/* Bottom Row: Book now button */}
+            <div style={{ borderTop: '1px solid #E8E3DE', paddingTop: '0.95rem', display: 'flex', justifyContent: 'flex-start' }}>
+              <button
+                onClick={() => setActiveCustomerTab('book')}
+                className="champagne-btn-primary"
+                style={{
+                  padding: '0.55rem 1.45rem',
+                  fontSize: '0.85rem',
+                  fontWeight: 900,
+                  cursor: 'pointer',
+                  borderRadius: '10px'
+                }}
+              >
+                Book now
+              </button>
             </div>
           </div>
         ))}

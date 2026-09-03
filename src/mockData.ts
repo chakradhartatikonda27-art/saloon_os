@@ -49,7 +49,8 @@ export const initialOffers: OfferItem[] = [
     discountText: 'FLAT 20% OFF',
     validUntil: 'Valid till 05 Sep 2026',
     code: 'GLOW20',
-    bgGradient: 'linear-gradient(135deg, #241E2E, #C9A24E)'
+    bgGradient: 'linear-gradient(135deg, #241E2E, #C9A24E)',
+    imageUrl: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&q=80&w=600'
   },
   {
     id: 'off-2',
@@ -58,7 +59,8 @@ export const initialOffers: OfferItem[] = [
     discountText: 'ONLY ₹699 (Save ₹250)',
     validUntil: 'Weekend Special',
     code: 'GROOM699',
-    bgGradient: 'linear-gradient(135deg, #14121A, #3A2E4A)'
+    bgGradient: 'linear-gradient(135deg, #14121A, #3A2E4A)',
+    imageUrl: 'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&q=80&w=600'
   },
   {
     id: 'off-3',
@@ -67,7 +69,8 @@ export const initialOffers: OfferItem[] = [
     discountText: 'GET ₹500 BONUS',
     validUntil: 'Limited Edition',
     code: 'GOLDVIP',
-    bgGradient: 'linear-gradient(135deg, #2A2237, #C9A24E)'
+    bgGradient: 'linear-gradient(135deg, #2A2237, #C9A24E)',
+    imageUrl: 'https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&q=80&w=600'
   }
 ];
 

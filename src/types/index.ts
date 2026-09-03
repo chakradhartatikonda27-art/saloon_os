@@ -306,6 +306,7 @@ export interface OfferItem {
   validUntil: string;
   code: string;
   bgGradient: string;
+  imageUrl?: string;
 }
 
 export interface GalleryImage {
