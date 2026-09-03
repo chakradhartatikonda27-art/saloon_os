@@ -16,7 +16,8 @@ import {
   Settings,
   PieChart,
   CheckSquare,
-  Percent
+  Percent,
+  Globe
 } from 'lucide-react';
 
 interface SidebarSection {
@@ -62,9 +63,26 @@ export const Sidebar: React.FC = () => {
         { id: 'staff', label: 'Staff', icon: UserCheck },
         { id: 'attendance', label: 'Attendance', icon: CheckSquare, badge: 2 },
         { id: 'payroll', label: 'Payroll', icon: Wallet },
-        { id: 'expenses', label: 'Commissions', icon: Percent },
+        { id: 'commissions', label: 'Commissions', icon: Percent },
+      ]
+    },
+    {
+      title: 'BUSINESS',
+      items: [
+        { id: 'expenses', label: 'Expenses', icon: Wallet },
+        { id: 'inventory', label: 'Inventory', icon: Package, badge: 3 },
         { id: 'marketing', label: 'Marketing', icon: Megaphone },
-        { id: 'settings', label: 'Settings', icon: Settings }
+        { id: 'reports', label: 'Reports', icon: BarChart3 }
+      ]
+    },
+    {
+      title: 'SETUP',
+      items: [
+        { id: 'services_config', label: 'Services · Offers · Media', icon: Scissors },
+        { id: 'customers', label: 'Customer website', icon: Globe },
+        { id: 'settings', label: 'Booking & token rules', icon: Settings },
+        { id: 'settings', label: 'Settings', icon: Settings },
+        { id: 'reports', label: 'Audit log', icon: PieChart }
       ]
     }
   ];

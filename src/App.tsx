@@ -24,6 +24,7 @@ import { Commissions } from './components/modules/Commissions';
 import { Expenses } from './components/modules/Expenses';
 import { Marketing } from './components/modules/Marketing';
 import { Reports } from './components/modules/Reports';
+import { ServicesConfig } from './components/modules/ServicesConfig';
 import { NotificationsCenter } from './components/modules/NotificationsCenter';
 import { Settings } from './components/modules/Settings';
 import { CustomerProfile } from './components/modules/CustomerProfile';
@@ -52,6 +53,7 @@ const AdminLayout: React.FC = () => {
       case 'expenses': return <Expenses />;
       case 'marketing': return <Marketing />;
       case 'reports': return <Reports />;
+      case 'services_config': return <ServicesConfig />;
       case 'settings': return <Settings />;
       default: return <Dashboard />;
     }

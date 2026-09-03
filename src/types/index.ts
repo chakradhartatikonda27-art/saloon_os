@@ -15,6 +15,7 @@ export type NavModule =
   | 'expenses'
   | 'marketing'
   | 'reports'
+  | 'services_config'
   | 'settings';
 
 export type CustomerTab = 

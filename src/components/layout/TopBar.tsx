@@ -33,6 +33,7 @@ export const TopBar: React.FC = () => {
       case 'attendance': return "Attendance Management";
       case 'payroll': return "Payroll Management";
       case 'commissions': return "Staff Commissions OS";
+      case 'services_config': return "Services · Offers · Media";
       case 'expenses': return "Expenses & Outflows";
       case 'marketing': return "Marketing & Campaigns";
       case 'reports': return "Analytics & Reports";
