@@ -79,7 +79,7 @@ export const Sidebar: React.FC = () => {
       title: 'SETUP',
       items: [
         { id: 'services_config', label: 'Services · Offers · Media', icon: Scissors },
-        { id: 'customers', label: 'Customer website', icon: Globe },
+        { id: 'customer_website', label: 'Customer website', icon: Globe },
         { id: 'settings', label: 'Booking & token rules', icon: Settings },
         { id: 'settings', label: 'Settings', icon: Settings },
         { id: 'reports', label: 'Audit log', icon: PieChart }
