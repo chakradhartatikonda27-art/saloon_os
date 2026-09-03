@@ -1,0 +1,6 @@
+{
+  "alias": ["new-saloon-os.vercel.app", "salon-os-chi.vercel.app"],
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
