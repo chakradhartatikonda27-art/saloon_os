@@ -601,28 +601,247 @@ export const Reports: React.FC = () => {
         </div>
       )}
 
-      {/* OTHER TABS: CUSTOMERS, SERVICES, EXPENSES */}
-      {(activeTab === 'Customers' || activeTab === 'Services' || activeTab === 'Expenses') && (
+      {/* TAB 5: SERVICES (3-COLUMN LAYOUT MATCHING USER SCREENSHOT 1) */}
+      {activeTab === 'Services' && (
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1.25rem' }}>
+          {/* COLUMN 1: MOST BOOKED */}
+          <div style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8E3DE', borderRadius: '16px', padding: '1.25rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            <div style={{ fontSize: '0.75rem', fontWeight: 800, color: '#75707E', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+              MOST BOOKED
+            </div>
+
+            <div className="table-container" style={{ border: '1px solid #E8E3DE', borderRadius: '12px', overflow: 'hidden' }}>
+              <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.825rem' }}>
+                <thead>
+                  <tr style={{ backgroundColor: '#FAF8F5', borderBottom: '1px solid #E8E3DE' }}>
+                    <th style={{ padding: '0.65rem 0.85rem', fontSize: '0.7rem', fontWeight: 800, color: '#75707E', textTransform: 'uppercase', textAlign: 'left' }}>SERVICE</th>
+                    <th style={{ padding: '0.65rem 0.85rem', fontSize: '0.7rem', fontWeight: 800, color: '#75707E', textTransform: 'uppercase', textAlign: 'right' }}>BOOKINGS</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style={{ borderBottom: '1px solid #E8E3DE' }}>
+                    <td style={{ padding: '0.65rem 0.85rem', fontWeight: 700, color: '#14121A' }}>Classic Haircut</td>
+                    <td style={{ padding: '0.65rem 0.85rem', textAlign: 'right', fontWeight: 800, color: '#14121A' }}>3</td>
+                  </tr>
+                  <tr style={{ borderBottom: '1px solid #E8E3DE' }}>
+                    <td style={{ padding: '0.65rem 0.85rem', fontWeight: 700, color: '#14121A' }}>Beard Trim & Shape</td>
+                    <td style={{ padding: '0.65rem 0.85rem', textAlign: 'right', fontWeight: 800, color: '#14121A' }}>2</td>
+                  </tr>
+                  <tr style={{ borderBottom: '1px solid #E8E3DE' }}>
+                    <td style={{ padding: '0.65rem 0.85rem', fontWeight: 700, color: '#14121A' }}>Premium Haircut & Style</td>
+                    <td style={{ padding: '0.65rem 0.85rem', textAlign: 'right', fontWeight: 800, color: '#14121A' }}>1</td>
+                  </tr>
+                  <tr style={{ borderBottom: '1px solid #E8E3DE' }}>
+                    <td style={{ padding: '0.65rem 0.85rem', fontWeight: 700, color: '#14121A' }}>Signature Glow Facial</td>
+                    <td style={{ padding: '0.65rem 0.85rem', textAlign: 'right', fontWeight: 800, color: '#14121A' }}>1</td>
+                  </tr>
+                  <tr>
+                    <td style={{ padding: '0.65rem 0.85rem', fontWeight: 700, color: '#14121A' }}>Hot Towel Shave</td>
+                    <td style={{ padding: '0.65rem 0.85rem', textAlign: 'right', fontWeight: 800, color: '#14121A' }}>1</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          {/* COLUMN 2: HIGHEST REVENUE */}
+          <div style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8E3DE', borderRadius: '16px', padding: '1.25rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            <div style={{ fontSize: '0.75rem', fontWeight: 800, color: '#75707E', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+              HIGHEST REVENUE
+            </div>
+
+            <div className="table-container" style={{ border: '1px solid #E8E3DE', borderRadius: '12px', overflow: 'hidden' }}>
+              <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.825rem' }}>
+                <thead>
+                  <tr style={{ backgroundColor: '#FAF8F5', borderBottom: '1px solid #E8E3DE' }}>
+                    <th style={{ padding: '0.65rem 0.85rem', fontSize: '0.7rem', fontWeight: 800, color: '#75707E', textTransform: 'uppercase', textAlign: 'left' }}>SERVICE</th>
+                    <th style={{ padding: '0.65rem 0.85rem', fontSize: '0.7rem', fontWeight: 800, color: '#75707E', textTransform: 'uppercase', textAlign: 'right' }}>REVENUE</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style={{ borderBottom: '1px solid #E8E3DE' }}>
+                    <td style={{ padding: '0.65rem 0.85rem', fontWeight: 700, color: '#14121A' }}>Signature Glow Facial</td>
+                    <td style={{ padding: '0.65rem 0.85rem', textAlign: 'right', fontWeight: 800, color: '#14121A' }}>₹1,500</td>
+                  </tr>
+                  <tr style={{ borderBottom: '1px solid #E8E3DE' }}>
+                    <td style={{ padding: '0.65rem 0.85rem', fontWeight: 700, color: '#14121A' }}>Hair Spa</td>
+                    <td style={{ padding: '0.65rem 0.85rem', textAlign: 'right', fontWeight: 800, color: '#14121A' }}>₹1,200</td>
+                  </tr>
+                  <tr style={{ borderBottom: '1px solid #E8E3DE' }}>
+                    <td style={{ padding: '0.65rem 0.85rem', fontWeight: 700, color: '#14121A' }}>Classic Haircut</td>
+                    <td style={{ padding: '0.65rem 0.85rem', textAlign: 'right', fontWeight: 800, color: '#14121A' }}>₹700</td>
+                  </tr>
+                  <tr style={{ borderBottom: '1px solid #E8E3DE' }}>
+                    <td style={{ padding: '0.65rem 0.85rem', fontWeight: 700, color: '#14121A' }}>Premium Haircut & Style</td>
+                    <td style={{ padding: '0.65rem 0.85rem', textAlign: 'right', fontWeight: 800, color: '#14121A' }}>₹650</td>
+                  </tr>
+                  <tr>
+                    <td style={{ padding: '0.65rem 0.85rem', fontWeight: 700, color: '#14121A' }}>Beard Trim & Shape</td>
+                    <td style={{ padding: '0.65rem 0.85rem', textAlign: 'right', fontWeight: 800, color: '#14121A' }}>₹500</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          {/* COLUMN 3: LOWEST PERFORMING */}
+          <div style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8E3DE', borderRadius: '16px', padding: '1.25rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            <div style={{ fontSize: '0.75rem', fontWeight: 800, color: '#75707E', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+              LOWEST PERFORMING
+            </div>
+
+            <div className="table-container" style={{ border: '1px solid #E8E3DE', borderRadius: '12px', overflow: 'hidden' }}>
+              <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.825rem' }}>
+                <thead>
+                  <tr style={{ backgroundColor: '#FAF8F5', borderBottom: '1px solid #E8E3DE' }}>
+                    <th style={{ padding: '0.65rem 0.85rem', fontSize: '0.7rem', fontWeight: 800, color: '#75707E', textTransform: 'uppercase', textAlign: 'left' }}>SERVICE</th>
+                    <th style={{ padding: '0.65rem 0.85rem', fontSize: '0.7rem', fontWeight: 800, color: '#75707E', textTransform: 'uppercase', textAlign: 'right' }}>REVENUE</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style={{ borderBottom: '1px solid #E8E3DE' }}>
+                    <td style={{ padding: '0.65rem 0.85rem', color: '#75707E' }}>Head & Shoulder Massage</td>
+                    <td style={{ padding: '0.65rem 0.85rem', textAlign: 'right', fontWeight: 800, color: '#14121A' }}>₹0</td>
+                  </tr>
+                  <tr style={{ borderBottom: '1px solid #E8E3DE' }}>
+                    <td style={{ padding: '0.65rem 0.85rem', color: '#75707E' }}>De-Tan Treatment</td>
+                    <td style={{ padding: '0.65rem 0.85rem', textAlign: 'right', fontWeight: 800, color: '#14121A' }}>₹0</td>
+                  </tr>
+                  <tr style={{ borderBottom: '1px solid #E8E3DE' }}>
+                    <td style={{ padding: '0.65rem 0.85rem', color: '#75707E' }}>Global Hair Color</td>
+                    <td style={{ padding: '0.65rem 0.85rem', textAlign: 'right', fontWeight: 800, color: '#14121A' }}>₹0</td>
+                  </tr>
+                  <tr style={{ borderBottom: '1px solid #E8E3DE' }}>
+                    <td style={{ padding: '0.65rem 0.85rem', color: '#75707E' }}>Root Touch-up</td>
+                    <td style={{ padding: '0.65rem 0.85rem', textAlign: 'right', fontWeight: 800, color: '#14121A' }}>₹0</td>
+                  </tr>
+                  <tr>
+                    <td style={{ padding: '0.65rem 0.85rem', color: '#75707E' }}>Manicure</td>
+                    <td style={{ padding: '0.65rem 0.85rem', textAlign: 'right', fontWeight: 800, color: '#14121A' }}>₹0</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* TAB 6: CUSTOMERS (EXACT USER SCREENSHOT 2) */}
+      {activeTab === 'Customers' && (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+          {/* 5 Summary Metric Cards */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '1rem' }}>
+            <div style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8E3DE', borderRadius: '16px', padding: '1.25rem' }}>
+              <div style={{ fontSize: '0.7rem', fontWeight: 800, color: '#75707E', textTransform: 'uppercase', letterSpacing: '0.05em' }}>ACTIVE IN PERIOD</div>
+              <div style={{ fontSize: '1.8rem', fontWeight: 900, color: '#0E9C86', marginTop: '0.2rem' }}>6</div>
+            </div>
+
+            <div style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8E3DE', borderRadius: '16px', padding: '1.25rem' }}>
+              <div style={{ fontSize: '0.7rem', fontWeight: 800, color: '#75707E', textTransform: 'uppercase', letterSpacing: '0.05em' }}>NEW</div>
+              <div style={{ fontSize: '1.8rem', fontWeight: 900, color: '#14121A', marginTop: '0.2rem' }}>0</div>
+            </div>
+
+            <div style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8E3DE', borderRadius: '16px', padding: '1.25rem' }}>
+              <div style={{ fontSize: '0.7rem', fontWeight: 800, color: '#75707E', textTransform: 'uppercase', letterSpacing: '0.05em' }}>RETURNING</div>
+              <div style={{ fontSize: '1.8rem', fontWeight: 900, color: '#14121A', marginTop: '0.2rem' }}>6</div>
+            </div>
+
+            <div style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8E3DE', borderRadius: '16px', padding: '1.25rem' }}>
+              <div style={{ fontSize: '0.7rem', fontWeight: 800, color: '#75707E', textTransform: 'uppercase', letterSpacing: '0.05em' }}>INACTIVE 30D+</div>
+              <div style={{ fontSize: '1.8rem', fontWeight: 900, color: '#D9584A', marginTop: '0.2rem' }}>27</div>
+            </div>
+
+            <div style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8E3DE', borderRadius: '16px', padding: '1.25rem' }}>
+              <div style={{ fontSize: '0.7rem', fontWeight: 800, color: '#75707E', textTransform: 'uppercase', letterSpacing: '0.05em' }}>TOTAL BASE</div>
+              <div style={{ fontSize: '1.8rem', fontWeight: 900, color: '#14121A', marginTop: '0.2rem' }}>27</div>
+            </div>
+          </div>
+
+          {/* Customer Activity Table */}
+          <div style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8E3DE', borderRadius: '16px', padding: '1.25rem' }}>
+            <div className="table-container" style={{ border: '1px solid #E8E3DE', borderRadius: '12px', overflow: 'hidden' }}>
+              <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.85rem' }}>
+                <thead>
+                  <tr style={{ backgroundColor: '#FAF8F5', borderBottom: '1px solid #E8E3DE' }}>
+                    <th style={{ padding: '0.85rem 1rem', fontSize: '0.725rem', fontWeight: 800, color: '#75707E', textTransform: 'uppercase', textAlign: 'left' }}>CUSTOMER</th>
+                    <th style={{ padding: '0.85rem 1rem', fontSize: '0.725rem', fontWeight: 800, color: '#75707E', textTransform: 'uppercase', textAlign: 'left' }}>VISITS IN PERIOD</th>
+                    <th style={{ padding: '0.85rem 1rem', fontSize: '0.725rem', fontWeight: 800, color: '#75707E', textTransform: 'uppercase', textAlign: 'left' }}>SPEND IN PERIOD</th>
+                    <th style={{ padding: '0.85rem 1rem', fontSize: '0.725rem', fontWeight: 800, color: '#75707E', textTransform: 'uppercase', textAlign: 'left' }}>LIFETIME SPEND</th>
+                    <th style={{ padding: '0.85rem 1rem', fontSize: '0.725rem', fontWeight: 800, color: '#75707E', textTransform: 'uppercase', textAlign: 'right' }}>LAST VISIT</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style={{ borderBottom: '1px solid #E8E3DE' }}>
+                    <td style={{ padding: '0.85rem 1rem', fontWeight: 800, color: '#14121A' }}>Anjali P.</td>
+                    <td style={{ padding: '0.85rem 1rem', color: '#75707E' }}>1</td>
+                    <td style={{ padding: '0.85rem 1rem', fontWeight: 700, color: '#14121A' }}>₹1,770</td>
+                    <td style={{ padding: '0.85rem 1rem', color: '#75707E' }}>₹0</td>
+                    <td style={{ padding: '0.85rem 1rem', textAlign: 'right', color: '#75707E' }}>—</td>
+                  </tr>
+                  <tr style={{ borderBottom: '1px solid #E8E3DE' }}>
+                    <td style={{ padding: '0.85rem 1rem', fontWeight: 800, color: '#14121A' }}>Imran M.</td>
+                    <td style={{ padding: '0.85rem 1rem', color: '#75707E' }}>1</td>
+                    <td style={{ padding: '0.85rem 1rem', fontWeight: 700, color: '#14121A' }}>₹1,416</td>
+                    <td style={{ padding: '0.85rem 1rem', color: '#75707E' }}>₹0</td>
+                    <td style={{ padding: '0.85rem 1rem', textAlign: 'right', color: '#75707E' }}>—</td>
+                  </tr>
+                  <tr style={{ borderBottom: '1px solid #E8E3DE' }}>
+                    <td style={{ padding: '0.85rem 1rem', fontWeight: 800, color: '#14121A' }}>Divya M.</td>
+                    <td style={{ padding: '0.85rem 1rem', color: '#75707E' }}>1</td>
+                    <td style={{ padding: '0.85rem 1rem', fontWeight: 700, color: '#14121A' }}>₹1,062</td>
+                    <td style={{ padding: '0.85rem 1rem', color: '#75707E' }}>₹0</td>
+                    <td style={{ padding: '0.85rem 1rem', textAlign: 'right', color: '#75707E' }}>—</td>
+                  </tr>
+                  <tr style={{ borderBottom: '1px solid #E8E3DE' }}>
+                    <td style={{ padding: '0.85rem 1rem', fontWeight: 800, color: '#14121A' }}>Sneha K.</td>
+                    <td style={{ padding: '0.85rem 1rem', color: '#75707E' }}>1</td>
+                    <td style={{ padding: '0.85rem 1rem', fontWeight: 700, color: '#14121A' }}>₹708</td>
+                    <td style={{ padding: '0.85rem 1rem', color: '#75707E' }}>₹0</td>
+                    <td style={{ padding: '0.85rem 1rem', textAlign: 'right', color: '#75707E' }}>—</td>
+                  </tr>
+                  <tr style={{ borderBottom: '1px solid #E8E3DE' }}>
+                    <td style={{ padding: '0.85rem 1rem', fontWeight: 800, color: '#14121A' }}>Ravi B.</td>
+                    <td style={{ padding: '0.85rem 1rem', color: '#75707E' }}>1</td>
+                    <td style={{ padding: '0.85rem 1rem', fontWeight: 700, color: '#14121A' }}>₹472</td>
+                    <td style={{ padding: '0.85rem 1rem', color: '#75707E' }}>₹0</td>
+                    <td style={{ padding: '0.85rem 1rem', textAlign: 'right', color: '#75707E' }}>—</td>
+                  </tr>
+                  <tr>
+                    <td style={{ padding: '0.85rem 1rem', fontWeight: 800, color: '#14121A' }}>Kiran R.</td>
+                    <td style={{ padding: '0.85rem 1rem', color: '#75707E' }}>1</td>
+                    <td style={{ padding: '0.85rem 1rem', fontWeight: 700, color: '#14121A' }}>₹413</td>
+                    <td style={{ padding: '0.85rem 1rem', color: '#75707E' }}>₹0</td>
+                    <td style={{ padding: '0.85rem 1rem', textAlign: 'right', color: '#75707E' }}>—</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* TAB 7: EXPENSES */}
+      {activeTab === 'Expenses' && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1rem' }}>
             <div style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8E3DE', borderRadius: '16px', padding: '1.25rem' }}>
-              <div style={{ fontSize: '0.7rem', fontWeight: 800, color: '#75707E', textTransform: 'uppercase', letterSpacing: '0.05em' }}>TOTAL CLIENTS</div>
-              <div style={{ fontSize: '1.8rem', fontWeight: 900, color: '#14121A', marginTop: '0.2rem' }}>482</div>
+              <div style={{ fontSize: '0.7rem', fontWeight: 800, color: '#75707E', textTransform: 'uppercase', letterSpacing: '0.05em' }}>TOTAL EXPENSES</div>
+              <div style={{ fontSize: '1.8rem', fontWeight: 900, color: '#D9584A', marginTop: '0.2rem' }}>₹{totalExpenses.toLocaleString()}</div>
             </div>
 
             <div style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8E3DE', borderRadius: '16px', padding: '1.25rem' }}>
-              <div style={{ fontSize: '0.7rem', fontWeight: 800, color: '#75707E', textTransform: 'uppercase', letterSpacing: '0.05em' }}>REPEAT VISIT RATE</div>
-              <div style={{ fontSize: '1.8rem', fontWeight: 900, color: '#0E9C86', marginTop: '0.2rem' }}>68%</div>
+              <div style={{ fontSize: '0.7rem', fontWeight: 800, color: '#75707E', textTransform: 'uppercase', letterSpacing: '0.05em' }}>SALARY PAYOUTS</div>
+              <div style={{ fontSize: '1.8rem', fontWeight: 900, color: '#14121A', marginTop: '0.2rem' }}>₹1,84,906</div>
             </div>
 
             <div style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8E3DE', borderRadius: '16px', padding: '1.25rem' }}>
-              <div style={{ fontSize: '0.7rem', fontWeight: 800, color: '#75707E', textTransform: 'uppercase', letterSpacing: '0.05em' }}>AVG CLIENT LIFETIME VALUE</div>
-              <div style={{ fontSize: '1.8rem', fontWeight: 900, color: '#C9A24E', marginTop: '0.2rem' }}>₹12,400</div>
+              <div style={{ fontSize: '0.7rem', fontWeight: 800, color: '#75707E', textTransform: 'uppercase', letterSpacing: '0.05em' }}>SUPPLIES & CONSUMABLES</div>
+              <div style={{ fontSize: '1.8rem', fontWeight: 900, color: '#14121A', marginTop: '0.2rem' }}>₹18,400</div>
             </div>
 
             <div style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8E3DE', borderRadius: '16px', padding: '1.25rem' }}>
-              <div style={{ fontSize: '0.7rem', fontWeight: 800, color: '#75707E', textTransform: 'uppercase', letterSpacing: '0.05em' }}>NEW CLIENTS THIS MONTH</div>
-              <div style={{ fontSize: '1.8rem', fontWeight: 900, color: '#14121A', marginTop: '0.2rem' }}>34</div>
+              <div style={{ fontSize: '0.7rem', fontWeight: 800, color: '#75707E', textTransform: 'uppercase', letterSpacing: '0.05em' }}>UTILITIES & RENT</div>
+              <div style={{ fontSize: '1.8rem', fontWeight: 900, color: '#14121A', marginTop: '0.2rem' }}>₹45,000</div>
             </div>
           </div>
 
