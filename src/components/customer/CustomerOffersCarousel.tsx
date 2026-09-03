@@ -6,104 +6,89 @@ export const CustomerOffersCarousel: React.FC = () => {
   const { offers, setActiveCustomerTab } = useSalon();
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.95rem' }}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <h3 style={{ fontSize: '1.15rem', fontWeight: 800, color: '#FFFFFF', display: 'flex', alignItems: 'center', gap: '0.5rem', letterSpacing: '-0.01em' }}>
-          <Tag size={18} color="#C9A24E" />
-          <span>Exclusive Offers & Packages</span>
+        <h3 style={{ fontSize: '1.25rem', fontWeight: 900, color: '#121118', display: 'flex', alignItems: 'center', gap: '0.5rem', letterSpacing: '-0.02em' }}>
+          <Tag size={20} color="#C9A24E" />
+          <span>Exclusive Offers & Combo Packages</span>
         </h3>
-        <span style={{ fontSize: '0.775rem', color: '#A19BAA', fontWeight: 600 }}>Swipe for more</span>
+        <span style={{ fontSize: '0.8rem', color: '#5A5463', fontWeight: 700 }}>Swipe to explore</span>
       </div>
 
       <div style={{
         display: 'flex',
         gap: '1.25rem',
         overflowX: 'auto',
-        paddingBottom: '0.75rem',
-        scrollSnapType: 'x mandatory',
-        perspective: '1000px'
+        paddingBottom: '0.85rem',
+        scrollSnapType: 'x mandatory'
       }}>
         {offers.map(off => (
           <div
             key={off.id}
-            className="card-3d-hover"
+            className="luxury-card"
             style={{
-              minWidth: '310px',
-              maxWidth: '340px',
+              minWidth: '320px',
+              maxWidth: '350px',
               flexShrink: 0,
-              background: off.bgGradient,
-              borderRadius: '20px',
-              padding: '1.5rem',
-              color: '#ffffff',
+              padding: '1.65rem',
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'space-between',
-              boxShadow: '0 12px 30px rgba(0, 0, 0, 0.4), 0 0 15px rgba(201, 162, 78, 0.15)',
-              border: '1px solid rgba(255, 255, 255, 0.15)',
               scrollSnapAlign: 'start',
               position: 'relative',
               overflow: 'hidden'
             }}
           >
-            {/* Glossy top sheen */}
-            <div style={{
-              position: 'absolute',
-              top: '-50%',
-              left: '-50%',
-              width: '200%',
-              height: '200%',
-              background: 'radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.15), transparent 60%)',
-              pointerEvents: 'none'
-            }} />
+            {/* Top Tag & Discount Pill */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                <span style={{
+                  backgroundColor: '#121118',
+                  color: '#EBD28F',
+                  padding: '0.3rem 0.85rem',
+                  borderRadius: '99px',
+                  fontSize: '0.725rem',
+                  fontWeight: 900,
+                  letterSpacing: '0.06em',
+                  textTransform: 'uppercase',
+                  border: '1px solid #C9A24E'
+                }}>
+                  {off.discountText}
+                </span>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', zIndex: 1 }}>
-              <span style={{
-                backgroundColor: 'rgba(255, 255, 255, 0.2)',
-                backdropFilter: 'blur(10px)',
-                alignSelf: 'flex-start',
-                padding: '0.25rem 0.75rem',
-                borderRadius: '99px',
-                fontSize: '0.725rem',
-                fontWeight: 900,
-                letterSpacing: '0.05em',
-                textTransform: 'uppercase',
-                border: '1px solid rgba(255, 255, 255, 0.3)'
-              }}>
-                {off.discountText}
-              </span>
+                <span style={{ fontSize: '0.75rem', fontWeight: 700, color: '#C9A24E' }}>
+                  Limited Time
+                </span>
+              </div>
 
-              <h4 style={{ fontSize: '1.2rem', fontWeight: 900, marginTop: '0.35rem', lineHeight: 1.25, color: '#FFFFFF' }}>
+              <h4 style={{ fontSize: '1.25rem', fontWeight: 900, color: '#121118', marginTop: '0.35rem', lineHeight: 1.25 }}>
                 {off.title}
               </h4>
 
-              <p style={{ fontSize: '0.825rem', opacity: 0.9, lineHeight: 1.4, color: 'rgba(255, 255, 255, 0.85)' }}>
+              <p style={{ fontSize: '0.85rem', color: '#5A5463', lineHeight: 1.5 }}>
                 {off.description}
               </p>
             </div>
 
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '1.5rem', borderTop: '1px solid rgba(255, 255, 255, 0.2)', paddingTop: '0.85rem', zIndex: 1 }}>
-              <span style={{ fontSize: '0.75rem', opacity: 0.8, fontWeight: 600 }}>
+            {/* Bottom Booking Row */}
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '1.75rem', borderTop: '1px solid #E8E3DE', paddingTop: '1rem' }}>
+              <span style={{ fontSize: '0.775rem', color: '#5A5463', fontWeight: 700 }}>
                 {off.validUntil}
               </span>
 
               <button
                 onClick={() => setActiveCustomerTab('book')}
+                className="champagne-btn-primary"
                 style={{
-                  backgroundColor: '#FFFFFF',
-                  color: '#14121A',
-                  border: 'none',
-                  borderRadius: '10px',
-                  padding: '0.5rem 1rem',
-                  fontSize: '0.8rem',
-                  fontWeight: 900,
-                  cursor: 'pointer',
+                  padding: '0.55rem 1.15rem',
+                  fontSize: '0.825rem',
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '0.35rem',
-                  boxShadow: '0 4px 12px rgba(0,0,0,0.2)'
+                  gap: '0.4rem',
+                  cursor: 'pointer'
                 }}
               >
-                <span>Book Offer</span> <ArrowRight size={14} />
+                <span>Book Offer</span> <ArrowRight size={14} color="#C9A24E" />
               </button>
             </div>
           </div>

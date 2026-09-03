@@ -6,38 +6,28 @@ export const CustomerGallery: React.FC = () => {
   const { gallery, settings } = useSalon();
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.95rem' }}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <h3 style={{ fontSize: '1.15rem', fontWeight: 800, color: '#FFFFFF', display: 'flex', alignItems: 'center', gap: '0.5rem', letterSpacing: '-0.01em' }}>
-          <Camera size={18} color="#C9A24E" />
+        <h3 style={{ fontSize: '1.25rem', fontWeight: 900, color: '#121118', display: 'flex', alignItems: 'center', gap: '0.5rem', letterSpacing: '-0.02em' }}>
+          <Camera size={20} color="#C9A24E" />
           <span>Inside {settings.salonName}</span>
         </h3>
-        <span style={{ fontSize: '0.775rem', color: '#A19BAA', fontWeight: 600 }}>{gallery.length} photos</span>
+        <span style={{ fontSize: '0.8rem', color: '#5A5463', fontWeight: 700 }}>{gallery.length} photos</span>
       </div>
 
       <div style={{
-        display: 'flex',
-        gap: '1.25rem',
-        overflowX: 'auto',
-        paddingBottom: '0.75rem',
-        scrollSnapType: 'x mandatory',
-        perspective: '1000px'
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+        gap: '1.25rem'
       }}>
         {gallery.map(img => (
           <div
             key={img.id}
-            className="card-3d-hover"
+            className="luxury-card"
             style={{
-              minWidth: '270px',
-              maxWidth: '290px',
-              height: '190px',
-              borderRadius: '18px',
+              height: '210px',
               overflow: 'hidden',
-              position: 'relative',
-              flexShrink: 0,
-              border: '1px solid rgba(255, 255, 255, 0.15)',
-              scrollSnapAlign: 'start',
-              boxShadow: '0 10px 25px rgba(0, 0, 0, 0.4)'
+              position: 'relative'
             }}
           >
             <img 
@@ -48,16 +38,16 @@ export const CustomerGallery: React.FC = () => {
             <div style={{
               position: 'absolute',
               inset: 0,
-              background: 'linear-gradient(to top, rgba(13, 12, 16, 0.95) 0%, rgba(13, 12, 16, 0.2) 60%, transparent 100%)',
-              padding: '1rem',
+              background: 'linear-gradient(to top, rgba(18, 17, 24, 0.9) 0%, rgba(18, 17, 24, 0.2) 60%, transparent 100%)',
+              padding: '1.15rem',
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'flex-end'
             }}>
-              <span style={{ fontSize: '0.675rem', color: '#C9A24E', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+              <span style={{ fontSize: '0.675rem', color: '#EBD28F', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
                 {img.category}
               </span>
-              <h5 style={{ fontSize: '0.925rem', fontWeight: 800, color: '#FFFFFF', marginTop: '0.15rem' }}>
+              <h5 style={{ fontSize: '1rem', fontWeight: 900, color: '#FFFFFF', marginTop: '0.15rem' }}>
                 {img.title}
               </h5>
             </div>

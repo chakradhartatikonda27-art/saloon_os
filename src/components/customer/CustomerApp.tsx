@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSalon } from '../../context/SalonContext';
 import { CustomerHeader } from './CustomerHeader';
 import { CustomerOffersCarousel } from './CustomerOffersCarousel';
@@ -8,80 +8,82 @@ import { CustomerBookingFlow } from './CustomerBookingFlow';
 import { CustomerTokenTracker } from './CustomerTokenTracker';
 import { CustomerPortal } from './CustomerPortal';
 import { CustomerMobileNav } from './CustomerMobileNav';
-import { Scissors, ArrowRight, Sparkles, Clock, CheckCircle, ShieldCheck } from 'lucide-react';
+import { Scissors, ArrowRight, Sparkles, Clock, CheckCircle, Star, ShieldCheck, Zap } from 'lucide-react';
 
 export const CustomerApp: React.FC = () => {
   const { activeCustomerTab, setActiveCustomerTab, settings } = useSalon();
+  const [selectedCategoryFilter, setSelectedCategoryFilter] = useState('all');
 
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: '#0D0C10', color: '#F8FAFC', paddingBottom: '90px', fontFamily: 'var(--font-body)' }}>
+    <div className="champagne-canvas" style={{ minHeight: '100vh', paddingBottom: '90px' }}>
       {/* Brand Header */}
       <CustomerHeader />
 
       {/* Main View Switcher Body */}
-      <main className="workspace-padding" style={{ padding: '1.75rem 1.5rem', maxWidth: '1200px', margin: '0 auto' }}>
+      <main className="workspace-padding" style={{ padding: '2rem 1.5rem', maxWidth: '1280px', margin: '0 auto' }}>
         {/* HOME VIEW */}
         {activeCustomerTab === 'home' && (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '2.25rem' }}>
-            {/* HERO BANNER SECTION (3D FLOATING CARD) */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '2.5rem' }}>
+            {/* EDITORIAL HERO BANNER */}
             <div 
-              className="card-3d-hover"
+              className="luxury-card"
               style={{
-                padding: '2.75rem 2.25rem',
-                borderRadius: '24px',
-                background: 'linear-gradient(135deg, rgba(36, 30, 46, 0.95) 0%, rgba(20, 18, 26, 0.98) 100%)',
-                border: '1px solid rgba(201, 162, 78, 0.35)',
-                boxShadow: '0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(201, 162, 78, 0.15)',
+                padding: '3rem 2.5rem',
+                background: 'linear-gradient(135deg, #121118 0%, #241E2E 50%, #1A1624 100%)',
+                border: '1.5px solid #C9A24E',
+                color: '#FFFFFF',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
                 flexWrap: 'wrap',
-                gap: '1.75rem',
+                gap: '2rem',
                 position: 'relative',
-                overflow: 'hidden'
+                overflow: 'hidden',
+                boxShadow: '0 24px 60px rgba(18, 17, 24, 0.25)'
               }}
             >
-              {/* Gold Ambient Background Glow */}
+              {/* Subtle Gold Flare Background Layer */}
               <div style={{
                 position: 'absolute',
-                top: '-30%',
+                top: '-40%',
                 right: '-10%',
-                width: '300px',
-                height: '300px',
-                background: 'radial-gradient(circle, rgba(201, 162, 78, 0.18) 0%, transparent 70%)',
+                width: '350px',
+                height: '350px',
+                background: 'radial-gradient(circle, rgba(201, 162, 78, 0.2) 0%, transparent 70%)',
                 pointerEvents: 'none'
               }} />
 
-              <div style={{ maxWidth: '600px', display: 'flex', flexDirection: 'column', gap: '1rem', zIndex: 1 }}>
+              {/* Hero Left Content */}
+              <div style={{ maxWidth: '620px', display: 'flex', flexDirection: 'column', gap: '1.15rem', zIndex: 1 }}>
                 <span style={{
                   display: 'inline-flex',
                   alignItems: 'center',
-                  gap: '0.45rem',
-                  backgroundColor: 'rgba(201, 162, 78, 0.12)',
+                  gap: '0.5rem',
+                  backgroundColor: 'rgba(201, 162, 78, 0.15)',
                   color: '#EBD28F',
-                  border: '1px solid rgba(201, 162, 78, 0.35)',
-                  padding: '0.4rem 0.95rem',
+                  border: '1px solid rgba(201, 162, 78, 0.4)',
+                  padding: '0.45rem 1.05rem',
                   borderRadius: '99px',
                   fontSize: '0.8rem',
                   fontWeight: 800,
                   width: 'fit-content'
                 }}>
-                  <Sparkles size={14} color="#C9A24E" /> Luxury Salon Experience • Minimum Waiting Time
+                  <Sparkles size={15} color="#C9A24E" /> LUXURY SALON EXPERIENCE • MINIMUM WAITING TIME
                 </span>
 
-                <h2 style={{ fontSize: '2.35rem', fontWeight: 900, lineHeight: 1.15, letterSpacing: '-0.02em', color: '#FFFFFF' }}>
-                  Book. Track. Arrive. <span style={{ color: '#C9A24E', textShadow: '0 0 20px rgba(201, 162, 78, 0.4)' }}>Get Served.</span>
+                <h2 style={{ fontSize: '2.65rem', fontWeight: 900, lineHeight: 1.12, letterSpacing: '-0.03em', color: '#FFFFFF' }}>
+                  Elevate Your Style. <span style={{ color: '#C9A24E', fontStyle: 'italic' }}>Get Served Live.</span>
                 </h2>
 
-                <p style={{ fontSize: '0.95rem', color: '#A19BAA', lineHeight: 1.6 }}>
-                  Welcome to {settings.salonName}. Select your preferred stylist, choose an available time slot, and track your live token queue position in real-time.
+                <p style={{ fontSize: '1rem', color: '#B5AEBF', lineHeight: 1.6, fontWeight: 500 }}>
+                  Welcome to {settings.salonName}. Select your preferred stylist, choose an available time slot, and track your live token queue position seamlessly on mobile.
                 </p>
 
-                <div style={{ display: 'flex', gap: '0.85rem', marginTop: '0.5rem', flexWrap: 'wrap' }}>
+                <div style={{ display: 'flex', gap: '1rem', marginTop: '0.5rem', flexWrap: 'wrap' }}>
                   <button
                     onClick={() => setActiveCustomerTab('book')}
-                    className="btn-3d-gold"
-                    style={{ padding: '0.8rem 1.85rem', fontSize: '0.95rem', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
+                    className="champagne-btn-gold"
+                    style={{ padding: '0.85rem 2rem', fontSize: '0.95rem', display: 'inline-flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}
                   >
                     <Scissors size={18} />
                     <span>Book Your Visit Now</span>
@@ -90,12 +92,11 @@ export const CustomerApp: React.FC = () => {
                   <button
                     onClick={() => setActiveCustomerTab('token')}
                     style={{
-                      backgroundColor: 'rgba(255, 255, 255, 0.06)',
+                      backgroundColor: 'rgba(255, 255, 255, 0.08)',
                       color: '#FFFFFF',
-                      border: '1px solid rgba(255, 255, 255, 0.2)',
-                      backdropFilter: 'blur(10px)',
+                      border: '1px solid rgba(255, 255, 255, 0.25)',
                       borderRadius: '12px',
-                      padding: '0.8rem 1.5rem',
+                      padding: '0.85rem 1.65rem',
                       fontSize: '0.95rem',
                       fontWeight: 800,
                       cursor: 'pointer',
@@ -111,23 +112,23 @@ export const CustomerApp: React.FC = () => {
                 </div>
               </div>
 
-              {/* Quick Queue Status Badge Card */}
+              {/* Hero Right Queue Status Card */}
               <div 
-                className="card-3d-hover"
                 style={{
-                  backgroundColor: 'rgba(13, 12, 16, 0.9)',
-                  border: '1px solid rgba(14, 156, 134, 0.4)',
-                  borderRadius: '18px',
-                  padding: '1.5rem 1.75rem',
-                  minWidth: '280px',
+                  backgroundColor: '#FFFFFF',
+                  border: '1px solid #E8E3DE',
+                  borderRadius: '20px',
+                  padding: '1.65rem 1.85rem',
+                  minWidth: '290px',
+                  color: '#121118',
                   display: 'flex',
                   flexDirection: 'column',
-                  gap: '0.85rem',
-                  boxShadow: '0 10px 30px rgba(0, 0, 0, 0.6)',
+                  gap: '0.95rem',
+                  boxShadow: '0 16px 40px rgba(0, 0, 0, 0.15)',
                   zIndex: 1
                 }}
               >
-                <div style={{ fontSize: '0.725rem', fontWeight: 800, color: '#A19BAA', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+                <div style={{ fontSize: '0.725rem', fontWeight: 800, color: '#5A5463', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
                   LIVE SALON QUEUE STATUS
                 </div>
 
@@ -138,138 +139,139 @@ export const CustomerApp: React.FC = () => {
                   </span>
                 </div>
 
-                <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '0.75rem', display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
-                  <div style={{ fontSize: '0.85rem', color: '#FFFFFF', fontWeight: 700 }}>
+                <div style={{ borderTop: '1px solid #E8E3DE', paddingTop: '0.85rem', display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+                  <div style={{ fontSize: '0.9rem', color: '#121118', fontWeight: 800 }}>
                     Current Avg Wait: <span style={{ color: '#C9A24E', fontWeight: 900 }}>14 mins</span>
                   </div>
-                  <div style={{ fontSize: '0.775rem', color: '#A19BAA' }}>
+                  <div style={{ fontSize: '0.8rem', color: '#5A5463', fontWeight: 600 }}>
                     4 Master Stylists Available Today
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* OFFERS CAROUSEL */}
+            {/* OFFERS & COMBO PACKAGES CAROUSEL */}
             <CustomerOffersCarousel />
 
-            {/* 3-STEP BOOKING GUIDE (TRENDY 3D CARDS) */}
-            <div style={{
-              backgroundColor: '#FFFFFF',
-              borderRadius: '24px',
-              padding: '2.5rem 2rem',
-              color: '#14121A',
-              boxShadow: '0 20px 40px rgba(0, 0, 0, 0.5)',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              textAlign: 'center',
-              gap: '1.75rem'
-            }}>
+            {/* 3-STEP BOOKING JOURNEY (CHAMPAGNE EDITORIAL CARDS) */}
+            <div 
+              className="luxury-card"
+              style={{
+                padding: '2.75rem 2rem',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                textAlign: 'center',
+                gap: '2rem'
+              }}
+            >
               <div>
-                <h3 style={{ fontSize: '1.65rem', fontWeight: 900, letterSpacing: '-0.02em', color: '#14121A' }}>
+                <span style={{ fontSize: '0.75rem', fontWeight: 900, color: '#C9A24E', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
+                  SEAMLESS APPOINTMENT EXPERIENCE
+                </span>
+                <h3 style={{ fontSize: '1.75rem', fontWeight: 900, letterSpacing: '-0.02em', color: '#121118', marginTop: '0.25rem' }}>
                   Book Your Visit in 3 Simple Steps
                 </h3>
-                <p style={{ fontSize: '0.875rem', color: '#75707E', marginTop: '0.25rem' }}>
+                <p style={{ fontSize: '0.9rem', color: '#5A5463', marginTop: '0.25rem' }}>
                   Directly choose your favorite stylist and exact time slot.
                 </p>
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.25rem', width: '100%' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem', width: '100%' }}>
                 {/* Step 1 */}
                 <div style={{
-                  backgroundColor: '#2A2436',
+                  backgroundColor: '#FAF7F2',
+                  border: '1px solid #E8E3DE',
                   borderRadius: '18px',
-                  padding: '1.75rem 1.25rem',
-                  color: '#FFFFFF',
+                  padding: '2rem 1.35rem',
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
-                  gap: '0.85rem',
-                  boxShadow: '0 8px 20px rgba(0,0,0,0.15)'
+                  gap: '0.95rem'
                 }}>
                   <div style={{
-                    width: '46px',
-                    height: '46px',
+                    width: '48px',
+                    height: '48px',
                     borderRadius: '50%',
-                    backgroundColor: '#C9A24E',
-                    color: '#14121A',
-                    fontSize: '1.2rem',
+                    backgroundColor: '#121118',
+                    color: '#EBD28F',
+                    border: '1.5px solid #C9A24E',
+                    fontSize: '1.25rem',
                     fontWeight: 900,
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    boxShadow: '0 4px 12px rgba(201, 162, 78, 0.4)'
+                    boxShadow: '0 4px 15px rgba(18, 17, 24, 0.2)'
                   }}>
-                    1
+                    01
                   </div>
-                  <h4 style={{ fontSize: '1.05rem', fontWeight: 800 }}>Choose Service</h4>
-                  <p style={{ fontSize: '0.775rem', color: '#A19BAA' }}>
-                    Haircut, Beard, Facial, Hair Spa, Color
+                  <h4 style={{ fontSize: '1.1rem', fontWeight: 900, color: '#121118' }}>Choose Service</h4>
+                  <p style={{ fontSize: '0.825rem', color: '#5A5463', lineHeight: 1.4 }}>
+                    Haircut, Beard, Facial, Hair Spa, Color & Combos
                   </p>
                 </div>
 
                 {/* Step 2 */}
                 <div style={{
-                  backgroundColor: '#2A2436',
+                  backgroundColor: '#FAF7F2',
+                  border: '1px solid #E8E3DE',
                   borderRadius: '18px',
-                  padding: '1.75rem 1.25rem',
-                  color: '#FFFFFF',
+                  padding: '2rem 1.35rem',
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
-                  gap: '0.85rem',
-                  boxShadow: '0 8px 20px rgba(0,0,0,0.15)'
+                  gap: '0.95rem'
                 }}>
                   <div style={{
-                    width: '46px',
-                    height: '46px',
+                    width: '48px',
+                    height: '48px',
                     borderRadius: '50%',
-                    backgroundColor: '#C9A24E',
-                    color: '#14121A',
-                    fontSize: '1.2rem',
+                    backgroundColor: '#121118',
+                    color: '#EBD28F',
+                    border: '1.5px solid #C9A24E',
+                    fontSize: '1.25rem',
                     fontWeight: 900,
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    boxShadow: '0 4px 12px rgba(201, 162, 78, 0.4)'
+                    boxShadow: '0 4px 15px rgba(18, 17, 24, 0.2)'
                   }}>
-                    2
+                    02
                   </div>
-                  <h4 style={{ fontSize: '1.05rem', fontWeight: 800 }}>Select Stylist</h4>
-                  <p style={{ fontSize: '0.775rem', color: '#A19BAA' }}>
+                  <h4 style={{ fontSize: '1.1rem', fontWeight: 900, color: '#121118' }}>Select Stylist</h4>
+                  <p style={{ fontSize: '0.825rem', color: '#5A5463', lineHeight: 1.4 }}>
                     Pick Arun, Meena, Ravi, or Suresh
                   </p>
                 </div>
 
                 {/* Step 3 */}
                 <div style={{
-                  backgroundColor: '#2A2436',
+                  backgroundColor: '#FAF7F2',
+                  border: '1px solid #E8E3DE',
                   borderRadius: '18px',
-                  padding: '1.75rem 1.25rem',
-                  color: '#FFFFFF',
+                  padding: '2rem 1.35rem',
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
-                  gap: '0.85rem',
-                  boxShadow: '0 8px 20px rgba(0,0,0,0.15)'
+                  gap: '0.95rem'
                 }}>
                   <div style={{
-                    width: '46px',
-                    height: '46px',
+                    width: '48px',
+                    height: '48px',
                     borderRadius: '50%',
                     backgroundColor: '#0E9C86',
                     color: '#FFFFFF',
-                    fontSize: '1.2rem',
+                    fontSize: '1.25rem',
                     fontWeight: 900,
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    boxShadow: '0 4px 12px rgba(14, 156, 134, 0.4)'
+                    boxShadow: '0 4px 15px rgba(14, 156, 134, 0.3)'
                   }}>
-                    3
+                    03
                   </div>
-                  <h4 style={{ fontSize: '1.05rem', fontWeight: 800 }}>Get Smart Token</h4>
-                  <p style={{ fontSize: '0.775rem', color: '#A19BAA' }}>
+                  <h4 style={{ fontSize: '1.1rem', fontWeight: 900, color: '#121118' }}>Get Smart Token</h4>
+                  <p style={{ fontSize: '0.825rem', color: '#5A5463', lineHeight: 1.4 }}>
                     Track queue position live on mobile
                   </p>
                 </div>
@@ -277,8 +279,8 @@ export const CustomerApp: React.FC = () => {
 
               <button
                 onClick={() => setActiveCustomerTab('book')}
-                className="btn-3d-gold"
-                style={{ padding: '0.85rem 2.25rem', fontSize: '0.95rem', marginTop: '0.5rem', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
+                className="champagne-btn-gold"
+                style={{ padding: '0.9rem 2.5rem', fontSize: '1rem', marginTop: '0.5rem', display: 'inline-flex', alignItems: 'center', gap: '0.55rem', cursor: 'pointer' }}
               >
                 <span>Start Booking Now</span> <ArrowRight size={18} />
               </button>
@@ -302,7 +304,7 @@ export const CustomerApp: React.FC = () => {
         {activeCustomerTab === 'account' && <CustomerPortal />}
       </main>
 
-      {/* Floating 3D Bottom Dock Navigation */}
+      {/* Floating Bottom Navigation Dock */}
       <CustomerMobileNav />
     </div>
   );
