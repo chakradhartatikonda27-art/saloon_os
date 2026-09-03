@@ -26,6 +26,7 @@ import { Marketing } from './components/modules/Marketing';
 import { Reports } from './components/modules/Reports';
 import { ServicesConfig } from './components/modules/ServicesConfig';
 import { CustomerWebsiteConfig } from './components/modules/CustomerWebsiteConfig';
+import { BookingTokenRules } from './components/modules/BookingTokenRules';
 import { NotificationsCenter } from './components/modules/NotificationsCenter';
 import { Settings } from './components/modules/Settings';
 import { CustomerProfile } from './components/modules/CustomerProfile';
@@ -56,6 +57,7 @@ const AdminLayout: React.FC = () => {
       case 'reports': return <Reports />;
       case 'services_config': return <ServicesConfig />;
       case 'customer_website': return <CustomerWebsiteConfig />;
+      case 'booking_rules': return <BookingTokenRules />;
       case 'settings': return <Settings />;
       default: return <Dashboard />;
     }

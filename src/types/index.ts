@@ -17,6 +17,7 @@ export type NavModule =
   | 'reports'
   | 'services_config'
   | 'customer_website'
+  | 'booking_rules'
   | 'settings';
 
 export type CustomerTab = 

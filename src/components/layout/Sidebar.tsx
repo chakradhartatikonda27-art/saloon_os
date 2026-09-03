@@ -80,7 +80,7 @@ export const Sidebar: React.FC = () => {
       items: [
         { id: 'services_config', label: 'Services · Offers · Media', icon: Scissors },
         { id: 'customer_website', label: 'Customer website', icon: Globe },
-        { id: 'settings', label: 'Booking & token rules', icon: Settings },
+        { id: 'booking_rules', label: 'Booking & token rules', icon: Clock },
         { id: 'settings', label: 'Settings', icon: Settings },
         { id: 'reports', label: 'Audit log', icon: PieChart }
       ]
