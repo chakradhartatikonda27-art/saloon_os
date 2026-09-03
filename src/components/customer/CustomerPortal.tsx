@@ -23,234 +23,142 @@ export const CustomerPortal: React.FC = () => {
   const progressPercent = Math.min(100, Math.round((loyaltyPoints / targetPoints) * 100));
 
   return (
-    <div style={{ maxWidth: '800px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+    <div style={{ maxWidth: '820px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
       {/* Profile Summary Header Card */}
-      <div className="glass-panel" style={{ padding: '1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem', borderLeft: '4px solid var(--primary-500)' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+      <div className="luxury-card" style={{ padding: '1.75rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem', borderLeft: '6px solid #C9A24E' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1.15rem' }}>
           <div style={{
             width: '56px',
             height: '56px',
             borderRadius: '50%',
-            backgroundColor: 'var(--primary-600)',
-            color: '#ffffff',
-            fontWeight: 800,
+            backgroundColor: '#121118',
+            color: '#EBD28F',
+            border: '2px solid #C9A24E',
+            fontWeight: 900,
             fontSize: '1.4rem',
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'center'
+            justifyContent: 'center',
+            boxShadow: '0 4px 15px rgba(18, 17, 24, 0.2)'
           }}>
             RS
           </div>
 
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <h3 style={{ fontSize: '1.2rem', fontWeight: 800 }}>{currentCust.name}</h3>
-              <span className="badge badge-gold">{currentCust.membership} Member</span>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
+              <h3 style={{ fontSize: '1.3rem', fontWeight: 900, color: '#121118', margin: 0 }}>{currentCust.name}</h3>
+              <span style={{
+                backgroundColor: '#121118',
+                color: '#EBD28F',
+                border: '1px solid #C9A24E',
+                fontSize: '0.725rem',
+                fontWeight: 900,
+                padding: '0.2rem 0.65rem',
+                borderRadius: '99px'
+              }}>
+                {currentCust.membership} Member
+              </span>
             </div>
-            <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '0.15rem' }}>
+            <p style={{ fontSize: '0.85rem', color: '#5A5463', marginTop: '0.25rem', fontWeight: 600, margin: 0 }}>
               {currentCust.phone} • {currentCust.email}
             </p>
           </div>
         </div>
 
         <div style={{ textAlign: 'right' }}>
-          <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Total Salon Spend</span>
-          <div style={{ fontSize: '1.35rem', fontWeight: 800, color: '#34d399' }}>
+          <span style={{ fontSize: '0.775rem', color: '#5A5463', fontWeight: 800 }}>Total Salon Spend</span>
+          <div style={{ fontSize: '1.5rem', fontWeight: 900, color: '#121118' }}>
             ₹{currentCust.totalSpend.toLocaleString()}
           </div>
-          <span style={{ fontSize: '0.725rem', color: 'var(--text-dim)' }}>{currentCust.totalVisits} visits completed</span>
+          <span style={{ fontSize: '0.775rem', color: '#5A5463', fontWeight: 600 }}>{currentCust.totalVisits} visits completed</span>
         </div>
       </div>
 
       {/* Account Navigation Tabs */}
-      <div style={{ display: 'flex', gap: '0.5rem', borderBottom: '1px solid var(--border-subtle)', paddingBottom: '0.5rem' }}>
-        <button
-          onClick={() => setActiveTab('loyalty')}
-          className="btn btn-sm"
-          style={{
-            backgroundColor: activeTab === 'loyalty' ? 'var(--primary-600)' : 'transparent',
-            color: activeTab === 'loyalty' ? '#ffffff' : 'var(--text-muted)',
-            borderColor: activeTab === 'loyalty' ? 'var(--primary-500)' : 'transparent'
-          }}
-        >
-          <Award size={15} /> Loyalty Wallet
-        </button>
-
-        <button
-          onClick={() => setActiveTab('appointments')}
-          className="btn btn-sm"
-          style={{
-            backgroundColor: activeTab === 'appointments' ? 'var(--primary-600)' : 'transparent',
-            color: activeTab === 'appointments' ? '#ffffff' : 'var(--text-muted)',
-            borderColor: activeTab === 'appointments' ? 'var(--primary-500)' : 'transparent'
-          }}
-        >
-          <Calendar size={15} /> My Visits
-        </button>
-
-        <button
-          onClick={() => setActiveTab('invoices')}
-          className="btn btn-sm"
-          style={{
-            backgroundColor: activeTab === 'invoices' ? 'var(--primary-600)' : 'transparent',
-            color: activeTab === 'invoices' ? '#ffffff' : 'var(--text-muted)',
-            borderColor: activeTab === 'invoices' ? 'var(--primary-500)' : 'transparent'
-          }}
-        >
-          <Receipt size={15} /> Invoices
-        </button>
-
-        <button
-          onClick={() => setActiveTab('offers')}
-          className="btn btn-sm"
-          style={{
-            backgroundColor: activeTab === 'offers' ? 'var(--primary-600)' : 'transparent',
-            color: activeTab === 'offers' ? '#ffffff' : 'var(--text-muted)',
-            borderColor: activeTab === 'offers' ? 'var(--primary-500)' : 'transparent'
-          }}
-        >
-          <Tag size={15} /> My Offers
-        </button>
+      <div style={{ display: 'flex', gap: '0.65rem', borderBottom: '1px solid #E8E3DE', paddingBottom: '0.65rem' }}>
+        {(['loyalty', 'appointments', 'invoices', 'offers'] as const).map(tab => (
+          <button
+            key={tab}
+            onClick={() => setActiveTab(tab)}
+            style={{
+              backgroundColor: activeTab === tab ? '#121118' : '#FFFFFF',
+              color: activeTab === tab ? '#EBD28F' : '#121118',
+              border: activeTab === tab ? '1.5px solid #C9A24E' : '1px solid #E8E3DE',
+              borderRadius: '99px',
+              padding: '0.5rem 1.25rem',
+              fontSize: '0.85rem',
+              fontWeight: 800,
+              cursor: 'pointer',
+              textTransform: 'capitalize'
+            }}
+          >
+            {tab === 'loyalty' ? 'Loyalty Wallet' : tab === 'appointments' ? 'My Visits' : tab}
+          </button>
+        ))}
       </div>
 
-      {/* LOYALTY WALLET TAB */}
+      {/* TAB 1: LOYALTY WALLET */}
       {activeTab === 'loyalty' && (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-          <div className="glass-panel" style={{ padding: '1.5rem', background: 'linear-gradient(135deg, rgba(99,102,241,0.15), rgba(236,72,153,0.15))', border: '1px solid var(--primary-500)' }}>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
-              <div>
-                <span style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase' }}>
-                  URBAN GLOW LOYALTY BALANCE
-                </span>
-                <div style={{ fontSize: '2.2rem', fontWeight: 900, color: '#ffffff', marginTop: '0.1rem' }}>
-                  {loyaltyPoints.toLocaleString()} Points
-                </div>
-                <div style={{ fontSize: '0.85rem', color: '#34d399', fontWeight: 700 }}>
-                  Equivalent Redeemable Value: ₹{walletValue} INR
-                </div>
+        <div className="luxury-card" style={{ padding: '2rem', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.25rem' }}>
+            <div style={{ backgroundColor: '#FAF7F2', border: '1px solid #E8E3DE', borderRadius: '16px', padding: '1.25rem' }}>
+              <span style={{ fontSize: '0.75rem', fontWeight: 800, color: '#5A5463', textTransform: 'uppercase' }}>Loyalty Reward Points</span>
+              <div style={{ fontSize: '2.2rem', fontWeight: 900, color: '#C9A24E', marginTop: '0.2rem' }}>
+                {loyaltyPoints} pts
               </div>
-
-              <div style={{ padding: '0.85rem', borderRadius: '50%', backgroundColor: 'rgba(236,72,153,0.2)', color: '#f472b6' }}>
-                <Award size={36} />
-              </div>
+              <span style={{ fontSize: '0.8rem', color: '#5A5463', fontWeight: 600 }}>10 pts = ₹1 wallet redemption</span>
             </div>
 
-            {/* Progress Bar to Next Reward */}
-            <div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.775rem', color: 'var(--text-muted)', marginBottom: '0.35rem' }}>
-                <span>Progress to Gold Tier Reward</span>
-                <span>{loyaltyPoints} / {targetPoints} pts ({targetPoints - loyaltyPoints} pts remaining)</span>
+            <div style={{ backgroundColor: '#FAF7F2', border: '1px solid #E8E3DE', borderRadius: '16px', padding: '1.25rem' }}>
+              <span style={{ fontSize: '0.75rem', fontWeight: 800, color: '#5A5463', textTransform: 'uppercase' }}>Redeemable Wallet Balance</span>
+              <div style={{ fontSize: '2.2rem', fontWeight: 900, color: '#0E9C86', marginTop: '0.2rem' }}>
+                ₹{walletValue}
               </div>
-              <div style={{ height: '8px', borderRadius: '99px', backgroundColor: 'rgba(255,255,255,0.1)', overflow: 'hidden' }}>
-                <div style={{ width: `${progressPercent}%`, height: '100%', background: 'linear-gradient(90deg, #6366f1, #ec4899)' }} />
-              </div>
+              <span style={{ fontSize: '0.8rem', color: '#5A5463', fontWeight: 600 }}>Usable on any service or invoice</span>
             </div>
           </div>
         </div>
       )}
 
-      {/* APPOINTMENTS TAB */}
+      {/* TAB 2: MY VISITS */}
       {activeTab === 'appointments' && (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-          {appointments.map(apt => {
-            const badgeClass = `badge badge-${apt.status.toLowerCase().replace(' ', '-')}`;
-            return (
-              <div
-                key={apt.id}
-                className="glass-panel"
-                style={{
-                  padding: '1rem 1.25rem',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between'
-                }}
-              >
+        <div className="luxury-card" style={{ padding: '1.75rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+          <h4 style={{ fontSize: '1.1rem', fontWeight: 900, color: '#121118' }}>Appointment History</h4>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+            {appointments.map(apt => (
+              <div key={apt.id} style={{ padding: '1rem', backgroundColor: '#FAF7F2', border: '1px solid #E8E3DE', borderRadius: '12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <div>
-                  <div style={{ fontWeight: 800, fontSize: '0.95rem' }}>{apt.serviceName}</div>
-                  <div style={{ fontSize: '0.775rem', color: 'var(--text-muted)', marginTop: '0.15rem' }}>
-                    Date: {apt.date} at {apt.time} • Stylist: <strong>{apt.staffName}</strong>
-                  </div>
+                  <div style={{ fontWeight: 900, color: '#121118' }}>{apt.serviceName}</div>
+                  <div style={{ fontSize: '0.8rem', color: '#5A5463', fontWeight: 600 }}>{apt.date} • {apt.time} • Stylist: {apt.staffName}</div>
                 </div>
-
-                <div style={{ textAlign: 'right' }}>
-                  <div style={{ fontWeight: 800, fontSize: '1rem', color: '#34d399' }}>₹{apt.servicePrice}</div>
-                  <span className={badgeClass} style={{ fontSize: '0.725rem', marginTop: '0.2rem' }}>
-                    {apt.status}
-                  </span>
-                </div>
+                <div style={{ fontSize: '1rem', fontWeight: 900, color: '#121118' }}>₹{apt.servicePrice}</div>
               </div>
-            );
-          })}
+            ))}
+          </div>
         </div>
       )}
 
-      {/* INVOICES TAB */}
+      {/* TAB 3: INVOICES */}
       {activeTab === 'invoices' && (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-          {invoices.map(inv => (
-            <div
-              key={inv.id}
-              className="glass-panel"
-              style={{
-                padding: '1rem 1.25rem',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between'
-              }}
-            >
-              <div>
-                <div style={{ fontWeight: 800, fontSize: '0.95rem' }}>{inv.invoiceNumber}</div>
-                <div style={{ fontSize: '0.775rem', color: 'var(--text-muted)', marginTop: '0.15rem' }}>
-                  Date: {inv.date} • Paid via {inv.paymentMethod}
+        <div className="luxury-card" style={{ padding: '1.75rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+          <h4 style={{ fontSize: '1.1rem', fontWeight: 900, color: '#121118' }}>Invoices & Digital Receipts</h4>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+            {invoices.map(inv => (
+              <div key={inv.id} style={{ padding: '1rem', backgroundColor: '#FAF7F2', border: '1px solid #E8E3DE', borderRadius: '12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div>
+                  <div style={{ fontWeight: 900, color: '#121118' }}>{inv.invoiceNumber}</div>
+                  <div style={{ fontSize: '0.8rem', color: '#5A5463', fontWeight: 600 }}>{inv.date} • Paid via {inv.paymentMethod}</div>
                 </div>
-              </div>
-
-              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                <div style={{ textAlign: 'right' }}>
-                  <div style={{ fontWeight: 800, fontSize: '1rem', color: '#ffffff' }}>₹{inv.grandTotal}</div>
-                  <span className="badge badge-completed" style={{ fontSize: '0.7rem' }}>Paid</span>
-                </div>
-
                 <button
                   onClick={() => setActiveInvoicePreview(inv)}
-                  className="btn btn-sm btn-secondary"
+                  className="champagne-btn-primary"
+                  style={{ padding: '0.45rem 1rem', fontSize: '0.8rem', cursor: 'pointer' }}
                 >
-                  View Invoice
+                  View Bill
                 </button>
               </div>
-            </div>
-          ))}
-        </div>
-      )}
-
-      {/* OFFERS TAB */}
-      {activeTab === 'offers' && (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-          {offers.map(off => (
-            <div
-              key={off.id}
-              className="glass-panel"
-              style={{
-                padding: '1.25rem',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                borderLeft: '4px solid #ec4899'
-              }}
-            >
-              <div>
-                <span className="badge badge-gold" style={{ fontSize: '0.7rem' }}>{off.discountText}</span>
-                <h4 style={{ fontSize: '1rem', fontWeight: 800, marginTop: '0.35rem' }}>{off.title}</h4>
-                <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '0.15rem' }}>{off.description}</p>
-              </div>
-
-              <div style={{ textAlign: 'right' }}>
-                <code style={{ backgroundColor: 'rgba(255,255,255,0.1)', padding: '0.3rem 0.6rem', borderRadius: '4px', fontSize: '0.85rem', color: '#fbbf24', fontWeight: 800 }}>
-                  {off.code}
-                </code>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       )}
     </div>

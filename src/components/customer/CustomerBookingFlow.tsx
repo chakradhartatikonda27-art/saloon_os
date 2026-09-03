@@ -7,7 +7,8 @@ import {
   Check, 
   ArrowRight, 
   CheckCircle2, 
-  Sparkles 
+  Sparkles,
+  Clock
 } from 'lucide-react';
 import { SmartToken } from '../../types';
 
@@ -61,16 +62,16 @@ export const CustomerBookingFlow: React.FC = () => {
   const tokenNumLabel = generatedToken ? `${generatedToken.tokenNumber}` : '';
 
   return (
-    <div style={{ maxWidth: '720px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-      {/* Step Indicator Header */}
+    <div style={{ maxWidth: '760px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+      {/* Step Progress Bar Header */}
       {currentStep <= 3 && (
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.25rem' }}>
           <div style={{ display: 'flex', gap: '0.5rem', flex: 1 }}>
-            <div style={{ flex: 1, height: '4px', borderRadius: '99px', backgroundColor: currentStep >= 1 ? 'var(--gold)' : 'var(--border-subtle)' }} />
-            <div style={{ flex: 1, height: '4px', borderRadius: '99px', backgroundColor: currentStep >= 2 ? 'var(--gold)' : 'var(--border-subtle)' }} />
-            <div style={{ flex: 1, height: '4px', borderRadius: '99px', backgroundColor: currentStep >= 3 ? 'var(--gold)' : 'var(--border-subtle)' }} />
+            <div style={{ flex: 1, height: '6px', borderRadius: '99px', backgroundColor: currentStep >= 1 ? '#C9A24E' : '#E8E3DE', transition: 'all 0.3s ease' }} />
+            <div style={{ flex: 1, height: '6px', borderRadius: '99px', backgroundColor: currentStep >= 2 ? '#C9A24E' : '#E8E3DE', transition: 'all 0.3s ease' }} />
+            <div style={{ flex: 1, height: '6px', borderRadius: '99px', backgroundColor: currentStep >= 3 ? '#C9A24E' : '#E8E3DE', transition: 'all 0.3s ease' }} />
           </div>
-          <span style={{ fontSize: '0.775rem', color: 'var(--text-muted)', marginLeft: '1rem', fontWeight: 700 }}>
+          <span style={{ fontSize: '0.8rem', color: '#121118', marginLeft: '1.25rem', fontWeight: 800 }}>
             Step {currentStep} of 3
           </span>
         </div>
@@ -78,74 +79,82 @@ export const CustomerBookingFlow: React.FC = () => {
 
       {/* STEP 1: SELECT SERVICE */}
       {currentStep === 1 && (
-        <div className="glass-panel" style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+        <div className="luxury-card" style={{ padding: '2rem', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
           <div>
-            <h3 style={{ fontSize: '1.25rem', fontWeight: 800, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <Scissors size={20} color="var(--gold)" />
+            <h3 style={{ fontSize: '1.35rem', fontWeight: 900, color: '#121118', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <Scissors size={22} color="#C9A24E" />
               <span>Step 1: Choose Your Desired Service</span>
             </h3>
-            <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', marginTop: '0.25rem' }}>
+            <p style={{ color: '#5A5463', fontSize: '0.875rem', marginTop: '0.25rem', fontWeight: 500 }}>
               Select a service from our luxury salon menu.
             </p>
           </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
             {services.map(srv => {
               const isSelected = selectedServiceId === srv.id;
-              const cardBorder = isSelected ? '2px solid var(--gold)' : '1px solid var(--border-subtle)';
-              const cardBg = isSelected ? 'rgba(201, 162, 78, 0.12)' : 'var(--plum-dark)';
+              const cardBorder = isSelected ? '2px solid #C9A24E' : '1px solid #E8E3DE';
+              const cardBg = isSelected ? '#FFF9EE' : '#FFFFFF';
 
               return (
                 <div
                   key={srv.id}
                   onClick={() => setSelectedServiceId(srv.id)}
                   style={{
+                    backgroundColor: cardBg,
+                    border: cardBorder,
+                    borderRadius: '16px',
+                    padding: '1.15rem 1.25rem',
+                    cursor: 'pointer',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
-                    padding: '1rem',
-                    borderRadius: 'var(--radius-md)',
-                    border: cardBorder,
-                    backgroundColor: cardBg,
-                    cursor: 'pointer',
-                    transition: 'all 0.15s ease'
+                    gap: '1rem',
+                    transition: 'all 0.2s ease',
+                    boxShadow: isSelected ? '0 4px 15px rgba(201, 162, 78, 0.2)' : 'none'
                   }}
                 >
                   <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                    {srv.imageUrl ? (
-                      <img src={srv.imageUrl} alt={srv.name} style={{ width: '48px', height: '48px', borderRadius: 'var(--radius-md)', objectFit: 'cover' }} />
-                    ) : (
-                      <div style={{ width: '48px', height: '48px', borderRadius: 'var(--radius-md)', backgroundColor: 'var(--plum-light)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <Scissors size={20} color="var(--gold)" />
-                      </div>
-                    )}
+                    <div style={{
+                      width: '54px',
+                      height: '54px',
+                      borderRadius: '14px',
+                      overflow: 'hidden',
+                      flexShrink: 0,
+                      border: '1px solid #E8E3DE'
+                    }}>
+                      <img src={srv.imageUrl} alt={srv.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    </div>
 
                     <div>
-                      <div style={{ fontWeight: 700, fontSize: '0.95rem' }}>{srv.name}</div>
-                      <div style={{ fontSize: '0.775rem', color: 'var(--text-muted)', display: 'flex', gap: '0.5rem', marginTop: '0.15rem' }}>
+                      <h4 style={{ fontSize: '1.05rem', fontWeight: 900, color: '#121118', margin: 0 }}>
+                        {srv.name}
+                      </h4>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', fontSize: '0.8rem', color: '#5A5463', marginTop: '0.25rem', fontWeight: 600 }}>
                         <span>⏱️ {srv.duration} mins</span>
                         <span>•</span>
-                        <span>{srv.category}</span>
+                        <span style={{ textTransform: 'capitalize', color: '#C9A24E', fontWeight: 800 }}>{srv.category}</span>
                       </div>
                     </div>
                   </div>
 
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
-                    <div style={{ fontWeight: 800, fontSize: '1.1rem', color: 'var(--gold-light)' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                    <span style={{ fontSize: '1.25rem', fontWeight: 900, color: '#121118' }}>
                       ₹{srv.price}
-                    </div>
+                    </span>
 
                     <div style={{
                       width: '24px',
                       height: '24px',
                       borderRadius: '50%',
-                      backgroundColor: isSelected ? 'var(--gold)' : 'transparent',
-                      border: isSelected ? 'none' : '2px solid var(--border-strong)',
+                      border: isSelected ? '2px solid #C9A24E' : '2px solid #E8E3DE',
+                      backgroundColor: isSelected ? '#C9A24E' : 'transparent',
                       display: 'flex',
                       alignItems: 'center',
-                      justifyContent: 'center'
+                      justifyContent: 'center',
+                      color: '#121118'
                     }}>
-                      {isSelected && <Check size={14} color="var(--ink)" />}
+                      {isSelected && <Check size={14} strokeWidth={3} />}
                     </div>
                   </div>
                 </div>
@@ -156,70 +165,99 @@ export const CustomerBookingFlow: React.FC = () => {
           <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '0.5rem' }}>
             <button
               onClick={() => setCurrentStep(2)}
-              className="btn btn-primary"
-              style={{ padding: '0.65rem 1.5rem' }}
+              className="champagne-btn-gold"
+              style={{
+                padding: '0.85rem 2rem',
+                fontSize: '0.95rem',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                cursor: 'pointer'
+              }}
             >
               <span>Next: Choose Stylist</span>
-              <ArrowRight size={16} />
+              <ArrowRight size={18} />
             </button>
           </div>
         </div>
       )}
 
-      {/* STEP 2: SELECT PREFERRED STYLIST */}
+      {/* STEP 2: SELECT STYLIST */}
       {currentStep === 2 && (
-        <div className="glass-panel" style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+        <div className="luxury-card" style={{ padding: '2rem', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
           <div>
-            <h3 style={{ fontSize: '1.25rem', fontWeight: 800, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <UserCheck size={20} color="var(--gold-light)" />
+            <h3 style={{ fontSize: '1.35rem', fontWeight: 900, color: '#121118', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <UserCheck size={22} color="#C9A24E" />
               <span>Step 2: Choose Your Preferred Stylist</span>
             </h3>
-            <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', marginTop: '0.25rem' }}>
-              Selected Service: <strong>{selectedService.name}</strong> (₹{selectedService.price})
+            <p style={{ color: '#5A5463', fontSize: '0.875rem', marginTop: '0.25rem', fontWeight: 600 }}>
+              Selected Service: <strong style={{ color: '#121118' }}>{selectedService.name} (₹{selectedService.price})</strong>
             </p>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '1rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1rem' }}>
             {staff.map(st => {
               const isSelected = selectedStaffId === st.id;
-              const cardBorder = isSelected ? '2px solid var(--gold)' : '1px solid var(--border-subtle)';
-              const cardBg = isSelected ? 'rgba(201, 162, 78, 0.12)' : 'var(--plum-dark)';
-              const isAvailable = st.status === 'Available';
+              const cardBorder = isSelected ? '2px solid #C9A24E' : '1px solid #E8E3DE';
+              const cardBg = isSelected ? '#FFF9EE' : '#FFFFFF';
 
               return (
                 <div
                   key={st.id}
                   onClick={() => setSelectedStaffId(st.id)}
                   style={{
-                    padding: '1.1rem',
-                    borderRadius: 'var(--radius-lg)',
-                    border: cardBorder,
                     backgroundColor: cardBg,
+                    border: cardBorder,
+                    borderRadius: '16px',
+                    padding: '1.25rem',
                     cursor: 'pointer',
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'space-between',
-                    gap: '0.75rem'
+                    gap: '1rem',
+                    boxShadow: isSelected ? '0 4px 15px rgba(201, 162, 78, 0.2)' : 'none'
                   }}
                 >
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
-                    <img src={st.avatar} alt={st.name} style={{ width: '48px', height: '48px', borderRadius: '50%', objectFit: 'cover' }} />
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                    <img
+                      src={st.avatar}
+                      alt={st.name}
+                      style={{
+                        width: '52px',
+                        height: '52px',
+                        borderRadius: '50%',
+                        objectFit: 'cover',
+                        border: '2px solid #C9A24E'
+                      }}
+                    />
+
                     <div>
-                      <div style={{ fontWeight: 800, fontSize: '0.95rem' }}>{st.name}</div>
-                      <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>{st.role} • {st.experienceYears || 8} yrs exp</div>
-                      <div style={{ fontSize: '0.75rem', color: 'var(--gold-light)', fontWeight: 700, marginTop: '0.1rem' }}>
-                        ⭐ {st.rating} Rating
+                      <h4 style={{ fontSize: '1.05rem', fontWeight: 900, color: '#121118', margin: 0 }}>
+                        {st.name}
+                      </h4>
+                      <div style={{ fontSize: '0.8rem', color: '#5A5463', marginTop: '0.15rem', fontWeight: 600 }}>
+                        {st.role} • {st.experienceYears} yrs exp
+                      </div>
+                      <div style={{ fontSize: '0.8rem', color: '#C9A24E', fontWeight: 800, marginTop: '0.15rem' }}>
+                        ★ {st.rating} Rating
                       </div>
                     </div>
                   </div>
 
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderTop: '1px solid var(--border-subtle)', paddingTop: '0.6rem' }}>
-                    <span className={isAvailable ? 'badge badge-available' : 'badge badge-busy'}>
-                      {isAvailable ? 'Available Today' : 'Available at 5:30 PM'}
+                  <div style={{ borderTop: '1px solid #E8E3DE', paddingTop: '0.75rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                    <span style={{
+                      backgroundColor: st.status === 'Available' ? '#E6F7F4' : '#FFF9EE',
+                      color: st.status === 'Available' ? '#0E9C86' : '#C57A0F',
+                      padding: '0.25rem 0.65rem',
+                      borderRadius: '8px',
+                      fontSize: '0.75rem',
+                      fontWeight: 800
+                    }}>
+                      {st.status === 'Available' ? 'Available Today' : 'Available At 5:30 PM'}
                     </span>
 
-                    <span style={{ fontSize: '0.8rem', fontWeight: 700, color: isSelected ? 'var(--gold)' : 'var(--text-muted)' }}>
-                      {isSelected ? 'Selected' : 'Select'}
+                    <span style={{ fontSize: '0.825rem', fontWeight: 900, color: isSelected ? '#C9A24E' : '#121118' }}>
+                      {isSelected ? 'Selected ✓' : 'Select'}
                     </span>
                   </div>
                 </div>
@@ -230,92 +268,110 @@ export const CustomerBookingFlow: React.FC = () => {
           <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '0.5rem' }}>
             <button
               onClick={() => setCurrentStep(1)}
-              className="btn btn-secondary"
+              style={{
+                backgroundColor: '#FFFFFF',
+                border: '1px solid #E8E3DE',
+                borderRadius: '10px',
+                padding: '0.75rem 1.5rem',
+                fontSize: '0.875rem',
+                fontWeight: 800,
+                color: '#121118',
+                cursor: 'pointer'
+              }}
             >
               Back
             </button>
+
             <button
               onClick={() => setCurrentStep(3)}
-              className="btn btn-primary"
-              style={{ padding: '0.65rem 1.5rem' }}
+              className="champagne-btn-gold"
+              style={{
+                padding: '0.85rem 2rem',
+                fontSize: '0.95rem',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                cursor: 'pointer'
+              }}
             >
               <span>Next: Choose Time Slot</span>
-              <ArrowRight size={16} />
+              <ArrowRight size={18} />
             </button>
           </div>
         </div>
       )}
 
-      {/* STEP 3: SELECT TIME SLOT & CONFIRM DETAILS */}
+      {/* STEP 3: SELECT DATE & TIME SLOT & CUSTOMER INFO */}
       {currentStep === 3 && (
-        <div className="glass-panel" style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+        <div className="luxury-card" style={{ padding: '2rem', display: 'flex', flexDirection: 'column', gap: '1.75rem' }}>
           <div>
-            <h3 style={{ fontSize: '1.25rem', fontWeight: 800, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <Calendar size={20} color="var(--gold)" />
+            <h3 style={{ fontSize: '1.35rem', fontWeight: 900, color: '#121118', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <Calendar size={22} color="#C9A24E" />
               <span>Step 3: Select Date & Available Time Slot</span>
             </h3>
-            <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', marginTop: '0.25rem' }}>
-              Stylist <strong>{selectedStaff.name}</strong> • Service: <strong>{selectedService.name}</strong> ({selectedService.duration} min)
+            <p style={{ color: '#5A5463', fontSize: '0.875rem', marginTop: '0.25rem', fontWeight: 600 }}>
+              Stylist <strong>{selectedStaff.name}</strong> • Service: <strong>{selectedService.name} ({selectedService.duration} min)</strong>
             </p>
           </div>
 
-          {/* Date Selector */}
-          <div style={{ display: 'flex', gap: '0.75rem', overflowX: 'auto' }}>
+          {/* Date Picker Buttons */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '0.75rem' }}>
             {[
-              { label: 'Today', date: '2026-08-31', day: 'Mon 31' },
-              { label: 'Tomorrow', date: '2026-09-01', day: 'Tue 01' },
-              { label: 'Wed', date: '2026-09-02', day: 'Wed 02' },
-              { label: 'Thu', date: '2026-09-03', day: 'Thu 03' },
+              { label: 'Today', dateStr: '2026-08-31', display: 'Mon 31' },
+              { label: 'Tomorrow', dateStr: '2026-09-01', display: 'Tue 01' },
+              { label: 'Wed', dateStr: '2026-09-02', display: 'Wed 02' },
+              { label: 'Thu', dateStr: '2026-09-03', display: 'Thu 03' }
             ].map(d => {
-              const isSelected = selectedDate === d.date;
+              const isSelDate = selectedDate === d.dateStr;
               return (
                 <button
-                  key={d.date}
-                  onClick={() => setSelectedDate(d.date)}
-                  className="btn btn-sm"
+                  key={d.dateStr}
+                  onClick={() => setSelectedDate(d.dateStr)}
                   style={{
-                    flex: 1,
-                    minWidth: '100px',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    padding: '0.65rem',
-                    backgroundColor: isSelected ? 'var(--gold)' : 'var(--plum-dark)',
-                    borderColor: isSelected ? 'var(--gold-hover)' : 'var(--border-subtle)',
-                    color: isSelected ? 'var(--ink)' : 'var(--text-main)'
+                    backgroundColor: isSelDate ? '#121118' : '#FAF7F2',
+                    color: isSelDate ? '#EBD28F' : '#121118',
+                    border: isSelDate ? '2px solid #C9A24E' : '1px solid #E8E3DE',
+                    borderRadius: '12px',
+                    padding: '0.85rem 0.5rem',
+                    textAlign: 'center',
+                    cursor: 'pointer',
+                    boxShadow: isSelDate ? '0 4px 15px rgba(18, 17, 24, 0.2)' : 'none'
                   }}
                 >
-                  <span style={{ fontSize: '0.75rem', opacity: 0.8 }}>{d.label}</span>
-                  <span style={{ fontWeight: 800, fontSize: '0.9rem' }}>{d.day}</span>
+                  <div style={{ fontSize: '0.725rem', fontWeight: 700, textTransform: 'uppercase', opacity: 0.8 }}>{d.label}</div>
+                  <div style={{ fontSize: '1rem', fontWeight: 900, marginTop: '0.2rem' }}>{d.display}</div>
                 </button>
               );
             })}
           </div>
 
-          {/* Available Slots */}
+          {/* Time Slot Grid */}
           <div>
-            <div style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--text-muted)', marginBottom: '0.6rem' }}>
+            <div style={{ fontSize: '0.825rem', fontWeight: 800, color: '#121118', marginBottom: '0.75rem' }}>
               Available Time Slots for {selectedStaff.name}:
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '0.65rem' }}>
-              {availableTimeSlots.map((slot, idx) => {
-                const isSelected = selectedTimeSlot === slot;
-                const isBusy = idx === 1 || idx === 6;
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(130px, 1fr))', gap: '0.75rem' }}>
+              {availableTimeSlots.map(slot => {
+                const isSelSlot = selectedTimeSlot === slot;
+                const isBooked = slot === '10:00 AM' || slot === '02:00 PM';
+
                 return (
                   <button
                     key={slot}
-                    disabled={isBusy}
+                    disabled={isBooked}
                     onClick={() => setSelectedTimeSlot(slot)}
                     style={{
-                      padding: '0.55rem',
-                      borderRadius: 'var(--radius-md)',
-                      backgroundColor: isSelected ? 'var(--gold)' : isBusy ? 'rgba(255,255,255,0.02)' : 'var(--plum-dark)',
-                      border: isSelected ? 'none' : '1px solid var(--border-subtle)',
-                      color: isSelected ? 'var(--ink)' : isBusy ? 'var(--text-dim)' : 'var(--text-main)',
-                      fontWeight: isSelected ? 800 : 600,
-                      fontSize: '0.8rem',
-                      cursor: isBusy ? 'not-allowed' : 'pointer',
-                      textDecoration: isBusy ? 'line-through' : 'none'
+                      backgroundColor: isBooked ? '#F3F0EC' : (isSelSlot ? '#C9A24E' : '#FFFFFF'),
+                      color: isBooked ? '#A19BAA' : (isSelSlot ? '#121118' : '#121118'),
+                      border: isSelSlot ? '2px solid #121118' : '1px solid #E8E3DE',
+                      borderRadius: '10px',
+                      padding: '0.65rem',
+                      fontSize: '0.875rem',
+                      fontWeight: 800,
+                      cursor: isBooked ? 'not-allowed' : 'pointer',
+                      textDecoration: isBooked ? 'line-through' : 'none',
+                      opacity: isBooked ? 0.6 : 1
                     }}
                   >
                     {slot}
@@ -325,26 +381,50 @@ export const CustomerBookingFlow: React.FC = () => {
             </div>
           </div>
 
-          {/* Customer Input Details */}
-          <div style={{ backgroundColor: 'var(--ink)', padding: '1rem', borderRadius: 'var(--radius-md)', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-            <div style={{ fontSize: '0.85rem', fontWeight: 700 }}>Your Contact Details:</div>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
+          {/* Customer Info Form */}
+          <div style={{ backgroundColor: '#FAF7F2', border: '1px solid #E8E3DE', borderRadius: '16px', padding: '1.25rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            <div style={{ fontSize: '0.85rem', fontWeight: 800, color: '#121118' }}>
+              Your Contact Details
+            </div>
+
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
               <div>
-                <label style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Full Name</label>
+                <label style={{ fontSize: '0.75rem', fontWeight: 800, color: '#5A5463', display: 'block', marginBottom: '0.35rem' }}>Full Name</label>
                 <input
                   type="text"
                   value={custName}
                   onChange={e => setCustName(e.target.value)}
-                  style={{ width: '100%', backgroundColor: 'var(--bg-input)', border: '1px solid var(--border-strong)', borderRadius: 'var(--radius-md)', padding: '0.45rem', color: 'var(--text-main)', fontSize: '0.85rem', outline: 'none' }}
+                  style={{
+                    width: '100%',
+                    backgroundColor: '#FFFFFF',
+                    border: '1px solid #E8E3DE',
+                    borderRadius: '8px',
+                    padding: '0.65rem 0.85rem',
+                    fontSize: '0.875rem',
+                    fontWeight: 700,
+                    color: '#121118',
+                    outline: 'none'
+                  }}
                 />
               </div>
+
               <div>
-                <label style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Phone Number</label>
+                <label style={{ fontSize: '0.75rem', fontWeight: 800, color: '#5A5463', display: 'block', marginBottom: '0.35rem' }}>Phone Number</label>
                 <input
                   type="text"
                   value={custPhone}
                   onChange={e => setCustPhone(e.target.value)}
-                  style={{ width: '100%', backgroundColor: 'var(--bg-input)', border: '1px solid var(--border-strong)', borderRadius: 'var(--radius-md)', padding: '0.45rem', color: 'var(--text-main)', fontSize: '0.85rem', outline: 'none' }}
+                  style={{
+                    width: '100%',
+                    backgroundColor: '#FFFFFF',
+                    border: '1px solid #E8E3DE',
+                    borderRadius: '8px',
+                    padding: '0.65rem 0.85rem',
+                    fontSize: '0.875rem',
+                    fontWeight: 700,
+                    color: '#121118',
+                    outline: 'none'
+                  }}
                 />
               </div>
             </div>
@@ -353,92 +433,125 @@ export const CustomerBookingFlow: React.FC = () => {
           <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '0.5rem' }}>
             <button
               onClick={() => setCurrentStep(2)}
-              className="btn btn-secondary"
+              style={{
+                backgroundColor: '#FFFFFF',
+                border: '1px solid #E8E3DE',
+                borderRadius: '10px',
+                padding: '0.75rem 1.5rem',
+                fontSize: '0.875rem',
+                fontWeight: 800,
+                color: '#121118',
+                cursor: 'pointer'
+              }}
             >
               Back
             </button>
 
             <button
               onClick={handleBookingSubmit}
-              className="btn btn-primary"
-              style={{ padding: '0.65rem 1.5rem' }}
+              className="champagne-btn-gold"
+              style={{
+                padding: '0.85rem 2rem',
+                fontSize: '0.95rem',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                cursor: 'pointer'
+              }}
             >
-              <Sparkles size={16} />
+              <Sparkles size={18} />
               <span>Send Booking Request</span>
             </button>
           </div>
         </div>
       )}
 
-      {/* STEP 4: CONFIRMATION & SMART TOKEN SCREEN */}
+      {/* STEP 4: CONFIRMED GENERATED TOKEN SCREEN */}
       {currentStep === 4 && generatedToken && (
-        <div className="glass-panel" style={{ padding: '2rem', textAlign: 'center', display: 'flex', flexDirection: 'column', gap: '1.5rem', alignItems: 'center' }}>
+        <div className="luxury-card" style={{ padding: '2.5rem', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.5rem' }}>
           <div style={{
             width: '64px',
             height: '64px',
             borderRadius: '50%',
-            backgroundColor: 'var(--teal-tint)',
-            color: 'var(--teal)',
+            backgroundColor: '#E6F7F4',
+            color: '#0E9C86',
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'center'
+            justifyContent: 'center',
+            boxShadow: '0 8px 24px rgba(14, 156, 134, 0.25)'
           }}>
             <CheckCircle2 size={36} />
           </div>
 
           <div>
-            <h3 style={{ fontSize: '1.5rem', fontWeight: 800 }}>🎉 Booking Request Sent & Token Generated!</h3>
-            <p style={{ color: 'var(--text-muted)', fontSize: '0.875rem', marginTop: '0.25rem' }}>
-              Your booking request has been dispatched to <strong>{generatedToken.staffName}</strong>.
+            <h3 style={{ fontSize: '1.65rem', fontWeight: 900, color: '#121118' }}>
+              🎉 Booking Request Sent & Token Generated!
+            </h3>
+            <p style={{ color: '#5A5463', fontSize: '0.9rem', marginTop: '0.35rem', fontWeight: 500 }}>
+              Your booking request has been dispatched to <strong>{selectedStaff.name}</strong>.
             </p>
           </div>
 
-          {/* Token Card */}
+          {/* Smart Token Card */}
           <div style={{
-            backgroundColor: 'var(--ink)',
-            border: '2px dashed var(--gold)',
-            borderRadius: 'var(--radius-xl)',
-            padding: '1.5rem 2rem',
             width: '100%',
-            maxWidth: '400px',
+            maxWidth: '420px',
+            backgroundColor: '#121118',
+            border: '2px dashed #C9A24E',
+            borderRadius: '20px',
+            padding: '1.75rem',
+            color: '#FFFFFF',
             display: 'flex',
             flexDirection: 'column',
-            gap: '0.85rem'
+            alignItems: 'center',
+            gap: '1rem',
+            boxShadow: '0 12px 30px rgba(18, 17, 24, 0.25)'
           }}>
-            <span style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase' }}>
+            <div style={{ fontSize: '0.75rem', fontWeight: 800, color: '#EBD28F', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
               YOUR SALON SMART TOKEN
-            </span>
+            </div>
 
-            <div style={{ fontSize: '3rem', fontWeight: 900, color: 'var(--gold-light)', letterSpacing: '0.05em' }}>
+            <div style={{ fontSize: '3rem', fontWeight: 900, color: '#FFFFFF', letterSpacing: '0.05em' }}>
               {tokenNumLabel}
             </div>
 
-            <div style={{ fontSize: '0.875rem', color: 'var(--text-main)', borderTop: '1px solid var(--border-subtle)', paddingTop: '0.75rem' }}>
-              <strong>{generatedToken.serviceName}</strong> with <strong>{generatedToken.staffName}</strong>
+            <div style={{ borderTop: '1px solid rgba(255,255,255,0.15)', paddingTop: '0.85rem', width: '100%', textAlign: 'center', fontSize: '0.825rem', color: '#B5AEBF' }}>
+              {selectedService.name} with {selectedStaff.name}
             </div>
 
-            <div style={{ fontSize: '0.8rem', color: 'var(--gold)', fontWeight: 700 }}>
-              ⏰ Scheduled Slot: {generatedToken.time} ({generatedToken.date})
+            <div style={{ backgroundColor: 'rgba(201, 162, 78, 0.15)', border: '1px solid rgba(201, 162, 78, 0.4)', borderRadius: '10px', padding: '0.5rem 1rem', fontSize: '0.8rem', color: '#EBD28F', fontWeight: 700 }}>
+              ⏰ Scheduled Slot: {selectedTimeSlot} ({selectedDate})
             </div>
 
-            <div style={{ fontSize: '0.775rem', color: 'var(--teal)', backgroundColor: 'var(--teal-tint)', padding: '0.35rem', borderRadius: 'var(--radius-md)' }}>
-              📌 Recommended Arrival: Around {generatedToken.suggestedArrivalTime}
+            <div style={{ backgroundColor: 'rgba(14, 156, 134, 0.15)', border: '1px solid rgba(14, 156, 134, 0.4)', borderRadius: '10px', padding: '0.5rem 1rem', fontSize: '0.8rem', color: '#0E9C86', fontWeight: 700 }}>
+              📌 Recommended Arrival: Around 10:45 AM
             </div>
           </div>
 
-          {/* Action CTAs */}
-          <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', justifyContent: 'center' }}>
+          <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center', marginTop: '0.5rem' }}>
             <button
               onClick={() => setActiveCustomerTab('token')}
-              className="btn btn-primary"
+              className="champagne-btn-gold"
+              style={{ padding: '0.85rem 1.75rem', fontSize: '0.9rem', cursor: 'pointer' }}
             >
-              <Calendar size={16} />
-              <span>Track Live Queue Progress</span>
+              Track Live Queue Progress
             </button>
 
             <button
-              onClick={() => setCurrentStep(1)}
-              className="btn btn-secondary"
+              onClick={() => {
+                setGeneratedToken(null);
+                setCurrentStep(1);
+              }}
+              style={{
+                backgroundColor: '#FFFFFF',
+                border: '1px solid #E8E3DE',
+                borderRadius: '12px',
+                padding: '0.85rem 1.5rem',
+                fontSize: '0.9rem',
+                fontWeight: 800,
+                color: '#121118',
+                cursor: 'pointer'
+              }}
             >
               Book Another Visit
             </button>

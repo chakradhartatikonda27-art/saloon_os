@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useSalon } from '../../context/SalonContext';
-import { ServiceCategory } from '../../types';
 import { Scissors, Clock, Sparkles } from 'lucide-react';
 
 export const CustomerServicesPage: React.FC = () => {
@@ -15,23 +14,25 @@ export const CustomerServicesPage: React.FC = () => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-      {/* Category Pills */}
-      <div style={{ display: 'flex', gap: '0.5rem', overflowX: 'auto', paddingBottom: '0.25rem' }}>
+      {/* Category Filter Pills Bar */}
+      <div style={{ display: 'flex', gap: '0.65rem', overflowX: 'auto', paddingBottom: '0.5rem' }}>
         {categories.map(cat => {
           const isActive = selectedCategory === cat;
           return (
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className="btn btn-sm"
               style={{
-                backgroundColor: isActive ? 'var(--primary-600)' : 'rgba(255, 255, 255, 0.05)',
-                color: isActive ? '#ffffff' : 'var(--text-muted)',
-                borderColor: isActive ? 'var(--primary-500)' : 'var(--border-subtle)',
-                borderRadius: 'var(--radius-full)',
-                padding: '0.4rem 1rem',
-                fontWeight: isActive ? 700 : 500,
-                fontSize: '0.8rem'
+                backgroundColor: isActive ? '#121118' : '#FFFFFF',
+                color: isActive ? '#EBD28F' : '#121118',
+                border: isActive ? '1.5px solid #C9A24E' : '1px solid #E8E3DE',
+                borderRadius: '99px',
+                padding: '0.5rem 1.25rem',
+                fontWeight: 800,
+                fontSize: '0.85rem',
+                cursor: 'pointer',
+                boxShadow: isActive ? '0 4px 14px rgba(18, 17, 24, 0.2)' : 'none',
+                transition: 'all 0.2s ease'
               }}
             >
               {cat}
@@ -41,11 +42,11 @@ export const CustomerServicesPage: React.FC = () => {
       </div>
 
       {/* Services Grid */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '1.25rem' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '1.5rem' }}>
         {filteredServices.map(srv => (
           <div
             key={srv.id}
-            className="glass-panel"
+            className="luxury-card"
             style={{
               overflow: 'hidden',
               display: 'flex',
@@ -54,7 +55,7 @@ export const CustomerServicesPage: React.FC = () => {
             }}
           >
             {srv.imageUrl && (
-              <div style={{ width: '100%', height: '140px', overflow: 'hidden', position: 'relative' }}>
+              <div style={{ width: '100%', height: '160px', overflow: 'hidden', position: 'relative' }}>
                 <img 
                   src={srv.imageUrl} 
                   alt={srv.name} 
@@ -62,69 +63,50 @@ export const CustomerServicesPage: React.FC = () => {
                 />
                 <span style={{
                   position: 'absolute',
-                  top: '0.65rem',
-                  right: '0.65rem',
-                  backgroundColor: 'rgba(15, 23, 42, 0.85)',
-                  backdropFilter: 'blur(4px)',
-                  color: 'var(--primary-500)',
+                  top: '0.75rem',
+                  right: '0.75rem',
+                  backgroundColor: '#121118',
+                  color: '#EBD28F',
+                  border: '1px solid #C9A24E',
                   fontSize: '0.7rem',
-                  fontWeight: 800,
-                  padding: '0.2rem 0.55rem',
-                  borderRadius: 'var(--radius-full)'
+                  fontWeight: 900,
+                  padding: '0.25rem 0.65rem',
+                  borderRadius: '99px',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.05em'
                 }}>
                   {srv.category}
                 </span>
               </div>
             )}
 
-            <div style={{ padding: '1.1rem', display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+            <div style={{ padding: '1.35rem', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                <h4 style={{ fontSize: '1rem', fontWeight: 800 }}>{srv.name}</h4>
-                <div style={{ fontSize: '1.1rem', fontWeight: 800, color: '#34d399' }}>
+                <h4 style={{ fontSize: '1.15rem', fontWeight: 900, color: '#121118', margin: 0 }}>
+                  {srv.name}
+                </h4>
+                <div style={{ fontSize: '1.25rem', fontWeight: 900, color: '#121118' }}>
                   ₹{srv.price}
                 </div>
               </div>
 
-              <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', lineHeight: 1.4 }}>
+              <p style={{ fontSize: '0.85rem', color: '#5A5463', lineHeight: 1.5, margin: 0 }}>
                 {srv.description}
               </p>
 
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', fontSize: '0.75rem', color: 'var(--text-dim)', marginTop: '0.25rem' }}>
-                <span style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
-                  <Clock size={13} /> {srv.duration} mins
-                </span>
-                <span>•</span>
-                <span>GST 18% incl.</span>
-              </div>
-
-              {/* Service Variants if available */}
-              {srv.variants && srv.variants.length > 0 && (
-                <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap', marginTop: '0.35rem' }}>
-                  {srv.variants.map(v => (
-                    <span 
-                      key={v.id}
-                      style={{
-                        fontSize: '0.7rem',
-                        backgroundColor: 'rgba(255, 255, 255, 0.04)',
-                        border: '1px solid var(--border-subtle)',
-                        borderRadius: 'var(--radius-sm)',
-                        padding: '0.15rem 0.45rem',
-                        color: 'var(--text-muted)'
-                      }}
-                    >
-                      {v.name}: ₹{v.price}
-                    </span>
-                  ))}
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '0.5rem', borderTop: '1px solid #E8E3DE', paddingTop: '0.85rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', fontSize: '0.8rem', color: '#5A5463', fontWeight: 700 }}>
+                  <Clock size={14} color="#C9A24E" /> {srv.duration} mins
                 </div>
-              )}
 
-              <button
-                onClick={() => setActiveCustomerTab('book')}
-                className="btn btn-primary"
-                style={{ marginTop: '0.75rem', width: '100%', justifyContent: 'center' }}
-              >
-                <Scissors size={14} /> Book Service
-              </button>
+                <button
+                  onClick={() => setActiveCustomerTab('book')}
+                  className="champagne-btn-primary"
+                  style={{ padding: '0.5rem 1.15rem', fontSize: '0.8rem', cursor: 'pointer' }}
+                >
+                  Book Service
+                </button>
+              </div>
             </div>
           </div>
         ))}
