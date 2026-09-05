@@ -8,6 +8,11 @@ import { QuickActionModal } from './components/layout/QuickActionModal';
 import { StylistRequestAlert } from './components/common/StylistRequestAlert';
 
 import { Dashboard } from './components/modules/Dashboard';
+import { OwnerDashboard } from './components/modules/OwnerDashboard';
+import { ManagerDashboard } from './components/modules/ManagerDashboard';
+import { ReceptionistDashboard } from './components/modules/ReceptionistDashboard';
+import { StylistDashboard } from './components/modules/StylistDashboard';
+
 import { MISDashboard } from './components/modules/MISDashboard';
 import { Appointments } from './components/modules/Appointments';
 import { LiveQueue } from './components/modules/LiveQueue';
@@ -35,11 +40,22 @@ import { InvoiceModal } from './components/modules/InvoiceModal';
 import { CustomerApp } from './components/customer/CustomerApp';
 
 const AdminLayout: React.FC = () => {
-  const { activeModule, activeCustomerProfileId, setActiveCustomerProfileId, activeInvoicePreview, setActiveInvoicePreview } = useSalon();
+  const { activeModule, activeRole, activeCustomerProfileId, setActiveCustomerProfileId, activeInvoicePreview, setActiveInvoicePreview } = useSalon();
+
+  const renderDashboardByRole = () => {
+    switch (activeRole) {
+      case 'owner': return <OwnerDashboard />;
+      case 'manager': return <ManagerDashboard />;
+      case 'receptionist': return <ReceptionistDashboard />;
+      case 'stylist': return <StylistDashboard />;
+      default: return <OwnerDashboard />;
+    }
+  };
 
   const renderModule = () => {
     switch (activeModule) {
-      case 'dashboard': return <Dashboard />;
+      case 'dashboard': return renderDashboardByRole();
+      case 'ai_insights': return <OwnerDashboard />;
       case 'mis_dashboard': return <MISDashboard />;
       case 'appointments': return <Appointments />;
       case 'queue': return <LiveQueue />;
@@ -59,7 +75,22 @@ const AdminLayout: React.FC = () => {
       case 'customer_website': return <CustomerWebsiteConfig />;
       case 'booking_rules': return <BookingTokenRules />;
       case 'settings': return <Settings />;
-      default: return <Dashboard />;
+      
+      // Role Specific Modules
+      case 'walkins': return <ReceptionistDashboard />;
+      case 'payments': return <Invoices />;
+      case 'complaints': return <ManagerDashboard />;
+      case 'branches': return <Settings />;
+      case 'memberships': return <CustomerWebsiteConfig />;
+      case 'finance': return <Expenses />;
+      case 'my_day': return <StylistDashboard />;
+      case 'my_appointments': return <Appointments />;
+      case 'my_queue': return <LiveQueue />;
+      case 'service_history': return <LiveQueue />;
+      case 'my_commission': return <Commissions />;
+      case 'my_profile': return <Staff />;
+
+      default: return renderDashboardByRole();
     }
   };
 
@@ -99,12 +130,10 @@ const AppContent: React.FC = () => {
   );
 };
 
-export function App() {
+export default function App() {
   return (
     <SalonProvider>
       <AppContent />
     </SalonProvider>
   );
 }
-
-export default App;

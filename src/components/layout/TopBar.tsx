@@ -1,19 +1,20 @@
 import React from 'react';
 import { useSalon } from '../../context/SalonContext';
+import { UserRole } from '../../types';
 import { 
   Search, 
-  Plus, 
-  Calendar as CalendarIcon, 
   Scissors,
-  Globe
+  Globe,
+  UserCheck
 } from 'lucide-react';
 
 export const TopBar: React.FC = () => {
   const { 
     activeModule, 
+    activeRole,
+    setActiveRole,
     settings, 
     setIsGlobalSearchOpen, 
-    setIsQuickActionOpen, 
     setIsWalkInOpen,
     setViewPerspective,
     updateSettings
@@ -21,25 +22,42 @@ export const TopBar: React.FC = () => {
 
   const getModuleTitle = () => {
     switch (activeModule) {
-      case 'dashboard': return "Salon Overview";
-      case 'mis_dashboard': return "MIS Dashboard";
-      case 'appointments': return "Appointments";
-      case 'queue': return "Live Queue";
+      case 'dashboard': 
+        if (activeRole === 'owner') return "Owner Command Center";
+        if (activeRole === 'manager') return "Live Operational Floor";
+        if (activeRole === 'receptionist') return "Reception Desk";
+        return "Salon Dashboard";
+      case 'ai_insights': return "AI Insights & Forecasts";
+      case 'mis_dashboard': return "MIS Executive Dashboard";
+      case 'appointments': return "Appointments Management";
+      case 'queue': return "Live Queue Control";
       case 'queue_control': return "Queue Matrix";
       case 'customers': return "Customer CRM";
       case 'services': return "Services & Pricing";
-      case 'staff': return "Staff Roster";
-      case 'billing': return "Billing & POS";
-      case 'attendance': return "Attendance";
-      case 'payroll': return "Payroll";
-      case 'commissions': return "Commissions";
-      case 'services_config': return "Services Menu";
-      case 'customer_website': return "Website Settings";
-      case 'booking_rules': return "Booking Rules";
-      case 'expenses': return "Expenses";
-      case 'marketing': return "Marketing";
-      case 'reports': return "Analytics";
-      case 'settings': return "Settings";
+      case 'staff': return "Staff Roster & Commission";
+      case 'billing': return "Billing & POS Cashier";
+      case 'attendance': return "Attendance Management";
+      case 'payroll': return "Payroll Management";
+      case 'commissions': return "Commissions Engine";
+      case 'branches': return "Multi-Branch OS";
+      case 'memberships': return "Memberships & VIP Tiers";
+      case 'finance': return "Finance & Daily Closing";
+      case 'expenses': return "Expenses & Outflows";
+      case 'complaints': return "Customer Feedback & Issues";
+      case 'walkins': return "Walk-in Token Engine";
+      case 'payments': return "Payments & Receipts";
+      case 'my_day': return "Good Morning, Stylist!";
+      case 'my_appointments': return "My Scheduled Appointments";
+      case 'my_queue': return "My Customer Queue";
+      case 'service_history': return "Service History Log";
+      case 'my_commission': return "My Personal Commission";
+      case 'my_profile': return "My Stylist Profile";
+      case 'services_config': return "Services Menu Config";
+      case 'customer_website': return "Customer Website Config";
+      case 'booking_rules': return "Booking & Token Rules";
+      case 'marketing': return "Marketing Campaigns";
+      case 'reports': return "Analytics & Growth";
+      case 'settings': return "Salon Settings";
       default: return "Salon OS";
     }
   };
@@ -92,8 +110,31 @@ export const TopBar: React.FC = () => {
         </div>
       </div>
 
-      {/* Right Controls & Actions */}
+      {/* Right Controls & Role Switcher */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', flexShrink: 0 }}>
+        {/* Role Switcher Pill */}
+        <div style={{ display: 'flex', alignItems: 'center', backgroundColor: '#FAF7F2', border: '1px solid rgba(201, 162, 78, 0.4)', borderRadius: '8px', padding: '0.15rem 0.35rem' }}>
+          <UserCheck size={14} color="#C9A24E" style={{ marginRight: '0.25rem' }} />
+          <select
+            value={activeRole}
+            onChange={(e) => setActiveRole(e.target.value as UserRole)}
+            style={{
+              backgroundColor: 'transparent',
+              border: 'none',
+              color: '#121118',
+              fontSize: '0.75rem',
+              fontWeight: 900,
+              outline: 'none',
+              cursor: 'pointer'
+            }}
+          >
+            <option value="owner">👑 Owner</option>
+            <option value="manager">👔 Manager</option>
+            <option value="receptionist">🛎️ Receptionist</option>
+            <option value="stylist">✂️ Stylist</option>
+          </select>
+        </div>
+
         {/* Switch to Public Customer Web App */}
         <button
           onClick={() => setViewPerspective('customer')}
@@ -132,7 +173,7 @@ export const TopBar: React.FC = () => {
           }}
         >
           <Search size={14} />
-          <span className="hide-mobile">Search...</span>
+          <span className="hide-mobile">Search</span>
         </button>
 
         {/* Walk-in Queue Quick Add CTA */}

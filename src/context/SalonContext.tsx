@@ -14,6 +14,7 @@ import {
   NavModule,
   CustomerTab,
   ViewPerspective,
+  UserRole,
   AppointmentStatus,
   QueueStatus,
   StaffStatus,
@@ -43,6 +44,8 @@ interface SalonContextType {
   // Perspective & Navigation
   viewPerspective: ViewPerspective;
   setViewPerspective: (perspective: ViewPerspective) => void;
+  activeRole: UserRole;
+  setActiveRole: (role: UserRole) => void;
   activeModule: NavModule;
   setActiveModule: (module: NavModule) => void;
   activeCustomerTab: CustomerTab;
@@ -126,8 +129,17 @@ const SalonContext = createContext<SalonContextType | undefined>(undefined);
 export const SalonProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   // Navigation & Perspective State
   const [viewPerspective, setViewPerspective] = useState<ViewPerspective>('admin');
+  const [activeRole, setActiveRoleState] = useState<UserRole>('owner');
   const [activeModule, setActiveModule] = useState<NavModule>('dashboard');
   const [activeCustomerTab, setActiveCustomerTab] = useState<CustomerTab>('home');
+
+  const setActiveRole = (role: UserRole) => {
+    setActiveRoleState(role);
+    if (role === 'owner') setActiveModule('dashboard');
+    else if (role === 'manager') setActiveModule('dashboard');
+    else if (role === 'receptionist') setActiveModule('dashboard');
+    else if (role === 'stylist') setActiveModule('my_day');
+  };
 
   // Domain States (with LocalStorage persistence fallback)
   const [settings, setSettings] = useState<SalonSettings>(() => {
@@ -483,6 +495,8 @@ export const SalonProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     <SalonContext.Provider value={{
       viewPerspective,
       setViewPerspective,
+      activeRole,
+      setActiveRole,
       activeModule,
       setActiveModule,
       activeCustomerTab,

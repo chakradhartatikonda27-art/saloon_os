@@ -1,3 +1,5 @@
+export type UserRole = 'owner' | 'manager' | 'receptionist' | 'stylist';
+
 export type NavModule = 
   | 'dashboard'
   | 'mis_dashboard'
@@ -18,7 +20,20 @@ export type NavModule =
   | 'services_config'
   | 'customer_website'
   | 'booking_rules'
-  | 'settings';
+  | 'settings'
+  | 'ai_insights'
+  | 'branches'
+  | 'memberships'
+  | 'finance'
+  | 'complaints'
+  | 'walkins'
+  | 'payments'
+  | 'my_day'
+  | 'my_appointments'
+  | 'my_queue'
+  | 'service_history'
+  | 'my_commission'
+  | 'my_profile';
 
 export type CustomerTab = 
   | 'home'
