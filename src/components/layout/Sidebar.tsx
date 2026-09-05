@@ -41,7 +41,7 @@ interface SidebarSection {
 }
 
 export const Sidebar: React.FC = () => {
-  const { activeModule, setActiveModule, activeRole, setActiveRole, appointments, queue } = useSalon();
+  const { activeModule, setActiveModule, activeRole, setActiveRole, appointments, queue, hasModulePermission } = useSalon();
 
   const pendingAptsCount = appointments.filter(a => a.status === 'Pending').length;
   const waitingQueueCount = queue.filter(q => q.status === 'Waiting').length;
@@ -217,22 +217,26 @@ export const Sidebar: React.FC = () => {
         flexDirection: 'column',
         gap: '1.25rem'
       }}>
-        {sections.map(sec => (
-          <div key={sec.title} style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
-            <div style={{
-              fontSize: '0.65rem',
-              fontWeight: 800,
-              color: '#655F73',
-              letterSpacing: '0.08em',
-              padding: '0 0.5rem',
-              marginBottom: '0.2rem'
-            }}>
-              {sec.title}
-            </div>
+        {sections.map(sec => {
+          const permittedItems = sec.items.filter(item => hasModulePermission(item.id));
+          if (permittedItems.length === 0) return null;
 
-            {sec.items.map(item => {
-              const Icon = item.icon;
-              const isActive = activeModule === item.id;
+          return (
+            <div key={sec.title} style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
+              <div style={{
+                fontSize: '0.65rem',
+                fontWeight: 800,
+                color: '#655F73',
+                letterSpacing: '0.08em',
+                padding: '0 0.5rem',
+                marginBottom: '0.2rem'
+              }}>
+                {sec.title}
+              </div>
+
+              {permittedItems.map(item => {
+                const Icon = item.icon;
+                const isActive = activeModule === item.id;
 
               return (
                 <button
@@ -275,7 +279,8 @@ export const Sidebar: React.FC = () => {
               );
             })}
           </div>
-        ))}
+        );
+      })}
       </nav>
 
       {/* Role Switcher Selector at Bottom */}

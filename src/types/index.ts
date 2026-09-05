@@ -86,6 +86,15 @@ export type StaffRole =
   | 'Barber'
   | 'Therapist';
 
+export interface RolePermissionRule {
+  module: string;
+  label: string;
+  owner: boolean;
+  manager: boolean;
+  receptionist: boolean;
+  stylist: boolean;
+}
+
 export type ServiceCategory = 
   | 'Hair'
   | 'Beard'

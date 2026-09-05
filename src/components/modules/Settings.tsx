@@ -13,7 +13,7 @@ interface RolePermissionRow {
 }
 
 export const Settings: React.FC = () => {
-  const { settings, updateSettings, setActiveModule } = useSalon();
+  const { settings, updateSettings, setActiveModule, rolePermissions, toggleRolePermission } = useSalon();
 
   const [activeTab, setActiveTab] = useState<'Salon profile' | 'Booking' | 'Staff' | 'Billing' | 'Notifications' | 'Subscription'>('Salon profile');
   const [toastMessage, setToastMessage] = useState<string | null>(null);
@@ -35,26 +35,6 @@ export const Settings: React.FC = () => {
   const [noShowGraceMin, setNoShowGraceMin] = useState(10);
   const [advancePaymentPercent, setAdvancePaymentPercent] = useState(0);
 
-  // Tab 3: Staff Roles & Permissions Matrix State
-  const [rolePermissions, setRolePermissions] = useState<RolePermissionRow[]>([
-    { module: 'dashboard', owner: true, manager: true, receptionist: true, stylist: false, barber: false, therapist: false },
-    { module: 'live', owner: true, manager: true, receptionist: true, stylist: true, barber: true, therapist: true },
-    { module: 'queue', owner: true, manager: true, receptionist: true, stylist: true, barber: true, therapist: true },
-    { module: 'appointments', owner: true, manager: true, receptionist: true, stylist: true, barber: true, therapist: true },
-    { module: 'pos', owner: true, manager: true, receptionist: true, stylist: false, barber: false, therapist: false },
-    { module: 'invoices', owner: true, manager: true, receptionist: true, stylist: false, barber: false, therapist: false },
-    { module: 'customers', owner: true, manager: true, receptionist: true, stylist: false, barber: false, therapist: false },
-    { module: 'staff', owner: true, manager: true, receptionist: false, stylist: false, barber: false, therapist: false },
-    { module: 'attendance', owner: true, manager: true, receptionist: false, stylist: false, barber: false, therapist: false },
-    { module: 'payroll', owner: true, manager: false, receptionist: false, stylist: false, barber: false, therapist: false },
-    { module: 'commissions', owner: true, manager: true, receptionist: false, stylist: false, barber: false, therapist: false },
-    { module: 'expenses', owner: true, manager: true, receptionist: false, stylist: false, barber: false, therapist: false },
-    { module: 'inventory', owner: true, manager: true, receptionist: true, stylist: false, barber: false, therapist: false },
-    { module: 'marketing', owner: true, manager: true, receptionist: false, stylist: false, barber: false, therapist: false },
-    { module: 'reports', owner: true, manager: true, receptionist: false, stylist: false, barber: false, therapist: false },
-    { module: 'settings', owner: true, manager: false, receptionist: false, stylist: false, barber: false, therapist: false }
-  ]);
-
   // Tab 4: Billing State
   const [invoicePrefix, setInvoicePrefix] = useState('INV');
   const [gstPercent, setGstPercent] = useState(18);
@@ -64,10 +44,6 @@ export const Settings: React.FC = () => {
     card: true,
     other: true
   });
-
-  const toggleRolePermission = (moduleName: string, roleKey: 'manager' | 'receptionist' | 'stylist' | 'barber' | 'therapist') => {
-    setRolePermissions(prev => prev.map(row => row.module === moduleName ? { ...row, [roleKey]: !row[roleKey] } : row));
-  };
 
   const togglePaymentMethod = (method: 'cash' | 'upi' | 'card' | 'other') => {
     setPaymentMethods(prev => ({ ...prev, [method]: !prev[method] }));
@@ -325,13 +301,11 @@ export const Settings: React.FC = () => {
               <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.825rem' }}>
                 <thead>
                   <tr style={{ backgroundColor: '#FAF8F5', borderBottom: '1px solid #E8E3DE' }}>
-                    <th style={{ padding: '0.75rem 1rem', fontSize: '0.7rem', fontWeight: 800, color: '#75707E', textTransform: 'uppercase', textAlign: 'left' }}>MODULE</th>
-                    <th style={{ padding: '0.75rem 1rem', fontSize: '0.7rem', fontWeight: 800, color: '#75707E', textTransform: 'uppercase', textAlign: 'center' }}>OWNER</th>
-                    <th style={{ padding: '0.75rem 1rem', fontSize: '0.7rem', fontWeight: 800, color: '#75707E', textTransform: 'uppercase', textAlign: 'center' }}>MANAGER</th>
-                    <th style={{ padding: '0.75rem 1rem', fontSize: '0.7rem', fontWeight: 800, color: '#75707E', textTransform: 'uppercase', textAlign: 'center' }}>RECEPTIONIST</th>
-                    <th style={{ padding: '0.75rem 1rem', fontSize: '0.7rem', fontWeight: 800, color: '#75707E', textTransform: 'uppercase', textAlign: 'center' }}>STYLIST</th>
-                    <th style={{ padding: '0.75rem 1rem', fontSize: '0.7rem', fontWeight: 800, color: '#75707E', textTransform: 'uppercase', textAlign: 'center' }}>BARBER</th>
-                    <th style={{ padding: '0.75rem 1rem', fontSize: '0.7rem', fontWeight: 800, color: '#75707E', textTransform: 'uppercase', textAlign: 'center' }}>THERAPIST</th>
+                    <th style={{ padding: '0.75rem 1rem', fontSize: '0.7rem', fontWeight: 800, color: '#75707E', textTransform: 'uppercase', textAlign: 'left' }}>MODULE / FEATURE</th>
+                    <th style={{ padding: '0.75rem 1rem', fontSize: '0.7rem', fontWeight: 800, color: '#75707E', textTransform: 'uppercase', textAlign: 'center' }}>👑 OWNER</th>
+                    <th style={{ padding: '0.75rem 1rem', fontSize: '0.7rem', fontWeight: 800, color: '#75707E', textTransform: 'uppercase', textAlign: 'center' }}>👔 MANAGER</th>
+                    <th style={{ padding: '0.75rem 1rem', fontSize: '0.7rem', fontWeight: 800, color: '#75707E', textTransform: 'uppercase', textAlign: 'center' }}>🛎️ RECEPTIONIST</th>
+                    <th style={{ padding: '0.75rem 1rem', fontSize: '0.7rem', fontWeight: 800, color: '#75707E', textTransform: 'uppercase', textAlign: 'center' }}>✂️ STYLIST</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -339,12 +313,12 @@ export const Settings: React.FC = () => {
                     <tr key={row.module} style={{ borderBottom: '1px solid #E8E3DE' }}>
                       {/* MODULE */}
                       <td style={{ padding: '0.65rem 1rem', fontWeight: 700, color: '#14121A' }}>
-                        {row.module}
+                        {row.label || row.module}
                       </td>
 
                       {/* OWNER CHECKMARK */}
-                      <td style={{ padding: '0.65rem 1rem', textAlign: 'center', color: '#14121A', fontWeight: 900 }}>
-                        ✓
+                      <td style={{ padding: '0.65rem 1rem', textAlign: 'center', color: '#0E9C86', fontWeight: 900 }}>
+                        ✓ Always
                       </td>
 
                       {/* MANAGER TOGGLE */}
@@ -404,46 +378,6 @@ export const Settings: React.FC = () => {
                           }}
                         >
                           <div style={{ width: '16px', height: '16px', borderRadius: '50%', backgroundColor: '#FFFFFF', transform: row.stylist ? 'translateX(16px)' : 'translateX(0px)', transition: 'transform 0.2s ease' }}></div>
-                        </button>
-                      </td>
-
-                      {/* BARBER TOGGLE */}
-                      <td style={{ padding: '0.65rem 1rem', textAlign: 'center' }}>
-                        <button
-                          onClick={() => toggleRolePermission(row.module, 'barber')}
-                          style={{
-                            width: '36px',
-                            height: '20px',
-                            borderRadius: '10px',
-                            backgroundColor: row.barber ? '#0E9C86' : '#E8E3DE',
-                            border: 'none',
-                            cursor: 'pointer',
-                            padding: '2px',
-                            display: 'inline-flex',
-                            alignItems: 'center'
-                          }}
-                        >
-                          <div style={{ width: '16px', height: '16px', borderRadius: '50%', backgroundColor: '#FFFFFF', transform: row.barber ? 'translateX(16px)' : 'translateX(0px)', transition: 'transform 0.2s ease' }}></div>
-                        </button>
-                      </td>
-
-                      {/* THERAPIST TOGGLE */}
-                      <td style={{ padding: '0.65rem 1rem', textAlign: 'center' }}>
-                        <button
-                          onClick={() => toggleRolePermission(row.module, 'therapist')}
-                          style={{
-                            width: '36px',
-                            height: '20px',
-                            borderRadius: '10px',
-                            backgroundColor: row.therapist ? '#0E9C86' : '#E8E3DE',
-                            border: 'none',
-                            cursor: 'pointer',
-                            padding: '2px',
-                            display: 'inline-flex',
-                            alignItems: 'center'
-                          }}
-                        >
-                          <div style={{ width: '16px', height: '16px', borderRadius: '50%', backgroundColor: '#FFFFFF', transform: row.therapist ? 'translateX(16px)' : 'translateX(0px)', transition: 'transform 0.2s ease' }}></div>
                         </button>
                       </td>
                     </tr>

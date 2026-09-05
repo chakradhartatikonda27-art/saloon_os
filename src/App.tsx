@@ -40,7 +40,7 @@ import { InvoiceModal } from './components/modules/InvoiceModal';
 import { CustomerApp } from './components/customer/CustomerApp';
 
 const AdminLayout: React.FC = () => {
-  const { activeModule, activeRole, activeCustomerProfileId, setActiveCustomerProfileId, activeInvoicePreview, setActiveInvoicePreview } = useSalon();
+  const { activeModule, activeRole, hasModulePermission, setActiveModule, activeCustomerProfileId, setActiveCustomerProfileId, activeInvoicePreview, setActiveInvoicePreview } = useSalon();
 
   const renderDashboardByRole = () => {
     switch (activeRole) {
@@ -53,6 +53,31 @@ const AdminLayout: React.FC = () => {
   };
 
   const renderModule = () => {
+    if (activeModule !== 'dashboard' && !hasModulePermission(activeModule)) {
+      return (
+        <div className="workspace-padding" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '60vh', textAlign: 'center', gap: '1rem' }}>
+          <div style={{ backgroundColor: '#FFF9EE', border: '1.5px solid #C9A24E', borderRadius: '20px', padding: '2.5rem 2rem', maxWidth: '480px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem', boxShadow: '0 12px 30px rgba(0,0,0,0.06)' }}>
+            <div style={{ width: '54px', height: '54px', borderRadius: '50%', backgroundColor: '#121118', color: '#EBD28F', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.5rem', fontWeight: 900 }}>
+              🔒
+            </div>
+            <div>
+              <h3 style={{ fontSize: '1.25rem', fontWeight: 900, color: '#121118', margin: 0 }}>Module Access Restricted</h3>
+              <p style={{ fontSize: '0.85rem', color: '#5A5463', marginTop: '0.35rem', margin: 0, lineHeight: 1.45 }}>
+                Access to <strong>{activeModule}</strong> has been disabled for the <strong>{activeRole.toUpperCase()}</strong> role by your Salon Owner or Manager.
+              </p>
+            </div>
+            <button 
+              onClick={() => setActiveModule('dashboard')} 
+              className="champagne-btn-gold" 
+              style={{ padding: '0.65rem 1.5rem', fontSize: '0.85rem', cursor: 'pointer', marginTop: '0.5rem' }}
+            >
+              Return to Role Dashboard
+            </button>
+          </div>
+        </div>
+      );
+    }
+
     switch (activeModule) {
       case 'dashboard': return renderDashboardByRole();
       case 'ai_insights': return <OwnerDashboard />;

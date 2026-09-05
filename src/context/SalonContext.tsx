@@ -20,7 +20,8 @@ import {
   StaffStatus,
   SmartToken,
   OfferItem,
-  GalleryImage
+  GalleryImage,
+  RolePermissionRule
 } from '../types';
 
 import { 
@@ -37,7 +38,8 @@ import {
   initialNotifications,
   initialTokens,
   initialOffers,
-  initialGallery
+  initialGallery,
+  initialRolePermissions
 } from '../mockData';
 
 interface SalonContextType {
@@ -46,6 +48,9 @@ interface SalonContextType {
   setViewPerspective: (perspective: ViewPerspective) => void;
   activeRole: UserRole;
   setActiveRole: (role: UserRole) => void;
+  rolePermissions: RolePermissionRule[];
+  toggleRolePermission: (moduleName: string, roleKey: 'manager' | 'receptionist' | 'stylist') => void;
+  hasModulePermission: (moduleName: string, role?: UserRole) => boolean;
   activeModule: NavModule;
   setActiveModule: (module: NavModule) => void;
   activeCustomerTab: CustomerTab;
@@ -146,6 +151,27 @@ export const SalonProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     const saved = localStorage.getItem('salon_os_settings');
     return saved ? JSON.parse(saved) : initialSettings;
   });
+
+  const [rolePermissions, setRolePermissions] = useState<RolePermissionRule[]>(() => {
+    const saved = localStorage.getItem('salon_os_role_permissions');
+    return saved ? JSON.parse(saved) : initialRolePermissions;
+  });
+
+  useEffect(() => {
+    localStorage.setItem('salon_os_role_permissions', JSON.stringify(rolePermissions));
+  }, [rolePermissions]);
+
+  const toggleRolePermission = (moduleName: string, roleKey: 'manager' | 'receptionist' | 'stylist') => {
+    setRolePermissions(prev => prev.map(row => row.module === moduleName ? { ...row, [roleKey]: !row[roleKey] } : row));
+  };
+
+  const hasModulePermission = (moduleName: string, role?: UserRole): boolean => {
+    const targetRole = role || activeRole;
+    if (targetRole === 'owner') return true;
+    const rule = rolePermissions.find(r => r.module === moduleName);
+    if (!rule) return true;
+    return !!rule[targetRole as 'manager' | 'receptionist' | 'stylist'];
+  };
 
   const [staff, setStaff] = useState<Staff[]>(initialStaff);
   const [services, setServices] = useState<Service[]>(initialServices);
@@ -497,6 +523,9 @@ export const SalonProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       setViewPerspective,
       activeRole,
       setActiveRole,
+      rolePermissions,
+      toggleRolePermission,
+      hasModulePermission,
       activeModule,
       setActiveModule,
       activeCustomerTab,

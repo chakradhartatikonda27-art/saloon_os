@@ -12,8 +12,31 @@ import {
   SalonSettings,
   SmartToken,
   OfferItem,
-  GalleryImage
+  GalleryImage,
+  RolePermissionRule
 } from './types';
+
+export const initialRolePermissions: RolePermissionRule[] = [
+  { module: 'dashboard', label: 'Executive / Floor Dashboard', owner: true, manager: true, receptionist: true, stylist: true },
+  { module: 'ai_insights', label: 'AI Insights & Business Assistant', owner: true, manager: true, receptionist: false, stylist: false },
+  { module: 'mis_dashboard', label: 'MIS Executive Analytics', owner: true, manager: true, receptionist: false, stylist: false },
+  { module: 'appointments', label: 'Appointments Management', owner: true, manager: true, receptionist: true, stylist: true },
+  { module: 'queue', label: 'Live Queue Operations Control', owner: true, manager: true, receptionist: true, stylist: true },
+  { module: 'billing', label: 'POS Billing & GST Invoicing', owner: true, manager: true, receptionist: true, stylist: false },
+  { module: 'customers', label: 'Customer CRM & History', owner: true, manager: true, receptionist: true, stylist: true },
+  { module: 'services', label: 'Services & Pricing Menu', owner: true, manager: true, receptionist: true, stylist: false },
+  { module: 'staff', label: 'Staff Roster & Management', owner: true, manager: true, receptionist: false, stylist: false },
+  { module: 'attendance', label: 'Staff Attendance Tracking', owner: true, manager: true, receptionist: false, stylist: false },
+  { module: 'payroll', label: 'Payroll & Salary Config', owner: true, manager: false, receptionist: false, stylist: false },
+  { module: 'commissions', label: 'Staff Commission Engine', owner: true, manager: true, receptionist: false, stylist: true },
+  { module: 'expenses', label: 'Expenses & P&L Statements', owner: true, manager: false, receptionist: false, stylist: false },
+  { module: 'inventory', label: 'Inventory & Stock Control', owner: true, manager: true, receptionist: true, stylist: false },
+  { module: 'marketing', label: 'Marketing & WhatsApp Campaigns', owner: true, manager: true, receptionist: false, stylist: false },
+  { module: 'reports', label: 'Analytics & Export Reports', owner: true, manager: true, receptionist: false, stylist: false },
+  { module: 'customer_website', label: 'Customer Website Config', owner: true, manager: true, receptionist: false, stylist: false },
+  { module: 'booking_rules', label: 'Booking & Token Rules', owner: true, manager: true, receptionist: false, stylist: false },
+  { module: 'settings', label: 'Salon Settings & Security RBAC', owner: true, manager: true, receptionist: false, stylist: false }
+];
 
 export const initialSettings: SalonSettings = {
   tenantId: 'tenant-urban-glow-1',
